@@ -4,11 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pharmacy.Core.Entities.Base
 {
-    [Table(Constants.Tables.Users)]
     public class User : IEntity
     {
-        [Key,
-         DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
 
