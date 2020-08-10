@@ -4,13 +4,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pharmacy.Core.Entities.Base
 {
-    [Table(Constants.Tables.Countries)]
-    public class Country : IEntity
+    [Table(Constants.Tables.AttributeOptions)]
+    public class AttributeOption : IEntity
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string Name { get; set; }
+        
+        [Required, ForeignKey(nameof(Attribute))]
+        public int AttributeId { get; set; }
+        [Required]
+        public string Value { get; set; }
+
         public DateTime? DeletedDateTime { get; set; }
+
+        public Attribute Attribute { get; set; }
     }
 
   

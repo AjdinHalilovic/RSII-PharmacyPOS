@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pharmacy.Core.Entities.Base
 {
-    [Table(Constants.Tables.Country)]
+    [Table(Constants.Tables.Cities)]
     public class City : IEntity
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
