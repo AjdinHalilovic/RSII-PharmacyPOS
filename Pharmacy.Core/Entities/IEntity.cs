@@ -1,8 +1,10 @@
-﻿namespace Pharmacy.Core.Entities
+﻿using System;
+
+namespace Pharmacy.Core.Entities
 {
     public interface IEntity
     {
         int Id { get; set; }
-        bool IsDeleted { get; set; }
+        DateTime? DeletedDateTime { get; set; }
     }
 }

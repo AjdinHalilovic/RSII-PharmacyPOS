@@ -28,7 +28,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base
         public virtual TEntity GetById(TPk id) => _entity.AsNoTracking().ToList().SingleOrDefault(i => Equals(((IEntity)i).Id, id));
         public virtual async Task<TEntity> GetByIdAsync(TPk id) => await _entity.AsNoTracking().SingleOrDefaultAsync(i => Equals(((IEntity)i).Id, id));
 
-        public virtual IEnumerable<TEntity> GetAll() => _entity.Where(i => !((IEntity)i).IsDeleted);
+        public virtual IEnumerable<TEntity> GetAll() => _entity.Where(i => !((IEntity)i).DeletedDateTime.HasValue);
         #endregion
 
         #region Add
@@ -88,7 +88,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base
         {
             if (softDelete)
             {
-                ((IEntity)entity).IsDeleted = true;
+                ((IEntity)entity).DeletedDateTime = DateTime.Now;
             }
 
             try
@@ -116,7 +116,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base
 
             if (softDelete)
             {
-                ((IEntity)entity).IsDeleted = true;
+                ((IEntity)entity).DeletedDateTime = DateTime.Now;
             }
 
             try
@@ -143,7 +143,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base
             if (softDelete)
             {
                 foreach (var entity in entities)
-                    ((IEntity)entity).IsDeleted = true;
+                    ((IEntity)entity).DeletedDateTime = DateTime.Now;
             }
 
             try
@@ -172,7 +172,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base
             if (softDelete)
             {
                 foreach (var entity in entities)
-                    ((IEntity)entity).IsDeleted = true;
+                    ((IEntity)entity).DeletedDateTime = DateTime.Now;
             }
 
             try

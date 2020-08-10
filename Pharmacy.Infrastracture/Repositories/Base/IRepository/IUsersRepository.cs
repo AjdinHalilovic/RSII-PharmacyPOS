@@ -7,6 +7,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.IRepository
     {
         User GetByAccessToken(string accessToken);
         Task<User> GetByAccessTokenAsync(string accessToken);
+        User GetByUsernameOrEmailAddress(string username);
 
     }
 }

@@ -24,6 +24,11 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         }
 
 
-       
+        public User GetByUsernameOrEmailAddress(string username)
+        {
+            return Context.Users.FirstOrDefault(x => !x.DeletedDateTime.HasValue && (x.Username.Equals(username) || x.Email.Equals(username)));
+        }
+
+
     }
 }

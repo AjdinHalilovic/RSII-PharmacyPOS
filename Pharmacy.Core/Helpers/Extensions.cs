@@ -1,88 +1,90 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
+using static Pharmacy.Core.Constants.Enumerations;
 
+// ReSharper disable once CheckNamespace
 namespace System
 {
-    public static class CoreExtensions
+    public static class Extensions
     {
-        public static JsonSerializer JsonSerializerSettings { get; set; }
+        #region Exception
 
-        static void ObjectExtension()
+        public static string InnerExceptionMessage(this Exception source)
         {
-            JsonSerializerSettings = new JsonSerializer();
-            JsonSerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.None;
-            JsonSerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            JsonSerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            return source == null ? string.Empty : source.InnerException == null ? source.Message : source.InnerException.Message;
         }
 
-        public static async Task<string> ToQueryString(this object metaToken)
-        {
-            var keyValueContent = metaToken.ToKeyValue();
-            var formUrlEncodedContent = new FormUrlEncodedContent(keyValueContent);
-            var urlEncodedString = await formUrlEncodedContent.ReadAsStringAsync();
+        #endregion
 
-            return urlEncodedString;
+        #region String
+
+        public static int[] CsvToIntArray(this string csv)
+        {
+            return string.IsNullOrEmpty(csv) ? null : Array.ConvertAll(csv.Split(','), int.Parse);
         }
 
-
-        public static IDictionary<string, string> ToKeyValue(this object metaToken)
+        public static int[] CsvToUniqueIntArray(this string csv)
         {
-            if (metaToken == null)
-            {
-                return null;
-            }
-
-
-            JToken token = metaToken as JToken;
-            if (token == null)
-            {
-                try
-                {
-                    return ToKeyValue(JObject.FromObject(metaToken, JsonSerializerSettings));
-                }
-                catch (System.ArgumentException ex)
-                {
-                    var dict = new Dictionary<string, string>();
-                    dict.Add("id", metaToken.ToString());
-                    return dict;
-                }
-
-            }
-
-            if (token.HasValues)
-            {
-                var contentData = new Dictionary<string, string>();
-                foreach (var child in token.Children().ToList())
-                {
-                    var childContent = child.ToKeyValue();
-                    if (childContent != null)
-                    {
-                        contentData = contentData.Concat(childContent)
-                            .ToDictionary(k => k.Key, v => v.Value);
-                    }
-                }
-
-                return contentData;
-            }
-
-            var jValue = token as JValue;
-            if (jValue?.Value == null)
-            {
-                return null;
-            }
-
-            var value = jValue?.Type == JTokenType.Date ?
-                jValue?.ToString("u", CultureInfo.InvariantCulture) :
-                jValue?.ToString(CultureInfo.InvariantCulture);
-
-            return new Dictionary<string, string> { { token.Path, value } };
+            return string.IsNullOrEmpty(csv) ? null : csv.Split(',').Select(int.Parse).Distinct().ToArray();
         }
+
+        public static string Format(this string format, params object[] args)
+        {
+            return string.Format(format, args);
+        }
+
+        public static bool IsSet(this string source)
+        {
+            return !string.IsNullOrWhiteSpace(source) && !string.IsNullOrEmpty(source);
+        }
+
+        public static string Remove(this string source, string value)
+        {
+            return source.Replace(value, string.Empty);
+        }
+
+        public static string StripHtml(this string source)
+        {
+            return source is null ? null : Regex.Replace(source, @"<[^>]*>", string.Empty);
+        }
+
+        public static string RemoveControllerNameSuffix(this string source) => source.Remove("Controller");
+
+        #endregion
+
+    }
+}
+
+namespace Pharmacy.Core.Helpers
+{
+    public static class CustomExtensions
+    {
+        #region Gender
+
+        public static string Convert(this Gender value)
+        {
+            switch (value)
+            {
+                case Gender.Male:
+                    return "M";
+                case Gender.Female:
+                    return "F";
+                default:
+                    return null;
+            }
+        }
+
+        public static Gender Convert(this string value)
+        {
+            switch (value)
+            {
+                case "M":
+                    return Gender.Male;
+                default:
+                    return Gender.Female;
+            }
+        }
+
+        #endregion
     }
 }
