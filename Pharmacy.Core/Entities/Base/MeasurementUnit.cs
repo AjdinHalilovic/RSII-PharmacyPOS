@@ -9,7 +9,10 @@ namespace Pharmacy.Core.Entities.Base
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
+        public string ShortName { get; set; }
         public DateTime? DeletedDateTime { get; set; }
     }
 

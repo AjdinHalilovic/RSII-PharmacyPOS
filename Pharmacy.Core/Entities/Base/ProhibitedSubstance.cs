@@ -13,7 +13,7 @@ namespace Pharmacy.Core.Entities.Base
         [Required, ForeignKey(nameof(Substance))]
         public int SubstanceId { get; set; }
         [Required,ForeignKey(nameof(ProhibitedSubstanceTo))]
-        public string ProhibitedSubstanceId { get; set; }
+        public int ProhibitedSubstanceId { get; set; }
 
         public DateTime? DeletedDateTime { get; set; }
 

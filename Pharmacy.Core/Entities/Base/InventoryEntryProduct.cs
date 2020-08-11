@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pharmacy.Core.Entities.Base
 {
-    [Table(Constants.Tables.InventoryEntries)]
+    [Table(Constants.Tables.InventoryEntryProducts)]
     public class InventoryEntryProduct : IEntity
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]

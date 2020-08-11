@@ -39,7 +39,6 @@ namespace Pharmacy.WindowsUI
                 //if (ex.== System.Net.HttpStatusCode.Unauthorized)
                 //{
                 //}
-                throw;
             }
         }
     }

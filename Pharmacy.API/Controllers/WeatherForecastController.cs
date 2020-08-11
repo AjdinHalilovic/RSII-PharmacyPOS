@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Pharmacy.API.Filters;
 using Pharmacy.Infrastructure.UnitOfWorks;
 
 namespace Pharmacy.API.Controllers
@@ -27,6 +28,7 @@ namespace Pharmacy.API.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            var user = DataUnitOfWork.BaseUow.UsersRepository.GetById(1);
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
