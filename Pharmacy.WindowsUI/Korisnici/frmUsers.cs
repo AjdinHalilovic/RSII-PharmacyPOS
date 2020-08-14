@@ -31,7 +31,7 @@ namespace Pharmacy.WindowsUI.Korisnici
             string searchObj = txtPretraga.Text;
             var result = await _aPIService.Get<List<User>>(searchObj);
 
-            dgvKorisnici.DataSource = result;
+            dgvUsers.DataSource = result;
         }
 
         private void frmUsers_Load(object sender, EventArgs e)

@@ -59,18 +59,23 @@ namespace Pharmacy.API.Areas.Access
                     #endregion
 
                     #region Pharmacy data
-                    var pharmacy = new Pharmacy.Core.Entities.Base.Pharmacy()
+                    Pharmacy.Core.Entities.Base.Pharmacy pharmacy = null;
+                    var existingPharmacy = DataUnitOfWork.BaseUow.PharmaciesRepository.GetByUniqueIdentifier(model.PharmacyUniqueIdentifier);
+                    if (existingPharmacy == null)
                     {
-                        Name = model.PharmacyName,
-                        PharmacyUniqueIdentifier = model.PharmacyUniqueIdentifier,
-                        OwnerUserId = user.Id
-                    };
-                    DataUnitOfWork.BaseUow.PharmaciesRepository.Add(pharmacy);
-                    await DataUnitOfWork.BaseUow.PharmaciesRepository.SaveChangesAsync();
+                        pharmacy = new Pharmacy.Core.Entities.Base.Pharmacy()
+                        {
+                            Name = model.PharmacyName,
+                            PharmacyUniqueIdentifier = model.PharmacyUniqueIdentifier,
+                            OwnerUserId = user.Id
+                        };
+                        DataUnitOfWork.BaseUow.PharmaciesRepository.Add(pharmacy);
+                        await DataUnitOfWork.BaseUow.PharmaciesRepository.SaveChangesAsync();
+                    }
 
                     PharmacyBranch pharmacyBranch = new PharmacyBranch()
                     {
-                        PharmacyId = pharmacy.Id,
+                        PharmacyId = existingPharmacy?.Id ?? pharmacy.Id,
                         BranchIdentifier = model.BranchIdentifier,
                         CountryId = model.CountryId.GetValueOrDefault(),
                         CityId = model.CityId.GetValueOrDefault(),

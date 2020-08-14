@@ -13,6 +13,10 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
         }
 
+        public async Task<Pharmacy.Core.Entities.Base.Pharmacy> GetByUniqueIdentifier(string identifier)
+        {
+            return await Context.Pharmacies.FirstOrDefaultAsync(x => !x.DeletedDateTime.HasValue && x.PharmacyUniqueIdentifier.ToLower().Equals(identifier.ToLower()));
+        }
 
 
     }
