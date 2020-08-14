@@ -93,6 +93,9 @@ namespace Pharmacy.Infrastructure.UnitOfWorks.Base
         private IProductSubstancesRepository _productSubstancesRepository;
         public IProductSubstancesRepository ProductSubstancesRepository => _productSubstancesRepository = _productSubstancesRepository ?? new ProductSubstancesRepository(_pharmacyContext);
 
+        private IProhibitedSubstancesRepository _prohibitedSubstancesRepository;
+        public IProhibitedSubstancesRepository ProhibitedSubstancesRepository => _prohibitedSubstancesRepository = _prohibitedSubstancesRepository ?? new ProhibitedSubstancesRepository(_pharmacyContext);
+
         private IRolesRepository _rolesRepository;
         public IRolesRepository RolesRepository => _rolesRepository = _rolesRepository ?? new RolesRepository(_pharmacyContext);
 

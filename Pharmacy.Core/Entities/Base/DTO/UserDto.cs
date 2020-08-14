@@ -9,12 +9,11 @@ namespace Pharmacy.Core.Entities.Base.DTO
     {
         [Key]
         public int Id { get; set; }
-
-        public string Token { get; set; }
         public int UserId { get; set; }
 
+        public string AccessToken { get; set; }
 
-        public DateTime? LastLogin { get; set; }
+
         public bool Active { get; set; }
     }
 }

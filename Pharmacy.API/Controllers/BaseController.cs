@@ -34,7 +34,7 @@ namespace Pharmacy.API.Controllers
 
     #endregion
 
-    [ApiController, TokenValidation]
+    [ApiController]
     public class BaseController : ControllerBase
     {
         #region Properties

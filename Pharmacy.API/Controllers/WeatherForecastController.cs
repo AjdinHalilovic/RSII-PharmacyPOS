@@ -9,7 +9,8 @@ using Pharmacy.Infrastructure.UnitOfWorks;
 
 namespace Pharmacy.API.Controllers
 {
-    [ApiController]
+
+    [ApiController,TokenValidation]
     [Route("[controller]")]
     public class WeatherForecastController : BaseController
     {

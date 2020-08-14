@@ -1,6 +1,6 @@
 ﻿namespace Pharmacy.WindowsUI.Korisnici
 {
-    partial class formKorisnici
+    partial class frmUsers
     {
         /// <summary>
         /// Required designer variable.
@@ -78,16 +78,17 @@
             this.txtPretraga.Size = new System.Drawing.Size(297, 22);
             this.txtPretraga.TabIndex = 2;
             // 
-            // formKorisnici
+            // frmUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(798, 450);
             this.Controls.Add(this.txtPretraga);
             this.Controls.Add(this.btnPrikazi);
             this.Controls.Add(this.groupBox1);
-            this.Name = "formKorisnici";
-            this.Text = "formKorisnici";
+            this.Name = "frmUsers";
+            this.Text = "POS Pharmacy - Users";
+            this.Load += new System.EventHandler(this.frmUsers_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvKorisnici)).EndInit();
             this.ResumeLayout(false);

@@ -17,7 +17,7 @@ namespace Pharmacy.WindowsUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new formKorisnici());
+            Application.Run(new frmLogin());
         }
     }
 }

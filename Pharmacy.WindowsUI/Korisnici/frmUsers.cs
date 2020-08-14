@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Flurl.Http;
 using Flurl;
+using Pharmacy.Core.Entities.Base;
 
 namespace Pharmacy.WindowsUI.Korisnici
 {
-    public partial class formKorisnici : Form
+    public partial class frmUsers : Form
     {
-        private readonly APIService _aPIService = new APIService("WeatherForecast");
-        public formKorisnici()
+        private readonly APIService _aPIService = new APIService("Users");
+        public frmUsers()
         {
             InitializeComponent();
         }
@@ -28,9 +29,14 @@ namespace Pharmacy.WindowsUI.Korisnici
         private async void btnPrikazi_ClickAsync(object sender, EventArgs e)
         {
             string searchObj = txtPretraga.Text;
-            var result = await _aPIService.Get<dynamic>(searchObj);
+            var result = await _aPIService.Get<List<User>>(searchObj);
 
             dgvKorisnici.DataSource = result;
+        }
+
+        private void frmUsers_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }

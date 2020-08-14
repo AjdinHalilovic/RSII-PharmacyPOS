@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pharmacy.API.Areas.Access.Model
+namespace Pharmacy.Core.Models.Access
 {
-    public class LoginRequest
+    public class RefreshTokenRequest
     {
         [Required]
-        public string Username { get; set; }
+        public string AccessToken { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        public string RefreshToken { get; set; }
 
         public string DeviceToken { get; set; }
     }

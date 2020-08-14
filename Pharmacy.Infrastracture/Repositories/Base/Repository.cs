@@ -7,6 +7,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using Pharmacy.Infrastructure.Contexts.Base;
+using Pharmacy.Infrastracture.Helpers;
 
 namespace Pharmacy.Infrastructure.Repositories.Base
 {

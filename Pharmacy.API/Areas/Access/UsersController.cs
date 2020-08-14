@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Pharmacy.API.Areas.Access.Model;
 using Pharmacy.API.Controllers;
 using Pharmacy.API.Filters;
 using Pharmacy.Core.Constants.Configurations;
@@ -7,6 +6,7 @@ using Pharmacy.Core.Entities.Base;
 using Pharmacy.Core.Entities.Base.DTO;
 using Pharmacy.Core.Helpers;
 using Pharmacy.Core.Helpers.TokenProcessor;
+using Pharmacy.Core.Models.Access;
 using Pharmacy.Infrastructure.UnitOfWorks;
 using System;
 using System.Collections.Generic;
@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 namespace Pharmacy.API.Areas.Access
 {
     [ApiController]
+    [Route("[controller]")]
     public class UsersController : BaseController
     {
         #region Properties
@@ -35,52 +36,71 @@ namespace Pharmacy.API.Areas.Access
             _tokenConfiguration = tokenConfiguration;
         }
 
-        //#region Access
+        #region Get
+        [HttpGet,TokenValidation]
+        public IActionResult Get()
+        {
+            try
+            {
+                var users = DataUnitOfWork.BaseUow.UsersRepository.GetAll();
 
-        //[HttpPost, Route("Login/Token")]
-        //public async Task<ActionResult> Access([FromBody] LoginRequest model)
-        //{
-        //    try
-        //    {
-        //        User user = DataUnitOfWork.BaseUow.UsersRepository.GetByUsernameOrEmailAddress(model.Username);
-        //        if (user == null || !Cryptography.Hash.Validate(model.Password, user.PasswordSalt, user.PasswordHash))
-        //            return BadRequest("Incorrect username and/or password.");
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
 
-        //        UserDto userAccount = await DataUnitOfWork.BaseUow.UsersRepository.GetByUserIdAndInstitutionIdAsync(user.Id, null);
-        //        if (!userAccount.Active) return BadRequest("Your account is not active.");
+                return BadRequest();
+                throw;
+            }
+        }
+        #endregion
 
-        //        return Ok(await CreateAndSaveTokenAsync(userAccount));
-        //    }
-        //    catch (Exception ex)
-        //    {
+        #region Access
 
-        //        return InternalServerError(ex.InnerExceptionMessage());
-        //    }
-        //}
+        [HttpPost, Route("Login/Token")]
+        public async Task<ActionResult> Access([FromBody] LoginRequest model)
+        {
+            try
+            {
+                User user = DataUnitOfWork.BaseUow.UsersRepository.GetByUsernameOrEmailAddress(model.Username);
+                if (user == null || !Cryptography.Hash.Validate(model.Password, user.PasswordSalt, user.PasswordHash))
+                    return BadRequest("Incorrect username and/or password.");
 
-        //#endregion
+                UserDto userAccount = await DataUnitOfWork.BaseUow.UsersRepository.GetByUserIdAndInstitutionIdAsync(user.Id);
+                if (!userAccount.Active) return BadRequest("Your account is not active.");
 
-        //#region Refresh
+                return Ok(await CreateAndSaveTokenAsync(userAccount));
+            }
+            catch (Exception ex)
+            {
 
-        //[HttpPost, TokenValidation(true), Route("Login/Refresh")]
-        //public async Task<ActionResult<TokenResponse>> Refresh([FromHeader] string authentication, [FromHeader] string refreshToken)
-        //{
-        //    try
-        //    {
-        //        UserDto user = await DataUnitOfWork.BaseUow.UsersRepository.GetByUserTokensAndInstitutionIdAsync(_tokenProcessor.ConvertTokenFormatIfNedeed(authentication), refreshToken, null);
-        //        if (user == null)
-        //            return Gone("Bad refresh token!");
+                return InternalServerError(ex.InnerExceptionMessage());
+            }
+        }
 
-        //        return Ok(await CreateAndSaveTokenAsync(user));
-        //    }
-        //    catch (Exception ex)
-        //    {
+        #endregion
 
-        //        return InternalServerError(ex.InnerExceptionMessage());
-        //    }
-        //}
+        #region Refresh
 
-        //#endregion
+        [HttpPost, TokenValidation(true), Route("Login/Refresh")]
+        public async Task<ActionResult<TokenResponse>> Refresh([FromHeader] string authentication, [FromHeader] string refreshToken)
+        {
+            try
+            {
+                UserDto user = await DataUnitOfWork.BaseUow.UsersRepository.GetByUserTokensAndInstitutionIdAsync(_tokenProcessor.ConvertTokenFormatIfNedeed(authentication), refreshToken);
+                if (user == null)
+                    return Gone("Bad refresh token!");
+
+                return Ok(await CreateAndSaveTokenAsync(user));
+            }
+            catch (Exception ex)
+            {
+
+                return InternalServerError(ex.InnerExceptionMessage());
+            }
+        }
+
+        #endregion
 
         //#region Auth user
 
@@ -210,44 +230,39 @@ namespace Pharmacy.API.Areas.Access
 
         //#endregion
 
-        //#region Helpers
-        //private async Task<TokenResponse> CreateAndSaveTokenAsync(UserDto user)
-        //{
-        //    Claim[] claims =
-        //    {
-        //        new Claim(type: nameof(UserDto.UserId), value: user.UserId.ToString()),
-        //        new Claim(type: nameof(UserDto.InstitutionId), value: user.InstitutionId.ToString()),
-        //        new Claim(type: nameof(UserDto.MemberId), value: user.MemberId.ToString()),
-        //        new Claim(type: nameof(UserDto.OrganizationId), value: user.OrganizationId.ToString()),
-        //        new Claim(type: nameof(UserDto.PatientId), value: user.PatientId.ToString()),
-        //        new Claim(type: nameof(UserDto.StaffId), value: user.StaffId.ToString())
-        //    };
+        #region Helpers
+        private async Task<TokenResponse> CreateAndSaveTokenAsync(UserDto user)
+        {
+            Claim[] claims =
+            {
+                new Claim(type: nameof(Person), value: user.UserId.ToString()),
+            };
 
-        //    string accessToken = _tokenProcessor.GenerateAccessToken(claims);
-        //    string refreshToken = _tokenProcessor.GenerateRefreshToken();
+            string accessToken = _tokenProcessor.GenerateAccessToken(claims);
+            string refreshToken = _tokenProcessor.GenerateRefreshToken();
 
-        //    int accessTokenExpiresIn = (int)_tokenConfiguration.AccessExpiresInMinutes;
-        //    int refreshTokenExpiresIn = (int)_tokenConfiguration.RefreshExpiresInMinutes;
+            int accessTokenExpiresIn = (int)_tokenConfiguration.AccessExpiresInMinutes;
+            int refreshTokenExpiresIn = (int)_tokenConfiguration.RefreshExpiresInMinutes;
 
-        //    User baseUser = await DataUnitOfWork.BaseUow.UsersRepository.GetByIdAsync(user.UserId);
+            User baseUser = await DataUnitOfWork.BaseUow.UsersRepository.GetByIdAsync(user.UserId);
 
-        //    baseUser.AccessToken = accessToken;
-        //    baseUser.TokenExpirationDateTime = DateTime.Now.AddMinutes(accessTokenExpiresIn);
-        //    baseUser.RefreshToken = refreshToken;
-        //    baseUser.RefreshTokenExpirationDateTime = DateTime.Now.AddMinutes(refreshTokenExpiresIn);
-        //    baseUser.CreatedTokenDateTime = DateTime.Now;
+            baseUser.AccessToken = accessToken;
+            baseUser.TokenExpirationDateTime = DateTime.Now.AddMinutes(accessTokenExpiresIn);
+            baseUser.RefreshToken = refreshToken;
+            baseUser.RefreshTokenExpirationDateTime = DateTime.Now.AddMinutes(refreshTokenExpiresIn);
+            baseUser.CreatedTokenDateTime = DateTime.Now;
 
-        //    DataUnitOfWork.BaseUow.UsersRepository.Update(baseUser);
-        //    await DataUnitOfWork.BaseUow.UsersRepository.SaveChangesAsync();
+            DataUnitOfWork.BaseUow.UsersRepository.Update(baseUser);
+            await DataUnitOfWork.BaseUow.UsersRepository.SaveChangesAsync();
 
-        //    return new TokenResponse
-        //    {
-        //        AccessToken = accessToken,
-        //        AccessTokenExpiresIn = accessTokenExpiresIn,
-        //        RefreshToken = refreshToken,
-        //        RefreshTokenExpiresIn = refreshTokenExpiresIn
-        //    };
-        //}
-        //#endregion
+            return new TokenResponse
+            {
+                AccessToken = accessToken,
+                AccessTokenExpiresIn = accessTokenExpiresIn,
+                RefreshToken = refreshToken,
+                RefreshTokenExpiresIn = refreshTokenExpiresIn
+            };
+        }
+        #endregion
     }
 }
