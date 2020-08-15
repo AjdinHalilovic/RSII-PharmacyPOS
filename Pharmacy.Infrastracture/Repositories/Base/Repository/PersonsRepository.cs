@@ -4,6 +4,10 @@ using Pharmacy.Core.Entities.Base;
 using Pharmacy.Infrastructure.Contexts.Base;
 using Pharmacy.Infrastructure.Repositories.Base.IRepository;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
+using System.Collections.Generic;
+using Pharmacy.Core.Entities.Base.DTO;
+using Pharmacy.Core.Models.Users;
 
 namespace Pharmacy.Infrastructure.Repositories.Base.Repository
 {
@@ -13,7 +17,12 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
         }
 
-
+        public async Task<IEnumerable<PersonDto>> GetAllDtosAsync(PersonSearchObject search)
+        {
+            //implement function
+            var list = new List<PersonDto>();
+            return list;
+        }
 
     }
 }

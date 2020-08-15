@@ -12,6 +12,7 @@ namespace Pharmacy.Core.Entities.Base.DTO
         public int UserId { get; set; }
 
         public string AccessToken { get; set; }
+        public string UserFullName { get; set; }
 
 
         public bool Active { get; set; }

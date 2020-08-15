@@ -29,7 +29,7 @@ namespace Pharmacy.API.Filters
 
             string token =
                 tokenProcessor.ConvertTokenFormatIfNedeed(
-                    context.HttpContext.Request.Headers["Authorization"]); //TODO : Potrebno upozoriti anisa
+                    context.HttpContext.Request.Headers["Authorization"]);
 
             if (!token.IsSet())
             {

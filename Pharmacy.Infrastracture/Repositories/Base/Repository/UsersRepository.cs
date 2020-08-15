@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Pharmacy.Core.Entities.Base.DTO;
 using Pharmacy.Infrastracture;
 using Pharmacy.Infrastracture.Helpers;
+using System.Collections;
+using Pharmacy.Core.Models.Users;
+using System.Collections.Generic;
 
 namespace Pharmacy.Infrastructure.Repositories.Base.Repository
 {
@@ -40,6 +43,24 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         public async Task<UserDto> GetByUserTokensAndInstitutionIdAsync(string accessToken, string refreshToken)
         {
             return await DbConnection.QueryFunctionFirstOrDefaultAsync<UserDto>(DbObjects.BaseDbObjects.Functions.Users.users_getloginbyusertokens, new { pAccessToken = accessToken, pRefreshToken = refreshToken });
+        }
+
+        public async Task<IEnumerable<User>> GetAllByParametersAsync(UsersSearchObject search)
+        {
+            var query = Context.Users.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(search.Username))
+            {
+                query = query.Where(x => x.Username.ToLower().Equals(search.Username));
+            }
+
+            if (!string.IsNullOrWhiteSpace(search.Email))
+            {
+                query = query.Where(x => x.Email.ToLower().Equals(search.Email));
+            }
+            var list = await query.ToListAsync();
+
+            return list;
         }
 
     }

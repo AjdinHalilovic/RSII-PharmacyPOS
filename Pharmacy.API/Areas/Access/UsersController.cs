@@ -7,6 +7,7 @@ using Pharmacy.Core.Entities.Base.DTO;
 using Pharmacy.Core.Helpers;
 using Pharmacy.Core.Helpers.TokenProcessor;
 using Pharmacy.Core.Models.Access;
+using Pharmacy.Core.Models.Users;
 using Pharmacy.Infrastructure.UnitOfWorks;
 using System;
 using System.Collections.Generic;
@@ -38,11 +39,11 @@ namespace Pharmacy.API.Areas.Access
 
         #region Get
         [HttpGet,TokenValidation]
-        public IActionResult Get()
+        public async Task<IActionResult> Get([FromQuery] UsersSearchObject search)
         {
             try
             {
-                var users = DataUnitOfWork.BaseUow.UsersRepository.GetAll();
+                var users = await DataUnitOfWork.BaseUow.UsersRepository.GetAllByParametersAsync(search);
 
                 return Ok(users);
             }
@@ -197,38 +198,40 @@ namespace Pharmacy.API.Areas.Access
 
         //#endregion
 
-        //#region Logout
+        #region Logout
 
-        //[HttpGet, TokenValidation(true)]
-        //[Route("Logout")]
-        //public ActionResult Logout([FromQuery] int userId)
-        //{
-        //    try
-        //    {
-        //        if (userId == 0) return Unauthorized("Authorization(Id) - Something went wrong!");
+        [HttpGet, TokenValidation(true)]
+        [Route("Logout")]
+        public async Task<ActionResult> Logout()
+        {
+            try
+            {
+                int? userId = ClaimUser?.UserId;
 
-        //        User user = DataUnitOfWork.BaseUow.UsersRepository.GetById(userId);
-        //        if (user == null) return Unauthorized("Authorization(User Object) - Something went wrong!");
+                if (!userId.HasValue) return Unauthorized("Authorization(Id) - Something went wrong!");
 
-        //        user.CreatedTokenDateTime = null;
-        //        user.AccessToken = null;
-        //        user.TokenExpirationDateTime = null;
-        //        user.RefreshToken = null;
-        //        user.RefreshTokenExpirationDateTime = null;
+                User user = DataUnitOfWork.BaseUow.UsersRepository.GetById(userId.Value);
+                if (user == null) return Unauthorized("Authorization(User Object) - Something went wrong!");
 
-        //        //DataUnitOfWork.BaseUow.UsersRepository.Update(user);
-        //        //DataUnitOfWork.BaseUow.UsersRepository.SaveChanges();
+                user.CreatedTokenDateTime = null;
+                user.AccessToken = null;
+                user.TokenExpirationDateTime = null;
+                user.RefreshToken = null;
+                user.RefreshTokenExpirationDateTime = null;
 
-        //        return Ok();
-        //    }
-        //    catch (Exception ex)
-        //    {
+                DataUnitOfWork.BaseUow.UsersRepository.Update(user);
+                await DataUnitOfWork.BaseUow.UsersRepository.SaveChangesAsync();
 
-        //        return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
-        //    }
-        //}
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+                throw;
+            }
+        }
 
-        //#endregion
+        #endregion
 
         #region Helpers
         private async Task<TokenResponse> CreateAndSaveTokenAsync(UserDto user)
@@ -257,6 +260,7 @@ namespace Pharmacy.API.Areas.Access
 
             return new TokenResponse
             {
+                UserFullName = user.UserFullName,
                 AccessToken = accessToken,
                 AccessTokenExpiresIn = accessTokenExpiresIn,
                 RefreshToken = refreshToken,

@@ -8,6 +8,7 @@ namespace Pharmacy.Core.Models.Access
 {
     public class TokenResponse
     {
+        public string UserFullName { get; set; }
         public string AccessToken { get; set; }
         public int AccessTokenExpiresIn { get; set; }
 

@@ -10,12 +10,15 @@ using System.Windows.Forms;
 using Flurl.Http;
 using Flurl;
 using Pharmacy.Core.Entities.Base;
+using Pharmacy.Core.Entities.Base.DTO;
+using Pharmacy.Core.Models.Users;
 
-namespace Pharmacy.WindowsUI.Korisnici
+namespace Pharmacy.WindowsUI.Users
 {
     public partial class frmUsers : Form
     {
-        private readonly APIService _aPIService = new APIService("Users");
+        private readonly APIService _aPIServiceUsers = new APIService("Users");
+        private readonly APIService _aPIServicePersons = new APIService("Persons");
         public frmUsers()
         {
             InitializeComponent();
@@ -28,8 +31,11 @@ namespace Pharmacy.WindowsUI.Korisnici
 
         private async void btnPrikazi_ClickAsync(object sender, EventArgs e)
         {
-            string searchObj = txtPretraga.Text;
-            var result = await _aPIService.Get<List<User>>(searchObj);
+            var searchObj = new PersonSearchObject()
+            {
+                FullName = txtPretraga.Text
+            };
+            var result = await _aPIServicePersons.Get<List<PersonDto>>(searchObj);
 
             dgvUsers.DataSource = result;
         }
@@ -37,6 +43,14 @@ namespace Pharmacy.WindowsUI.Korisnici
         private void frmUsers_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void dgvUsers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var userId = int.Parse(dgvUsers.SelectedRows[0].Cells[0].Value.ToString());
+
+            frmUserDetails frm = new frmUserDetails(userId);
+            frm.Show();
         }
     }
 }

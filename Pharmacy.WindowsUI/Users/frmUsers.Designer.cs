@@ -1,4 +1,4 @@
-﻿namespace Pharmacy.WindowsUI.Korisnici
+﻿namespace Pharmacy.WindowsUI.Users
 {
     partial class frmUsers
     {
@@ -40,9 +40,11 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgvUsers);
-            this.groupBox1.Location = new System.Drawing.Point(13, 53);
+            this.groupBox1.Location = new System.Drawing.Point(10, 43);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(775, 397);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(581, 323);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Users";
@@ -53,20 +55,23 @@
             this.dgvUsers.AllowUserToDeleteRows = false;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvUsers.Location = new System.Drawing.Point(3, 18);
+            this.dgvUsers.Location = new System.Drawing.Point(2, 15);
+            this.dgvUsers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
             this.dgvUsers.RowHeadersWidth = 51;
             this.dgvUsers.RowTemplate.Height = 24;
-            this.dgvUsers.Size = new System.Drawing.Size(769, 376);
+            this.dgvUsers.Size = new System.Drawing.Size(577, 306);
             this.dgvUsers.TabIndex = 0;
+            this.dgvUsers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellDoubleClick);
             this.dgvUsers.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dgvKorisnici_Scroll);
             // 
             // btnPrikazi
             // 
-            this.btnPrikazi.Location = new System.Drawing.Point(522, 13);
+            this.btnPrikazi.Location = new System.Drawing.Point(392, 11);
+            this.btnPrikazi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPrikazi.Name = "btnPrikazi";
-            this.btnPrikazi.Size = new System.Drawing.Size(102, 32);
+            this.btnPrikazi.Size = new System.Drawing.Size(76, 26);
             this.btnPrikazi.TabIndex = 1;
             this.btnPrikazi.Text = "Show";
             this.btnPrikazi.UseVisualStyleBackColor = true;
@@ -74,30 +79,33 @@
             // 
             // txtPretraga
             // 
-            this.txtPretraga.Location = new System.Drawing.Point(16, 13);
+            this.txtPretraga.Location = new System.Drawing.Point(12, 11);
+            this.txtPretraga.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPretraga.Multiline = true;
             this.txtPretraga.Name = "txtPretraga";
-            this.txtPretraga.Size = new System.Drawing.Size(491, 32);
+            this.txtPretraga.Size = new System.Drawing.Size(369, 27);
             this.txtPretraga.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(630, 13);
+            this.button1.Location = new System.Drawing.Point(472, 11);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(158, 32);
+            this.button1.Size = new System.Drawing.Size(118, 26);
             this.button1.TabIndex = 3;
             this.button1.Text = "Add user";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // frmUsers
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 461);
+            this.ClientSize = new System.Drawing.Size(598, 375);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtPretraga);
             this.Controls.Add(this.btnPrikazi);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmUsers";
             this.Text = "POS Pharmacy - Users";
             this.Load += new System.EventHandler(this.frmUsers_Load);

@@ -1,4 +1,5 @@
-﻿using Pharmacy.WindowsUI.Korisnici;
+﻿using Flurl.Http;
+using Pharmacy.WindowsUI.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -104,6 +105,29 @@ namespace Pharmacy.WindowsUI
             frmUsers.WindowState = FormWindowState.Maximized;
             frmUsers.MdiParent = this;
             frmUsers.Show();
+        }
+
+        private async void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var url = $"{Properties.Settings.Default.APIUrl}/Users/Logout";
+                var response = await url.GetAsync();
+
+                APIService._token = null;
+                APIService._userFullName = null;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        private void frmIndex_Load(object sender, EventArgs e)
+        {
+            menuItemFullName.Text = APIService._userFullName;
         }
     }
 }

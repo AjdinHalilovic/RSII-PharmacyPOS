@@ -1,6 +1,6 @@
 ﻿using Flurl.Http;
 using Pharmacy.Core.Models.Access;
-using Pharmacy.WindowsUI.Korisnici;
+using Pharmacy.WindowsUI.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,6 +36,7 @@ namespace Pharmacy.WindowsUI
 
                 //TokenResponse response = await _aPIService.Insert<TokenResponse>(request);
                 APIService._token = response.AccessToken;
+                APIService._userFullName = response.UserFullName;
 
                 frmIndex frm = new frmIndex();
                 frm.WindowState = FormWindowState.Maximized;
