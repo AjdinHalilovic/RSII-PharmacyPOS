@@ -16,7 +16,9 @@ namespace Pharmacy.WindowsUI.Users
     public partial class frmUserDetails : Form
     {
         APIService _aPIServiceUsers = new APIService("Users");
+        APIService _aPIServicePersons = new APIService("Persons");
         APIService _aPIServiceRoles = new APIService("Roles");
+        APIService _aPIServiceUserRoles = new APIService("UserRoles");
         APIService _aPIServiceCities = new APIService("Cities");
         APIService _aPIServiceCountries = new APIService("Countries");
         private int? _id = null;
@@ -80,19 +82,39 @@ namespace Pharmacy.WindowsUI.Users
             await LoadCities();
 
             var roles = await _aPIServiceRoles.Get<List<Role>>(null);
+            if (_id.HasValue)
+            {
+                var userRoles = await _aPIServiceUserRoles.Get<List<UserRole>>(new RolesSearchObject() { UserId = _id });
+                var selectedRoles = await _aPIServiceRoles.Get<List<Role>>(new RolesSearchObject() { ListIds = userRoles.Select(x => x.RoleId).ToArray() });
 
-            clbRoles.DataSource = roles;
+                roles = roles.Where(x => !selectedRoles.Select(y => y.Id).Contains(x.Id)).ToList();
+                selectedRoles.ToList().ForEach(x => clbRoles.Items.Add(x,true));
+            }
+            roles.ToList().ForEach(x => clbRoles.Items.Add(x));
+
+            //clbRoles.DataSource = roles;
             clbRoles.DisplayMember = "Name";
 
             if (_id.HasValue)
             {
                 User user = await _aPIServiceUsers.GetById<User>(_id);
+                Person person = await _aPIServicePersons.GetById<Person>(_id);
+                txtFirstName.Text = person.FirstName;
+                txtLastName.Text = person.LastName;
+                dtpDateOfBirth.Value = person.DateOfBirth;
+                comboCountryId.SelectedValue = person.CountryId ?? 0;
+                comboCityId.SelectedValue = person.CityId ?? 0;
+                txtAddress.Text = person.Address;
+                txtNote.Text = person.Note;
 
-                //txtEmail.Text = entity.Email;
-                //txtIme.Text = entity.Ime;
-                //txtKorisnickoIme.Text = entity.KorisnickoIme;
-                //txtPrezime.Text = entity.Prezime;
-                //txtTelefon.Text = entity.Telefon;
+                txtEmail.Text = user.Email;
+                txtUsername.Text = user.Username;
+                //selectedRoles.ForEach(x =>
+                //    clbRoles.Items.RemoveAt(clbRoles.Items.IndexOf(x))
+                //);
+                //selectedRoles.ForEach(x =>
+                //    clbRoles.Items.Add(x, true)
+                //);
             }
         }
 

@@ -15,6 +15,10 @@ namespace Pharmacy.Infrastracture
                     public const string users_getloginbyuserid = "fn_users_getloginbyuserid";
                     public const string users_getloginbyusertokens = "fn_users_getloginbyusertokens";
                 }
+                public static class Persons
+                {
+                    public const string persons_getdtosbyparameters = "fn_persons_getdtosbyparameters";
+                }
             }
         }
     }

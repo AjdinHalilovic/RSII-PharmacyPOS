@@ -45,6 +45,7 @@ namespace System
             {
                 try
                 {
+                    ObjectExtension();
                     return ToKeyValue(JObject.FromObject(metaToken, JsonSerializerSettings));
                 }
                 catch (System.ArgumentException ex)

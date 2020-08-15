@@ -21,22 +21,20 @@ namespace Pharmacy.API.Areas.Users
 {
     [ApiController, TokenValidation, Area("Users")]
     [Route("[controller]")]
-    public class PersonsController : BaseController
+    public class RolesController : BaseController
     {
-        public PersonsController(IDataUnitOfWork dataUnitOfWork) : base(dataUnitOfWork)
+        public RolesController(IDataUnitOfWork dataUnitOfWork) : base(dataUnitOfWork)
         {
         }
 
-        #region Get
-
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] PersonSearchObject search)
+        public async Task<IActionResult> Get([FromQuery] RolesSearchObject search)
         {
             try
             {
-                var persons = await DataUnitOfWork.BaseUow.PersonsRepository.GetAllDtosAsync(search);
+                var roles = await DataUnitOfWork.BaseUow.RolesRepository.GetByParametersAsync(search);
 
-                return Ok(persons);
+                return Ok(roles);
             }
             catch (Exception ex)
             {
@@ -45,11 +43,5 @@ namespace Pharmacy.API.Areas.Users
                 throw;
             }
         }
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            return Ok(await DataUnitOfWork.BaseUow.PersonsRepository.GetByIdAsync(id));
-        }
-        #endregion
     }
 }

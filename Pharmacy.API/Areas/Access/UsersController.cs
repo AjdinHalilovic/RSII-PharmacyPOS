@@ -54,6 +54,13 @@ namespace Pharmacy.API.Areas.Access
                 throw;
             }
         }
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(await DataUnitOfWork.BaseUow.UsersRepository.GetByIdAsync(id));
+        }
         #endregion
 
         #region Access

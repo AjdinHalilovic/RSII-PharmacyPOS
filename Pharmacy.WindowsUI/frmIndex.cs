@@ -112,7 +112,7 @@ namespace Pharmacy.WindowsUI
             try
             {
                 var url = $"{Properties.Settings.Default.APIUrl}/Users/Logout";
-                var response = await url.GetAsync();
+                var response = await url.WithOAuthBearerToken(APIService._token).GetAsync();
 
                 APIService._token = null;
                 APIService._userFullName = null;

@@ -47,10 +47,13 @@ namespace Pharmacy.WindowsUI.Users
 
         private void dgvUsers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var userId = int.Parse(dgvUsers.SelectedRows[0].Cells[0].Value.ToString());
+            if (dgvUsers.SelectedRows.Count > 0)
+            {
+                var userId = int.Parse(dgvUsers.SelectedRows[0].Cells[0].Value.ToString());
 
-            frmUserDetails frm = new frmUserDetails(userId);
-            frm.Show();
+                frmUserDetails frm = new frmUserDetails(userId);
+                frm.Show();
+            }
         }
     }
 }
