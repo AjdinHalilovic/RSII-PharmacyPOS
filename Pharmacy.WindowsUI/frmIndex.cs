@@ -101,10 +101,7 @@ namespace Pharmacy.WindowsUI
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            var frmUsers = new frmUsers();
-            frmUsers.WindowState = FormWindowState.Maximized;
-            frmUsers.MdiParent = this;
-            frmUsers.Show();
+            
         }
 
         private async void signOutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -128,6 +125,14 @@ namespace Pharmacy.WindowsUI
         private void frmIndex_Load(object sender, EventArgs e)
         {
             menuItemFullName.Text = APIService._userFullName;
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frmUsers = new frmUsers();
+            frmUsers.WindowState = FormWindowState.Maximized;
+            frmUsers.MdiParent = this;
+            frmUsers.Show();
         }
     }
 }

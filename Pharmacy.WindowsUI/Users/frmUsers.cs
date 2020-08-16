@@ -55,5 +55,11 @@ namespace Pharmacy.WindowsUI.Users
                 frm.Show();
             }
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            frmUserDetails frm = new frmUserDetails(null);
+            frm.Show();
+        }
     }
 }
