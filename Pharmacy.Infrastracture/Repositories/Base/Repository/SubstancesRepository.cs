@@ -20,9 +20,9 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
             var query = Context.Substances.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(search.Name))
+            if (!string.IsNullOrWhiteSpace(search.SearchTerm))
             {
-                query = query.Where(x => x.Name.ToLower().StartsWith(search.Name));
+                query = query.Where(x => x.Name.ToLower().StartsWith(search.SearchTerm));
             }
 
             var list = await query.Select(x=>new BaseDto() { Id = x.Id, Name = x.Name}).ToListAsync();

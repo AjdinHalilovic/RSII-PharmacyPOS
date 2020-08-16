@@ -8,6 +8,7 @@ using Pharmacy.Core.Helpers;
 using Pharmacy.Core.Helpers.TokenProcessor;
 using Pharmacy.Core.Models;
 using Pharmacy.Core.Models.Access;
+using Pharmacy.Core.Models.Billing;
 using Pharmacy.Infrastructure.UnitOfWorks;
 using System;
 using System.Collections.Generic;
@@ -27,12 +28,15 @@ namespace Pharmacy.API.Areas.Billing
         {
         }
 
+        #region Get
+
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] BaseSearchObject search)
+        public async Task<IActionResult> Get([FromQuery] ProductSearchObject search)
         {
             try
             {
-                var products = await DataUnitOfWork.BaseUow.ProductsRepository.GetAllByParametersAsync(search);
+                search.PharmacyBranchId = 2;
+                var products = await DataUnitOfWork.BaseUow.ProductsRepository.GetAllDtosByParametersAsync(search);
 
                 return Ok(products);
             }
@@ -43,5 +47,11 @@ namespace Pharmacy.API.Areas.Billing
                 throw;
             }
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(await DataUnitOfWork.BaseUow.ProductsRepository.GetByIdAsync(id));
+        }
+        #endregion
     }
 }

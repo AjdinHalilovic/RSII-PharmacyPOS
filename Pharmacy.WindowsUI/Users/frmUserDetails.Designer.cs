@@ -57,12 +57,14 @@
             this.lblNote = new System.Windows.Forms.Label();
             this.lblUserDetails = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.lblPhone = new System.Windows.Forms.Label();
+            this.txtPhone = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSaveUser
             // 
-            this.btnSaveUser.Location = new System.Drawing.Point(457, 527);
+            this.btnSaveUser.Location = new System.Drawing.Point(451, 549);
             this.btnSaveUser.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveUser.Name = "btnSaveUser";
             this.btnSaveUser.Size = new System.Drawing.Size(199, 39);
@@ -77,7 +79,7 @@
             this.clbRoles.Location = new System.Drawing.Point(63, 420);
             this.clbRoles.Margin = new System.Windows.Forms.Padding(4);
             this.clbRoles.Name = "clbRoles";
-            this.clbRoles.Size = new System.Drawing.Size(973, 72);
+            this.clbRoles.Size = new System.Drawing.Size(973, 106);
             this.clbRoles.TabIndex = 1;
             this.clbRoles.Validating += new System.ComponentModel.CancelEventHandler(this.clbRoles_Validating);
             // 
@@ -251,7 +253,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(568, 277);
+            this.lblEmail.Location = new System.Drawing.Point(392, 277);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(42, 17);
             this.lblEmail.TabIndex = 36;
@@ -259,10 +261,10 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(568, 300);
+            this.txtEmail.Location = new System.Drawing.Point(392, 300);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(468, 22);
+            this.txtEmail.Size = new System.Drawing.Size(307, 22);
             this.txtEmail.TabIndex = 35;
             this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
@@ -280,7 +282,7 @@
             this.txtUsername.Location = new System.Drawing.Point(63, 300);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(480, 22);
+            this.txtUsername.Size = new System.Drawing.Size(307, 22);
             this.txtUsername.TabIndex = 33;
             this.txtUsername.Validating += new System.ComponentModel.CancelEventHandler(this.txtUsername_Validating);
             // 
@@ -322,11 +324,30 @@
             this.txtId.TabIndex = 44;
             this.txtId.Visible = false;
             // 
+            // lblPhone
+            // 
+            this.lblPhone.AutoSize = true;
+            this.lblPhone.Location = new System.Drawing.Point(728, 277);
+            this.lblPhone.Name = "lblPhone";
+            this.lblPhone.Size = new System.Drawing.Size(49, 17);
+            this.lblPhone.TabIndex = 46;
+            this.lblPhone.Text = "Phone";
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Location = new System.Drawing.Point(728, 300);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(308, 22);
+            this.txtPhone.TabIndex = 45;
+            // 
             // frmUserDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1121, 601);
+            this.Controls.Add(this.lblPhone);
+            this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.lblUserDetails);
             this.Controls.Add(this.lblNote);
@@ -394,5 +415,7 @@
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Label lblPhone;
+        private System.Windows.Forms.TextBox txtPhone;
     }
 }

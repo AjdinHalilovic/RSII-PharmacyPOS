@@ -6,6 +6,11 @@ using Pharmacy.Infrastructure.Repositories.Base.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Pharmacy.Core.Models;
 using System.Collections.Generic;
+using Pharmacy.Core.Models.Billing;
+using Pharmacy.Core.Entities.Base.DTO;
+using System.Text.RegularExpressions;
+using Pharmacy.Infrastracture.Helpers;
+using Pharmacy.Infrastracture;
 
 namespace Pharmacy.Infrastructure.Repositories.Base.Repository
 {
@@ -15,18 +20,12 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
         }
 
-        public async Task<IEnumerable<Product>> GetAllByParametersAsync(BaseSearchObject search)
+        public async Task<IEnumerable<ProductDto>> GetAllDtosByParametersAsync(ProductSearchObject search)
         {
-            var query = Context.Products.AsQueryable();
+            string searchTerm = string.IsNullOrEmpty(search.SearchTerm) ? null : $"{Regex.Replace(search.SearchTerm, @"\s+", " ").Replace(" ", ":*&")}:*";
 
-            if (!string.IsNullOrWhiteSpace(search.Name))
-            {
-                query = query.Where(x => x.Name.ToLower().Equals(search.Name));
-            }
+            return await DbConnection.QueryFunctionAsync<ProductDto>(DbObjects.BaseDbObjects.Functions.Products.products_getdtosbyparameters, new { pPharmacyBranchId = search.PharmacyBranchId, pSearchTerm  = searchTerm});
 
-            var list = await query.ToListAsync();
-
-            return list;
         }
 
     }

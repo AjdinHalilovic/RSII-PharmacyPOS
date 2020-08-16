@@ -19,9 +19,9 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
             var query = Context.Roles.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(search.Name))
+            if (!string.IsNullOrWhiteSpace(search.SearchTerm))
             {
-                query = query.Where(x => x.Name.ToLower().Equals(search.Name));
+                query = query.Where(x => x.Name.ToLower().Equals(search.SearchTerm));
             }
             if (search.ListIds != null && search.ListIds.Length > 0)
             {

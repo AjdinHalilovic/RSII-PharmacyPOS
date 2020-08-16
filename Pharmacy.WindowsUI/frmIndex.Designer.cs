@@ -129,6 +129,7 @@
             this.productsToolStripMenuItem.Size = new System.Drawing.Size(144, 29);
             this.productsToolStripMenuItem.Text = "Products";
             this.productsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.productsToolStripMenuItem.Click += new System.EventHandler(this.productsToolStripMenuItem_Click);
             // 
             // categoriesToolStripMenuItem
             // 
@@ -180,7 +181,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmIndex";
             this.RightToLeftLayout = true;
-            this.Text = "frmIndex";
+            this.Text = "POS Pharmacy";
             this.Load += new System.EventHandler(this.frmIndex_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();

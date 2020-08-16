@@ -6,6 +6,6 @@ namespace Pharmacy.Core.Models
 {
     public class BaseSearchObject
     {
-        public string Name { get; set; }
+        public string SearchTerm { get; set; }
     }
 }

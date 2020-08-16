@@ -35,7 +35,7 @@ namespace Pharmacy.WindowsUI
             }
             catch (Exception ex)
             {
-                    MessageBox.Show("Niste authentificirani");
+                MessageBox.Show("Niste authentificirani");
                 throw;
             }
         }

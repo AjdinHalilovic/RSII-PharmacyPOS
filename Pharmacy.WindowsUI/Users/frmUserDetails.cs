@@ -47,6 +47,7 @@ namespace Pharmacy.WindowsUI.Users
                         Note = txtNote.Text,
                         Username = txtUsername.Text,
                         Email = txtEmail.Text,
+                        Phone = txtPhone.Text,
                         Password = txtPassword.Text,
                         PasswordConfirmation = txtConfirmPassword.Text,
                         Roles = roleList
@@ -110,17 +111,9 @@ namespace Pharmacy.WindowsUI.Users
 
                 txtEmail.Text = user.Email;
                 txtUsername.Text = user.Username;
-                //selectedRoles.ForEach(x =>
-                //    clbRoles.Items.RemoveAt(clbRoles.Items.IndexOf(x))
-                //);
-                //selectedRoles.ForEach(x =>
-                //    clbRoles.Items.Add(x, true)
-                //);
+                txtPhone.Text = user.Phone;
             }
         }
-
-
-
 
         private async Task LoadCountries()
         {

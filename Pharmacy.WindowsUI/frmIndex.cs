@@ -1,4 +1,5 @@
 ﻿using Flurl.Http;
+using Pharmacy.WindowsUI.Billing;
 using Pharmacy.WindowsUI.Settings;
 using Pharmacy.WindowsUI.Users;
 using System;
@@ -138,26 +139,34 @@ namespace Pharmacy.WindowsUI
 
         private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var frmUsers = new frmCategories();
-            frmUsers.WindowState = FormWindowState.Maximized;
-            frmUsers.MdiParent = this;
-            frmUsers.Show();
+            var frmCategories = new frmCategories();
+            frmCategories.WindowState = FormWindowState.Maximized;
+            frmCategories.MdiParent = this;
+            frmCategories.Show();
         }
 
         private void attributesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var frmUsers = new frmAttributes();
-            frmUsers.WindowState = FormWindowState.Maximized;
-            frmUsers.MdiParent = this;
-            frmUsers.Show();
+            var frmAttributes = new frmAttributes();
+            frmAttributes.WindowState = FormWindowState.Maximized;
+            frmAttributes.MdiParent = this;
+            frmAttributes.Show();
         }
 
         private void substancesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var frmUsers = new frmSubstances();
-            frmUsers.WindowState = FormWindowState.Maximized;
-            frmUsers.MdiParent = this;
-            frmUsers.Show();
+            var frmSubstances = new frmSubstances();
+            frmSubstances.WindowState = FormWindowState.Maximized;
+            frmSubstances.MdiParent = this;
+            frmSubstances.Show();
+        }
+
+        private void productsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frmProducts = new frmProducts();
+            frmProducts.WindowState = FormWindowState.Maximized;
+            frmProducts.MdiParent = this;
+            frmProducts.Show();
         }
     }
 }

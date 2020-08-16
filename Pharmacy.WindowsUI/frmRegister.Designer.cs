@@ -341,7 +341,7 @@
             this.Controls.Add(this.txtPharmacyName);
             this.Controls.Add(this.btnSignUp);
             this.Name = "frmRegister";
-            this.Text = "frmRegister";
+            this.Text = "POS Pharmacy - Register";
             this.Load += new System.EventHandler(this.frmRegister_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -25,7 +25,7 @@ namespace Pharmacy.WindowsUI.Settings
         {
             var searchObj = new BaseSearchObject()
             {
-                Name = txtPretraga.Text
+                SearchTerm = txtPretraga.Text
             };
             var result = await _aPIServiceSubstances.Get<List<BaseDto>>(searchObj);
 
