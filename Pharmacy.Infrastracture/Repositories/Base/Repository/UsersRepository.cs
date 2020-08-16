@@ -48,7 +48,10 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         public async Task<IEnumerable<User>> GetAllByParametersAsync(UsersSearchObject search)
         {
             var query = Context.Users.AsQueryable();
-
+            if (search.NotId.HasValue)
+            {
+                query = query.Where(x => x.Id != search.NotId.Value);
+            }
             if (!string.IsNullOrWhiteSpace(search.Username))
             {
                 query = query.Where(x => x.Username.ToLower().Equals(search.Username));

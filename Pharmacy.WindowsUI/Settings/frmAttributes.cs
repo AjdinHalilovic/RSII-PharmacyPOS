@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace Pharmacy.WindowsUI.Settings
 {
-    public partial class frmCategories : Form
+    public partial class frmAttributes : Form
     {
-        private readonly APIService _aPIServiceCategories = new APIService("Categories");
+        private readonly APIService _aPIServiceAttributes = new APIService("Attributes");
 
-        public frmCategories()
+        public frmAttributes()
         {
             InitializeComponent();
         }
@@ -27,7 +27,7 @@ namespace Pharmacy.WindowsUI.Settings
             {
                 Name = txtPretraga.Text
             };
-            var result = await _aPIServiceCategories.Get<List<BaseDto>>(searchObj);
+            var result = await _aPIServiceAttributes.Get<List<BaseDto>>(searchObj);
 
             dgvCategories.DataSource = result;
         }
@@ -41,16 +41,16 @@ namespace Pharmacy.WindowsUI.Settings
         {
             if (dgvCategories.SelectedRows.Count > 0)
             {
-                var categoryId = int.Parse(dgvCategories.SelectedRows[0].Cells[0].Value.ToString());
+                var attributeId = int.Parse(dgvCategories.SelectedRows[0].Cells[0].Value.ToString());
 
-                frmCategoryDetails frm = new frmCategoryDetails(categoryId);
+                frmAttributeDetails frm = new frmAttributeDetails(attributeId);
                 frm.Show();
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            frmCategoryDetails frm = new frmCategoryDetails(null);
+            frmAttributeDetails frm = new frmAttributeDetails(null);
             frm.Show();
         }
     }

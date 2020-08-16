@@ -1,4 +1,5 @@
 ﻿using Flurl.Http;
+using Pharmacy.WindowsUI.Settings;
 using Pharmacy.WindowsUI.Users;
 using System;
 using System.Collections.Generic;
@@ -130,6 +131,30 @@ namespace Pharmacy.WindowsUI
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var frmUsers = new frmUsers();
+            frmUsers.WindowState = FormWindowState.Maximized;
+            frmUsers.MdiParent = this;
+            frmUsers.Show();
+        }
+
+        private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frmUsers = new frmCategories();
+            frmUsers.WindowState = FormWindowState.Maximized;
+            frmUsers.MdiParent = this;
+            frmUsers.Show();
+        }
+
+        private void attributesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frmUsers = new frmAttributes();
+            frmUsers.WindowState = FormWindowState.Maximized;
+            frmUsers.MdiParent = this;
+            frmUsers.Show();
+        }
+
+        private void substancesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frmUsers = new frmSubstances();
             frmUsers.WindowState = FormWindowState.Maximized;
             frmUsers.MdiParent = this;
             frmUsers.Show();

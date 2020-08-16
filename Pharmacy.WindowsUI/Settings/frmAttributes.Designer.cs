@@ -1,6 +1,6 @@
 ﻿namespace Pharmacy.WindowsUI.Settings
 {
-    partial class frmCategories
+    partial class frmAttributes
     {
         /// <summary>
         /// Required designer variable.
@@ -49,7 +49,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(157, 32);
             this.btnAdd.TabIndex = 7;
-            this.btnAdd.Text = "Add category";
+            this.btnAdd.Text = "Add attribute";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -83,7 +83,7 @@
             this.groupBox1.Size = new System.Drawing.Size(775, 398);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Categories";
+            this.groupBox1.Text = "Attributes";
             // 
             // dgvCategories
             // 
@@ -129,7 +129,7 @@
             // 
             this.baseDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.BaseDto);
             // 
-            // frmCategories
+            // frmAttributes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -138,8 +138,8 @@
             this.Controls.Add(this.txtPretraga);
             this.Controls.Add(this.btnShow);
             this.Controls.Add(this.groupBox1);
-            this.Name = "frmCategories";
-            this.Text = "frmCategories";
+            this.Name = "frmAttributes";
+            this.Text = "Attributes";
             this.Load += new System.EventHandler(this.frmCategories_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategories)).EndInit();

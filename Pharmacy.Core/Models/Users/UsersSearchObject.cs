@@ -9,6 +9,7 @@ namespace Pharmacy.Core.Models.Users
 {
     public class UsersSearchObject
     {
+        public int? NotId { get; set; }
         public string Email { get; set; }
         public string Username { get; set; }
     }

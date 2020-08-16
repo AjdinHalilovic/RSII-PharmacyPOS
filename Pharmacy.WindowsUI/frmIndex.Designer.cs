@@ -138,6 +138,7 @@
             this.categoriesToolStripMenuItem.Size = new System.Drawing.Size(144, 29);
             this.categoriesToolStripMenuItem.Text = "Categories";
             this.categoriesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.categoriesToolStripMenuItem.Click += new System.EventHandler(this.categoriesToolStripMenuItem_Click);
             // 
             // attributesToolStripMenuItem
             // 
@@ -147,6 +148,7 @@
             this.attributesToolStripMenuItem.Size = new System.Drawing.Size(144, 29);
             this.attributesToolStripMenuItem.Text = "Attributes";
             this.attributesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.attributesToolStripMenuItem.Click += new System.EventHandler(this.attributesToolStripMenuItem_Click);
             // 
             // substancesToolStripMenuItem
             // 
@@ -156,6 +158,7 @@
             this.substancesToolStripMenuItem.Size = new System.Drawing.Size(144, 29);
             this.substancesToolStripMenuItem.Text = "Substances";
             this.substancesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.substancesToolStripMenuItem.Click += new System.EventHandler(this.substancesToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -174,7 +177,7 @@
             this.Controls.Add(this.menuStrip);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmIndex";
             this.RightToLeftLayout = true;
             this.Text = "frmIndex";

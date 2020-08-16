@@ -10,6 +10,7 @@ using Pharmacy.Core.Entities.Base.DTO;
 using Pharmacy.Core.Models.Users;
 using Pharmacy.Infrastracture;
 using Pharmacy.Infrastracture.Helpers;
+using System.Text.RegularExpressions;
 
 namespace Pharmacy.Infrastructure.Repositories.Base.Repository
 {
@@ -21,7 +22,9 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
 
         public async Task<IEnumerable<PersonDto>> GetAllDtosAsync(PersonSearchObject search)
         {
-            return await DbConnection.QueryFunctionAsync<PersonDto>(DbObjects.BaseDbObjects.Functions.Persons.persons_getdtosbyparameters, new { pFullName = search.FullName });
+            string searchTerm = string.IsNullOrEmpty(search.FullName) ? null : $"{Regex.Replace(search.FullName, @"\s+", " ").Replace(" ", ":*&")}:*";
+
+            return await DbConnection.QueryFunctionAsync<PersonDto>(DbObjects.BaseDbObjects.Functions.Persons.persons_getdtosbyparameters, new { pFullName = searchTerm });
         }
 
     }

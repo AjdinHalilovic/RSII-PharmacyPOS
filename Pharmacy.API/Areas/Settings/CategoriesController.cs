@@ -19,13 +19,15 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.API.Areas.Settings
 {
-    [ApiController,TokenValidation, Area("Settings")]
+    [ApiController, TokenValidation, Area("Settings")]
     [Route("[controller]")]
     public class CategoriesController : BaseController
     {
         public CategoriesController(IDataUnitOfWork dataUnitOfWork) : base(dataUnitOfWork)
         {
         }
+
+        #region Get
 
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] BaseSearchObject search)
@@ -43,5 +45,58 @@ namespace Pharmacy.API.Areas.Settings
                 throw;
             }
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(await DataUnitOfWork.BaseUow.CategoriesRepository.GetByIdAsync(id));
+        }
+        #endregion
+
+        #region Insert
+        [HttpPost]
+        public async Task<IActionResult> Insert(BaseInsertRequest request)
+        {
+            try
+            {
+                Category category = new Category()
+                {
+                    Name = request.Name,
+                    PharmacyBranchId = 2 //modify from claims
+                };
+                DataUnitOfWork.BaseUow.CategoriesRepository.Add(category);
+                await DataUnitOfWork.BaseUow.CategoriesRepository.SaveChangesAsync();
+
+                return Ok(category);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+                throw;
+            }
+        }
+        #endregion
+
+
+        #region Update
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id,BaseInsertRequest request)
+        {
+            try
+            {
+                var category = await DataUnitOfWork.BaseUow.CategoriesRepository.GetByIdAsync(id);
+                category.Name = request.Name;
+
+                DataUnitOfWork.BaseUow.CategoriesRepository.Update(category);
+                await DataUnitOfWork.BaseUow.CategoriesRepository.SaveChangesAsync();
+
+                return Ok(category);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+                throw;
+            }
+        }
+        #endregion
     }
 }

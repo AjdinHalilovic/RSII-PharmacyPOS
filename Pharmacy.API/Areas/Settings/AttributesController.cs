@@ -27,6 +27,8 @@ namespace Pharmacy.API.Areas.Settings
         {
         }
 
+        #region Get
+
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] BaseSearchObject search)
         {
@@ -43,5 +45,58 @@ namespace Pharmacy.API.Areas.Settings
                 throw;
             }
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(await DataUnitOfWork.BaseUow.AttributesRepository.GetByIdAsync(id));
+        }
+        #endregion
+
+        #region Insert
+        [HttpPost]
+        public async Task<IActionResult> Insert(BaseInsertRequest request)
+        {
+            try
+            {
+                var attribute = new Pharmacy.Core.Entities.Base.Attribute()
+                {
+                    Name = request.Name,
+                    PharmacyBranchId = 2 //modify from claims
+                };
+                DataUnitOfWork.BaseUow.AttributesRepository.Add(attribute);
+                await DataUnitOfWork.BaseUow.AttributesRepository.SaveChangesAsync();
+
+                return Ok(attribute);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+                throw;
+            }
+        }
+        #endregion
+
+
+        #region Update
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id,[FromBody] BaseInsertRequest request)
+        {
+            try
+            {
+                var attribute = await DataUnitOfWork.BaseUow.AttributesRepository.GetByIdAsync(id);
+                attribute.Name = request.Name;
+
+                DataUnitOfWork.BaseUow.AttributesRepository.Update(attribute);
+                await DataUnitOfWork.BaseUow.AttributesRepository.SaveChangesAsync();
+
+                return Ok(attribute);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+                throw;
+            }
+        }
+        #endregion
     }
 }

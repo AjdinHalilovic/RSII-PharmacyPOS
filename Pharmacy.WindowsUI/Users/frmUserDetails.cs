@@ -28,7 +28,7 @@ namespace Pharmacy.WindowsUI.Users
             _id = id;
         }
 
-        private async void btnSave_Click(object sender, EventArgs e)
+        private async void btnSaveUser_Click(object sender, EventArgs e)
         {
             if (ValidateChildren())
             {
@@ -56,11 +56,11 @@ namespace Pharmacy.WindowsUI.Users
 
                     if (!_id.HasValue)
                     {
-                        person = await _aPIServiceUsers.Insert<Person>(request);
+                        person = await _aPIServicePersons.Insert<Person>(request);
                     }
                     else
                     {
-                        person = await _aPIServiceUsers.Update<Person>(_id.Value, request);
+                        person = await _aPIServicePersons.Update<Person>(_id.Value, request);
                     }
 
                     if (person != null)
@@ -99,9 +99,10 @@ namespace Pharmacy.WindowsUI.Users
             {
                 User user = await _aPIServiceUsers.GetById<User>(_id);
                 Person person = await _aPIServicePersons.GetById<Person>(_id);
+                txtId.Text = _id.GetValueOrDefault().ToString();
                 txtFirstName.Text = person.FirstName;
                 txtLastName.Text = person.LastName;
-                dtpDateOfBirth.Value = person.DateOfBirth;
+                dtpDateOfBirth.Value = person.DateOfBirth ?? new DateTime();
                 comboCountryId.SelectedValue = person.CountryId ?? 0;
                 comboCityId.SelectedValue = person.CityId ?? 0;
                 txtAddress.Text = person.Address;
@@ -211,7 +212,7 @@ namespace Pharmacy.WindowsUI.Users
                 e.Cancel = true;
                 errorProvider.SetError(txtUsername, Resources.Validation_RequiredField);
             }
-            else if ((await _aPIServiceUsers.Get<User>(new UsersSearchObject() { Username = txtUsername.Text })) != null)
+            else if (!string.IsNullOrEmpty(txtId.Text) && (await _aPIServiceUsers.Get<List<User>>(new UsersSearchObject() { Username = txtUsername.Text, NotId = int.Parse(txtId.Text) })).Any())
             {
                 e.Cancel = true;
                 errorProvider.SetError(txtUsername, Resources.UsernameAlreadyExists);
@@ -229,7 +230,7 @@ namespace Pharmacy.WindowsUI.Users
                 e.Cancel = true;
                 errorProvider.SetError(txtEmail, Resources.Validation_RequiredField);
             }
-            else if ((await _aPIServiceUsers.Get<User>(new UsersSearchObject() { Email = txtEmail.Text })) != null)
+            else if (!string.IsNullOrEmpty(txtId.Text) && (await _aPIServiceUsers.Get<List<User>>(new UsersSearchObject() { Email = txtEmail.Text, NotId = int.Parse(txtId.Text) })).Any())
             {
                 e.Cancel = true;
                 errorProvider.SetError(txtEmail, Resources.EmailAlreadyExists);
@@ -288,5 +289,7 @@ namespace Pharmacy.WindowsUI.Users
                 errorProvider.SetError(clbRoles, null);
             }
         }
+
+        
     }
 }

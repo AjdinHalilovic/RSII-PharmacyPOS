@@ -26,6 +26,7 @@ namespace Pharmacy.API.Areas.Settings
         public SubstancesController(IDataUnitOfWork dataUnitOfWork) : base(dataUnitOfWork)
         {
         }
+        #region Get
 
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] BaseSearchObject search)
@@ -43,5 +44,58 @@ namespace Pharmacy.API.Areas.Settings
                 throw;
             }
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(await DataUnitOfWork.BaseUow.SubstancesRepository.GetByIdAsync(id));
+        }
+        #endregion
+
+        #region Insert
+        [HttpPost]
+        public async Task<IActionResult> Insert(BaseInsertRequest request)
+        {
+            try
+            {
+                var substance = new Substance()
+                {
+                    Name = request.Name,
+                    PharmacyBranchId = 2 //modify from claims
+                };
+                DataUnitOfWork.BaseUow.SubstancesRepository.Add(substance);
+                await DataUnitOfWork.BaseUow.SubstancesRepository.SaveChangesAsync();
+
+                return Ok(substance);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+                throw;
+            }
+        }
+        #endregion
+
+
+        #region Update
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody]BaseInsertRequest request)
+        {
+            try
+            {
+                var substance = await DataUnitOfWork.BaseUow.SubstancesRepository.GetByIdAsync(id);
+                substance.Name = request.Name;
+
+                DataUnitOfWork.BaseUow.SubstancesRepository.Update(substance);
+                await DataUnitOfWork.BaseUow.SubstancesRepository.SaveChangesAsync();
+
+                return Ok(substance);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+                throw;
+            }
+        }
+        #endregion
     }
 }

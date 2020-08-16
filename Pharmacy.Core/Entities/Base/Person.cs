@@ -13,7 +13,7 @@ namespace Pharmacy.Core.Entities.Base
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         [ForeignKey(nameof(Country))]
         public int? CountryId { get; set; }
         [ForeignKey(nameof(City))]
