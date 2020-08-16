@@ -311,6 +311,7 @@
     </Compile>
     <None Include="packages.config" />
     <None Include="Pharmacy.Core.Entities.Base.DTO.BaseDto.datasource" />
+    <None Include="Pharmacy.Core.Entities.Base.DTO.PersonAttributeDto.datasource" />
     <None Include="Pharmacy.Core.Entities.Base.DTO.PersonDto.datasource" />
     <None Include="Pharmacy.Core.Entities.Base.DTO.ProductDto.datasource" />
     <None Include="Properties\Settings.settings">

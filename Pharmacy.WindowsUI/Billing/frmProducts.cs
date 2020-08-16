@@ -43,15 +43,15 @@ namespace Pharmacy.WindowsUI.Billing
             {
                 var productId = int.Parse(dgvProducts.SelectedRows[0].Cells[0].Value.ToString());
 
-                //frmCategoryDetails frm = new frmCategoryDetails(productId);
-                //frm.Show();
+                frmProductDetails frm = new frmProductDetails(productId);
+                frm.Show();
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //frmCategoryDetails frm = new frmCategoryDetails(null);
-            //frm.Show();
+            frmProductDetails frm = new frmProductDetails(null);
+            frm.Show();
         }
     }
 }

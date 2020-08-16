@@ -32,7 +32,7 @@
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblUserDetails = new System.Windows.Forms.Label();
             this.lblCode = new System.Windows.Forms.Label();
-            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.txtCode = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblPrice = new System.Windows.Forms.Label();
@@ -44,13 +44,21 @@
             this.lblSubstances = new System.Windows.Forms.Label();
             this.clbSubstances = new System.Windows.Forms.CheckedListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvProductAttributes = new System.Windows.Forms.DataGridView();
+            this.personAttributeDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnSaveUser = new System.Windows.Forms.Button();
             this.btnAddProductAttribute = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attributeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attributeOptionValueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Action = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductAttributes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personAttributeDtoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // errorProvider
@@ -61,178 +69,224 @@
             // 
             this.lblUserDetails.AutoSize = true;
             this.lblUserDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserDetails.Location = new System.Drawing.Point(46, 25);
-            this.lblUserDetails.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUserDetails.Location = new System.Drawing.Point(34, 20);
             this.lblUserDetails.Name = "lblUserDetails";
-            this.lblUserDetails.Size = new System.Drawing.Size(144, 22);
+            this.lblUserDetails.Size = new System.Drawing.Size(117, 17);
             this.lblUserDetails.TabIndex = 44;
             this.lblUserDetails.Text = "Product details";
             // 
             // lblCode
             // 
             this.lblCode.AutoSize = true;
-            this.lblCode.Location = new System.Drawing.Point(584, 67);
-            this.lblCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCode.Location = new System.Drawing.Point(438, 54);
             this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(41, 17);
+            this.lblCode.Size = new System.Drawing.Size(32, 13);
             this.lblCode.TabIndex = 48;
             this.lblCode.Text = "Code";
             // 
-            // txtLastName
+            // txtCode
             // 
-            this.txtLastName.Location = new System.Drawing.Point(584, 91);
-            this.txtLastName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(464, 22);
-            this.txtLastName.TabIndex = 47;
+            this.txtCode.Location = new System.Drawing.Point(438, 74);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(349, 20);
+            this.txtCode.TabIndex = 47;
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(50, 67);
-            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblName.Location = new System.Drawing.Point(38, 54);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(45, 17);
+            this.lblName.Size = new System.Drawing.Size(35, 13);
             this.lblName.TabIndex = 46;
             this.lblName.Text = "Name";
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(50, 91);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtName.Location = new System.Drawing.Point(38, 74);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(481, 22);
+            this.txtName.Size = new System.Drawing.Size(362, 20);
             this.txtName.TabIndex = 45;
             // 
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(584, 123);
-            this.lblPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPrice.Location = new System.Drawing.Point(438, 100);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(40, 17);
+            this.lblPrice.Size = new System.Drawing.Size(31, 13);
             this.lblPrice.TabIndex = 50;
             this.lblPrice.Text = "Price";
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(584, 147);
-            this.txtPrice.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPrice.Location = new System.Drawing.Point(438, 119);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(464, 22);
+            this.txtPrice.Size = new System.Drawing.Size(349, 20);
             this.txtPrice.TabIndex = 49;
             // 
             // comboMeasurementUnitId
             // 
             this.comboMeasurementUnitId.FormattingEnabled = true;
-            this.comboMeasurementUnitId.Location = new System.Drawing.Point(50, 147);
+            this.comboMeasurementUnitId.Location = new System.Drawing.Point(38, 119);
+            this.comboMeasurementUnitId.Margin = new System.Windows.Forms.Padding(2);
             this.comboMeasurementUnitId.Name = "comboMeasurementUnitId";
-            this.comboMeasurementUnitId.Size = new System.Drawing.Size(481, 24);
+            this.comboMeasurementUnitId.Size = new System.Drawing.Size(362, 21);
             this.comboMeasurementUnitId.TabIndex = 51;
             // 
             // lblMeasurementUnit
             // 
             this.lblMeasurementUnit.AutoSize = true;
-            this.lblMeasurementUnit.Location = new System.Drawing.Point(50, 127);
-            this.lblMeasurementUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMeasurementUnit.Location = new System.Drawing.Point(38, 103);
             this.lblMeasurementUnit.Name = "lblMeasurementUnit";
-            this.lblMeasurementUnit.Size = new System.Drawing.Size(121, 17);
+            this.lblMeasurementUnit.Size = new System.Drawing.Size(91, 13);
             this.lblMeasurementUnit.TabIndex = 52;
             this.lblMeasurementUnit.Text = "Measurement unit";
             // 
             // clbCategories
             // 
             this.clbCategories.FormattingEnabled = true;
-            this.clbCategories.Location = new System.Drawing.Point(50, 206);
-            this.clbCategories.Margin = new System.Windows.Forms.Padding(4);
+            this.clbCategories.Location = new System.Drawing.Point(38, 167);
             this.clbCategories.Name = "clbCategories";
-            this.clbCategories.Size = new System.Drawing.Size(481, 106);
+            this.clbCategories.Size = new System.Drawing.Size(362, 79);
             this.clbCategories.TabIndex = 53;
             // 
             // lblCategories
             // 
             this.lblCategories.AutoSize = true;
-            this.lblCategories.Location = new System.Drawing.Point(50, 185);
-            this.lblCategories.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCategories.Location = new System.Drawing.Point(38, 150);
             this.lblCategories.Name = "lblCategories";
-            this.lblCategories.Size = new System.Drawing.Size(76, 17);
+            this.lblCategories.Size = new System.Drawing.Size(57, 13);
             this.lblCategories.TabIndex = 54;
             this.lblCategories.Text = "Categories";
             // 
             // lblSubstances
             // 
             this.lblSubstances.AutoSize = true;
-            this.lblSubstances.Location = new System.Drawing.Point(584, 185);
-            this.lblSubstances.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSubstances.Location = new System.Drawing.Point(438, 150);
             this.lblSubstances.Name = "lblSubstances";
-            this.lblSubstances.Size = new System.Drawing.Size(82, 17);
+            this.lblSubstances.Size = new System.Drawing.Size(63, 13);
             this.lblSubstances.TabIndex = 56;
             this.lblSubstances.Text = "Substances";
             // 
             // clbSubstances
             // 
             this.clbSubstances.FormattingEnabled = true;
-            this.clbSubstances.Location = new System.Drawing.Point(584, 206);
-            this.clbSubstances.Margin = new System.Windows.Forms.Padding(4);
+            this.clbSubstances.Location = new System.Drawing.Point(438, 167);
             this.clbSubstances.Name = "clbSubstances";
-            this.clbSubstances.Size = new System.Drawing.Size(464, 106);
+            this.clbSubstances.Size = new System.Drawing.Size(349, 79);
             this.clbSubstances.TabIndex = 55;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Location = new System.Drawing.Point(50, 331);
+            this.groupBox1.Controls.Add(this.dgvProductAttributes);
+            this.groupBox1.Location = new System.Drawing.Point(38, 269);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(998, 130);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(748, 94);
             this.groupBox1.TabIndex = 57;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Attributes";
             // 
-            // dataGridView1
+            // dgvProductAttributes
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(7, 22);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(985, 102);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvProductAttributes.AutoGenerateColumns = false;
+            this.dgvProductAttributes.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvProductAttributes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProductAttributes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.attributeDataGridViewTextBoxColumn,
+            this.attributeOptionValueDataGridViewTextBoxColumn,
+            this.Action});
+            this.dgvProductAttributes.DataSource = this.personAttributeDtoBindingSource;
+            this.dgvProductAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvProductAttributes.Location = new System.Drawing.Point(2, 15);
+            this.dgvProductAttributes.Name = "dgvProductAttributes";
+            this.dgvProductAttributes.Size = new System.Drawing.Size(744, 77);
+            this.dgvProductAttributes.TabIndex = 0;
+            this.dgvProductAttributes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductAttributes_CellContentClick);
+            // 
+            // personAttributeDtoBindingSource
+            // 
+            this.personAttributeDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductAttributeDto);
             // 
             // btnSaveUser
             // 
-            this.btnSaveUser.Location = new System.Drawing.Point(449, 523);
-            this.btnSaveUser.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSaveUser.Location = new System.Drawing.Point(338, 528);
             this.btnSaveUser.Name = "btnSaveUser";
-            this.btnSaveUser.Size = new System.Drawing.Size(199, 39);
+            this.btnSaveUser.Size = new System.Drawing.Size(149, 32);
             this.btnSaveUser.TabIndex = 58;
             this.btnSaveUser.Text = "Save";
             this.btnSaveUser.UseVisualStyleBackColor = true;
+            this.btnSaveUser.Click += new System.EventHandler(this.btnSaveUser_Click);
             // 
             // btnAddProductAttribute
             // 
-            this.btnAddProductAttribute.Location = new System.Drawing.Point(57, 462);
-            this.btnAddProductAttribute.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddProductAttribute.Location = new System.Drawing.Point(37, 368);
             this.btnAddProductAttribute.Name = "btnAddProductAttribute";
-            this.btnAddProductAttribute.Size = new System.Drawing.Size(184, 27);
+            this.btnAddProductAttribute.Size = new System.Drawing.Size(138, 22);
             this.btnAddProductAttribute.TabIndex = 59;
             this.btnAddProductAttribute.Text = "Add product attribute";
             this.btnAddProductAttribute.UseVisualStyleBackColor = true;
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(57, 540);
-            this.txtId.Margin = new System.Windows.Forms.Padding(4);
+            this.txtId.Location = new System.Drawing.Point(44, 542);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(38, 22);
+            this.txtId.Size = new System.Drawing.Size(30, 20);
             this.txtId.TabIndex = 60;
             this.txtId.Visible = false;
             // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(37, 424);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(750, 61);
+            this.txtDescription.TabIndex = 61;
+            // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(41, 408);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(60, 13);
+            this.lblDescription.TabIndex = 62;
+            this.lblDescription.Text = "Description";
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // attributeDataGridViewTextBoxColumn
+            // 
+            this.attributeDataGridViewTextBoxColumn.DataPropertyName = "Attribute";
+            this.attributeDataGridViewTextBoxColumn.HeaderText = "Attribute";
+            this.attributeDataGridViewTextBoxColumn.Name = "attributeDataGridViewTextBoxColumn";
+            // 
+            // attributeOptionValueDataGridViewTextBoxColumn
+            // 
+            this.attributeOptionValueDataGridViewTextBoxColumn.DataPropertyName = "AttributeOptionValue";
+            this.attributeOptionValueDataGridViewTextBoxColumn.HeaderText = "Value";
+            this.attributeOptionValueDataGridViewTextBoxColumn.Name = "attributeOptionValueDataGridViewTextBoxColumn";
+            // 
+            // Action
+            // 
+            this.Action.HeaderText = "Action";
+            this.Action.Name = "Action";
+            this.Action.Text = "Delete";
+            this.Action.ToolTipText = "Delete";
+            this.Action.UseColumnTextForButtonValue = true;
+            // 
             // frmProductDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1100, 575);
+            this.ClientSize = new System.Drawing.Size(839, 572);
+            this.Controls.Add(this.lblDescription);
+            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnAddProductAttribute);
             this.Controls.Add(this.btnSaveUser);
@@ -246,15 +300,18 @@
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.lblCode);
-            this.Controls.Add(this.txtLastName);
+            this.Controls.Add(this.txtCode);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblUserDetails);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmProductDetails";
             this.Text = "Product details";
+            this.Load += new System.EventHandler(this.frmProductDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductAttributes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personAttributeDtoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,7 +322,7 @@
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.Label lblUserDetails;
         private System.Windows.Forms.Label lblCode;
-        private System.Windows.Forms.TextBox txtLastName;
+        private System.Windows.Forms.TextBox txtCode;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblPrice;
@@ -277,9 +334,16 @@
         private System.Windows.Forms.Label lblSubstances;
         private System.Windows.Forms.CheckedListBox clbSubstances;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Button btnAddProductAttribute;
         private System.Windows.Forms.Button btnSaveUser;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.DataGridView dgvProductAttributes;
+        private System.Windows.Forms.BindingSource personAttributeDtoBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn attributeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn attributeOptionValueDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn Action;
     }
 }

@@ -92,8 +92,6 @@ namespace Pharmacy.WindowsUI.Users
                 selectedRoles.ToList().ForEach(x => clbRoles.Items.Add(x,true));
             }
             roles.ToList().ForEach(x => clbRoles.Items.Add(x));
-
-            //clbRoles.DataSource = roles;
             clbRoles.DisplayMember = "Name";
 
             if (_id.HasValue)

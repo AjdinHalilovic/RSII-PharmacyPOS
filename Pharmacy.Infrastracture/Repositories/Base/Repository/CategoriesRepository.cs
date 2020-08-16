@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Pharmacy.Core.Models;
 using Pharmacy.Core.Entities.Base.DTO;
+using Pharmacy.Core.Models.Billing;
 
 namespace Pharmacy.Infrastructure.Repositories.Base.Repository
 {
@@ -16,7 +17,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
         }
 
-        public async Task<IEnumerable<BaseDto>> GetAllByParametersAsync(BaseSearchObject search)
+        public async Task<IEnumerable<BaseDto>> GetAllByParametersAsync(CategorySearchObject search)
         {
             var query = Context.Categories.AsQueryable();
 
@@ -24,7 +25,11 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
             {
                 query = query.Where(x => x.Name.ToLower().StartsWith(search.SearchTerm));
             }
-           
+            if (search.ListIds != null  && search.ListIds.Any())
+            {
+                query = query.Where(x => search.ListIds.Contains(x.Id));
+            }
+
             var list = await query.Select(x=> new BaseDto() { Id = x.Id, Name = x.Name}).ToListAsync();
 
             return list;

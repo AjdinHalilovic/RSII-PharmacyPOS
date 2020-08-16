@@ -8,6 +8,7 @@ using Pharmacy.Core.Helpers;
 using Pharmacy.Core.Helpers.TokenProcessor;
 using Pharmacy.Core.Models;
 using Pharmacy.Core.Models.Access;
+using Pharmacy.Core.Models.Billing;
 using Pharmacy.Infrastructure.UnitOfWorks;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace Pharmacy.API.Areas.Settings
         #region Get
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] BaseSearchObject search)
+        public async Task<IActionResult> Get([FromQuery] CategorySearchObject search)
         {
             try
             {

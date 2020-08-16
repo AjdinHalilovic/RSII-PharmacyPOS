@@ -34,18 +34,19 @@
             this.btnShow = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
+            this.productDtoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.baseDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.measurementUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.substancesNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.attributeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productDtoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.baseDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource1)).BeginInit();
@@ -55,10 +56,10 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(1118, 11);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAdd.Location = new System.Drawing.Point(940, 11);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(157, 32);
+            this.btnAdd.Size = new System.Drawing.Size(118, 26);
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Add product";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -66,19 +67,19 @@
             // 
             // txtPretraga
             // 
-            this.txtPretraga.Location = new System.Drawing.Point(12, 11);
-            this.txtPretraga.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtPretraga.Location = new System.Drawing.Point(9, 9);
+            this.txtPretraga.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPretraga.Multiline = true;
             this.txtPretraga.Name = "txtPretraga";
-            this.txtPretraga.Size = new System.Drawing.Size(887, 32);
+            this.txtPretraga.Size = new System.Drawing.Size(666, 27);
             this.txtPretraga.TabIndex = 6;
             // 
             // btnShow
             // 
-            this.btnShow.Location = new System.Drawing.Point(1012, 11);
-            this.btnShow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnShow.Location = new System.Drawing.Point(861, 11);
+            this.btnShow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnShow.Name = "btnShow";
-            this.btnShow.Size = new System.Drawing.Size(101, 32);
+            this.btnShow.Size = new System.Drawing.Size(76, 26);
             this.btnShow.TabIndex = 5;
             this.btnShow.Text = "Show";
             this.btnShow.UseVisualStyleBackColor = true;
@@ -88,11 +89,11 @@
             // 
             this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.dgvProducts);
-            this.groupBox1.Location = new System.Drawing.Point(9, 50);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Location = new System.Drawing.Point(7, 41);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(1266, 398);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(1051, 323);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Products";
@@ -109,6 +110,7 @@
             this.nameDataGridViewTextBoxColumn,
             this.codeDataGridViewTextBoxColumn,
             this.descriptionDataGridViewTextBoxColumn,
+            this.Price,
             this.quantityDataGridViewTextBoxColumn,
             this.measurementUnitDataGridViewTextBoxColumn,
             this.categoriesDataGridViewTextBoxColumn,
@@ -116,15 +118,27 @@
             this.attributeNumberDataGridViewTextBoxColumn});
             this.dgvProducts.DataSource = this.productDtoBindingSource1;
             this.dgvProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProducts.Location = new System.Drawing.Point(3, 17);
-            this.dgvProducts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvProducts.Location = new System.Drawing.Point(2, 15);
+            this.dgvProducts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.ReadOnly = true;
             this.dgvProducts.RowHeadersWidth = 51;
             this.dgvProducts.RowTemplate.Height = 24;
-            this.dgvProducts.Size = new System.Drawing.Size(1260, 379);
+            this.dgvProducts.Size = new System.Drawing.Size(1047, 306);
             this.dgvProducts.TabIndex = 0;
             this.dgvProducts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellDoubleClick);
+            // 
+            // productDtoBindingSource1
+            // 
+            this.productDtoBindingSource1.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
+            // 
+            // baseDtoBindingSource
+            // 
+            this.baseDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.BaseDto);
+            // 
+            // productDtoBindingSource
+            // 
+            this.productDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -163,6 +177,13 @@
             this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
             this.descriptionDataGridViewTextBoxColumn.Visible = false;
             this.descriptionDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
             // 
             // quantityDataGridViewTextBoxColumn
             // 
@@ -209,27 +230,16 @@
             this.attributeNumberDataGridViewTextBoxColumn.ReadOnly = true;
             this.attributeNumberDataGridViewTextBoxColumn.Width = 125;
             // 
-            // productDtoBindingSource1
-            // 
-            this.productDtoBindingSource1.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
-            // 
-            // baseDtoBindingSource
-            // 
-            this.baseDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.BaseDto);
-            // 
-            // productDtoBindingSource
-            // 
-            this.productDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
-            // 
             // frmProducts
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 464);
+            this.ClientSize = new System.Drawing.Size(1069, 377);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtPretraga);
             this.Controls.Add(this.btnShow);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmProducts";
             this.Text = "Products";
             this.Load += new System.EventHandler(this.frmProducts_Load);
@@ -257,6 +267,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn measurementUnitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoriesDataGridViewTextBoxColumn;
