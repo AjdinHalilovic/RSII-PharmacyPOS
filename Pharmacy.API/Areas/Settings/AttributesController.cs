@@ -8,6 +8,8 @@ using Pharmacy.Core.Helpers;
 using Pharmacy.Core.Helpers.TokenProcessor;
 using Pharmacy.Core.Models;
 using Pharmacy.Core.Models.Access;
+using Pharmacy.Core.Models.Billing;
+using Pharmacy.Core.Models.Settins;
 using Pharmacy.Infrastructure.UnitOfWorks;
 using System;
 using System.Collections.Generic;
@@ -54,8 +56,9 @@ namespace Pharmacy.API.Areas.Settings
 
         #region Insert
         [HttpPost]
-        public async Task<IActionResult> Insert(BaseInsertRequest request)
+        public async Task<IActionResult> Insert(AttributeUpsertRequest request)
         {
+            DataUnitOfWork.BaseUow.BeginTransaction();
             try
             {
                 var attribute = new Pharmacy.Core.Entities.Base.Attribute()
@@ -66,10 +69,17 @@ namespace Pharmacy.API.Areas.Settings
                 DataUnitOfWork.BaseUow.AttributesRepository.Add(attribute);
                 await DataUnitOfWork.BaseUow.AttributesRepository.SaveChangesAsync();
 
+                request.AttributeOptions.ForEach(x => x.AttributeId = attribute.Id);
+                DataUnitOfWork.BaseUow.AttributeOptionsRepository.AddRange(request.AttributeOptions);
+                await DataUnitOfWork.BaseUow.AttributeOptionsRepository.SaveChangesAsync();
+
+                DataUnitOfWork.BaseUow.CommitTransaction();
+
                 return Ok(attribute);
             }
             catch (Exception ex)
             {
+                DataUnitOfWork.BaseUow.RollbackTransaction();
                 return BadRequest();
                 throw;
             }
@@ -79,8 +89,9 @@ namespace Pharmacy.API.Areas.Settings
 
         #region Update
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id,[FromBody] BaseInsertRequest request)
+        public async Task<IActionResult> Update(int id,[FromBody] AttributeUpsertRequest request)
         {
+            DataUnitOfWork.BaseUow.BeginTransaction();
             try
             {
                 var attribute = await DataUnitOfWork.BaseUow.AttributesRepository.GetByIdAsync(id);
@@ -89,7 +100,39 @@ namespace Pharmacy.API.Areas.Settings
                 DataUnitOfWork.BaseUow.AttributesRepository.Update(attribute);
                 await DataUnitOfWork.BaseUow.AttributesRepository.SaveChangesAsync();
 
+                #region Options
+                var existingAttributeOptions = (await DataUnitOfWork.BaseUow.AttributeOptionsRepository.GetAllByParametersAsync(new AttributeOptionSearchObject() { AttributeId = id })).ToList();
+                var removedAttributeOptions = existingAttributeOptions.Where(x =>
+                    !request.AttributeOptions.Select(y => y.Value).Contains(x.Value)).ToList();
+                var newAttributeOptions = request.AttributeOptions.Where(x => x.Id == 0 && !existingAttributeOptions.Select(y => y.Value).Contains(x.Value)).ToList();
+                newAttributeOptions.ForEach(x => x.AttributeId = attribute.Id);
+
+                DataUnitOfWork.BaseUow.AttributeOptionsRepository.AddRange(newAttributeOptions);
+                DataUnitOfWork.BaseUow.AttributeOptionsRepository.RemoveRangeByIds(removedAttributeOptions.Select(x => x.Id).ToArray());
+                await DataUnitOfWork.BaseUow.AttributeOptionsRepository.SaveChangesAsync();
+                #endregion
+
+                DataUnitOfWork.BaseUow.CommitTransaction();
                 return Ok(attribute);
+            }
+            catch (Exception ex)
+            {
+                DataUnitOfWork.BaseUow.RollbackTransaction();
+                return BadRequest();
+                throw;
+            }
+        }
+        #endregion
+
+        #region Delete
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                DataUnitOfWork.BaseUow.AttributesRepository.RemoveById(id);
+                await DataUnitOfWork.BaseUow.AttributesRepository.SaveChangesAsync();
+                return Ok();
             }
             catch (Exception ex)
             {

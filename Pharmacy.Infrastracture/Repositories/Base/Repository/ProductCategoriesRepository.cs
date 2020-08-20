@@ -30,6 +30,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
             {
                 query = query.Where(x => search.ListIds.Contains(x.CategoryId));
             }
+            query = query.Where(x => !x.DeletedDateTime.HasValue);
 
             var list = await query.ToListAsync();
 

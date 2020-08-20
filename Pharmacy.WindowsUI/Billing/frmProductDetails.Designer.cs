@@ -45,16 +45,22 @@
             this.clbSubstances = new System.Windows.Forms.CheckedListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvProductAttributes = new System.Windows.Forms.DataGridView();
-            this.personAttributeDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnSaveUser = new System.Windows.Forms.Button();
+            this.lblAttribute = new System.Windows.Forms.Label();
+            this.lblAttributeOption = new System.Windows.Forms.Label();
+            this.comboAttributeOptionId = new System.Windows.Forms.ComboBox();
+            this.comboAttributeId = new System.Windows.Forms.ComboBox();
             this.btnAddProductAttribute = new System.Windows.Forms.Button();
+            this.btnSaveUser = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.lblDescription = new System.Windows.Forms.Label();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.attributeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.attributeOptionValueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AttributeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Attribute = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AttributeOptionId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AttributeOptionValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Action = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.personAttributeDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductAttributes)).BeginInit();
@@ -90,6 +96,7 @@
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(349, 20);
             this.txtCode.TabIndex = 47;
+            this.txtCode.Validating += new System.ComponentModel.CancelEventHandler(this.txtCode_Validating);
             // 
             // lblName
             // 
@@ -106,6 +113,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(362, 20);
             this.txtName.TabIndex = 45;
+            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
             // 
             // lblPrice
             // 
@@ -122,6 +130,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(349, 20);
             this.txtPrice.TabIndex = 49;
+            this.txtPrice.Validating += new System.ComponentModel.CancelEventHandler(this.txtPrice_Validating);
             // 
             // comboMeasurementUnitId
             // 
@@ -131,6 +140,7 @@
             this.comboMeasurementUnitId.Name = "comboMeasurementUnitId";
             this.comboMeasurementUnitId.Size = new System.Drawing.Size(362, 21);
             this.comboMeasurementUnitId.TabIndex = 51;
+            this.comboMeasurementUnitId.Validating += new System.ComponentModel.CancelEventHandler(this.comboMeasurementUnitId_Validating);
             // 
             // lblMeasurementUnit
             // 
@@ -144,7 +154,7 @@
             // clbCategories
             // 
             this.clbCategories.FormattingEnabled = true;
-            this.clbCategories.Location = new System.Drawing.Point(38, 167);
+            this.clbCategories.Location = new System.Drawing.Point(34, 259);
             this.clbCategories.Name = "clbCategories";
             this.clbCategories.Size = new System.Drawing.Size(362, 79);
             this.clbCategories.TabIndex = 53;
@@ -152,7 +162,7 @@
             // lblCategories
             // 
             this.lblCategories.AutoSize = true;
-            this.lblCategories.Location = new System.Drawing.Point(38, 150);
+            this.lblCategories.Location = new System.Drawing.Point(34, 242);
             this.lblCategories.Name = "lblCategories";
             this.lblCategories.Size = new System.Drawing.Size(57, 13);
             this.lblCategories.TabIndex = 54;
@@ -161,7 +171,7 @@
             // lblSubstances
             // 
             this.lblSubstances.AutoSize = true;
-            this.lblSubstances.Location = new System.Drawing.Point(438, 150);
+            this.lblSubstances.Location = new System.Drawing.Point(434, 242);
             this.lblSubstances.Name = "lblSubstances";
             this.lblSubstances.Size = new System.Drawing.Size(63, 13);
             this.lblSubstances.TabIndex = 56;
@@ -170,7 +180,7 @@
             // clbSubstances
             // 
             this.clbSubstances.FormattingEnabled = true;
-            this.clbSubstances.Location = new System.Drawing.Point(438, 167);
+            this.clbSubstances.Location = new System.Drawing.Point(434, 259);
             this.clbSubstances.Name = "clbSubstances";
             this.clbSubstances.Size = new System.Drawing.Size(349, 79);
             this.clbSubstances.TabIndex = 55;
@@ -178,36 +188,83 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgvProductAttributes);
-            this.groupBox1.Location = new System.Drawing.Point(38, 269);
+            this.groupBox1.Controls.Add(this.lblAttribute);
+            this.groupBox1.Controls.Add(this.lblAttributeOption);
+            this.groupBox1.Controls.Add(this.comboAttributeOptionId);
+            this.groupBox1.Controls.Add(this.comboAttributeId);
+            this.groupBox1.Controls.Add(this.btnAddProductAttribute);
+            this.groupBox1.Location = new System.Drawing.Point(34, 357);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(748, 94);
+            this.groupBox1.Size = new System.Drawing.Size(749, 149);
             this.groupBox1.TabIndex = 57;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Attributes";
             // 
             // dgvProductAttributes
             // 
-            this.dgvProductAttributes.AutoGenerateColumns = false;
             this.dgvProductAttributes.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvProductAttributes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductAttributes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.attributeDataGridViewTextBoxColumn,
-            this.attributeOptionValueDataGridViewTextBoxColumn,
+            this.Id,
+            this.AttributeId,
+            this.Attribute,
+            this.AttributeOptionId,
+            this.AttributeOptionValue,
             this.Action});
-            this.dgvProductAttributes.DataSource = this.personAttributeDtoBindingSource;
-            this.dgvProductAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProductAttributes.Location = new System.Drawing.Point(2, 15);
+            this.dgvProductAttributes.Location = new System.Drawing.Point(400, 15);
             this.dgvProductAttributes.Name = "dgvProductAttributes";
-            this.dgvProductAttributes.Size = new System.Drawing.Size(744, 77);
+            this.dgvProductAttributes.Size = new System.Drawing.Size(346, 129);
             this.dgvProductAttributes.TabIndex = 0;
             this.dgvProductAttributes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductAttributes_CellContentClick);
             // 
-            // personAttributeDtoBindingSource
+            // lblAttribute
             // 
-            this.personAttributeDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductAttributeDto);
+            this.lblAttribute.AutoSize = true;
+            this.lblAttribute.Location = new System.Drawing.Point(6, 18);
+            this.lblAttribute.Name = "lblAttribute";
+            this.lblAttribute.Size = new System.Drawing.Size(46, 13);
+            this.lblAttribute.TabIndex = 64;
+            this.lblAttribute.Text = "Attribute";
+            // 
+            // lblAttributeOption
+            // 
+            this.lblAttributeOption.AutoSize = true;
+            this.lblAttributeOption.Location = new System.Drawing.Point(6, 60);
+            this.lblAttributeOption.Name = "lblAttributeOption";
+            this.lblAttributeOption.Size = new System.Drawing.Size(80, 13);
+            this.lblAttributeOption.TabIndex = 66;
+            this.lblAttributeOption.Text = "Attribute Option";
+            // 
+            // comboAttributeOptionId
+            // 
+            this.comboAttributeOptionId.FormattingEnabled = true;
+            this.comboAttributeOptionId.Location = new System.Drawing.Point(9, 75);
+            this.comboAttributeOptionId.Margin = new System.Windows.Forms.Padding(2);
+            this.comboAttributeOptionId.Name = "comboAttributeOptionId";
+            this.comboAttributeOptionId.Size = new System.Drawing.Size(353, 21);
+            this.comboAttributeOptionId.TabIndex = 65;
+            // 
+            // comboAttributeId
+            // 
+            this.comboAttributeId.FormattingEnabled = true;
+            this.comboAttributeId.Location = new System.Drawing.Point(9, 33);
+            this.comboAttributeId.Margin = new System.Windows.Forms.Padding(2);
+            this.comboAttributeId.Name = "comboAttributeId";
+            this.comboAttributeId.Size = new System.Drawing.Size(353, 21);
+            this.comboAttributeId.TabIndex = 63;
+            this.comboAttributeId.SelectedValueChanged += new System.EventHandler(this.comboAttributeId_SelectedValueChanged);
+            // 
+            // btnAddProductAttribute
+            // 
+            this.btnAddProductAttribute.Location = new System.Drawing.Point(212, 122);
+            this.btnAddProductAttribute.Name = "btnAddProductAttribute";
+            this.btnAddProductAttribute.Size = new System.Drawing.Size(150, 22);
+            this.btnAddProductAttribute.TabIndex = 59;
+            this.btnAddProductAttribute.Text = "Add product attribute";
+            this.btnAddProductAttribute.UseVisualStyleBackColor = true;
+            this.btnAddProductAttribute.Click += new System.EventHandler(this.btnAddProductAttribute_Click);
             // 
             // btnSaveUser
             // 
@@ -219,15 +276,6 @@
             this.btnSaveUser.UseVisualStyleBackColor = true;
             this.btnSaveUser.Click += new System.EventHandler(this.btnSaveUser_Click);
             // 
-            // btnAddProductAttribute
-            // 
-            this.btnAddProductAttribute.Location = new System.Drawing.Point(37, 368);
-            this.btnAddProductAttribute.Name = "btnAddProductAttribute";
-            this.btnAddProductAttribute.Size = new System.Drawing.Size(138, 22);
-            this.btnAddProductAttribute.TabIndex = 59;
-            this.btnAddProductAttribute.Text = "Add product attribute";
-            this.btnAddProductAttribute.UseVisualStyleBackColor = true;
-            // 
             // txtId
             // 
             this.txtId.Location = new System.Drawing.Point(44, 542);
@@ -238,39 +286,50 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(37, 424);
+            this.txtDescription.Location = new System.Drawing.Point(37, 170);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(750, 61);
+            this.txtDescription.Size = new System.Drawing.Size(746, 61);
             this.txtDescription.TabIndex = 61;
             // 
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(41, 408);
+            this.lblDescription.Location = new System.Drawing.Point(38, 154);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(60, 13);
             this.lblDescription.TabIndex = 62;
             this.lblDescription.Text = "Description";
             // 
-            // idDataGridViewTextBoxColumn
+            // Id
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Visible = false;
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
             // 
-            // attributeDataGridViewTextBoxColumn
+            // AttributeId
             // 
-            this.attributeDataGridViewTextBoxColumn.DataPropertyName = "Attribute";
-            this.attributeDataGridViewTextBoxColumn.HeaderText = "Attribute";
-            this.attributeDataGridViewTextBoxColumn.Name = "attributeDataGridViewTextBoxColumn";
+            this.AttributeId.HeaderText = "AttributeId";
+            this.AttributeId.Name = "AttributeId";
+            this.AttributeId.Visible = false;
             // 
-            // attributeOptionValueDataGridViewTextBoxColumn
+            // Attribute
             // 
-            this.attributeOptionValueDataGridViewTextBoxColumn.DataPropertyName = "AttributeOptionValue";
-            this.attributeOptionValueDataGridViewTextBoxColumn.HeaderText = "Value";
-            this.attributeOptionValueDataGridViewTextBoxColumn.Name = "attributeOptionValueDataGridViewTextBoxColumn";
+            this.Attribute.DataPropertyName = "Attribute";
+            this.Attribute.HeaderText = "Attribute";
+            this.Attribute.Name = "Attribute";
+            // 
+            // AttributeOptionId
+            // 
+            this.AttributeOptionId.HeaderText = "AttributeOptionId";
+            this.AttributeOptionId.Name = "AttributeOptionId";
+            this.AttributeOptionId.Visible = false;
+            // 
+            // AttributeOptionValue
+            // 
+            this.AttributeOptionValue.DataPropertyName = "AttributeOptionValue";
+            this.AttributeOptionValue.HeaderText = "Attribute value";
+            this.AttributeOptionValue.Name = "AttributeOptionValue";
             // 
             // Action
             // 
@@ -280,6 +339,10 @@
             this.Action.ToolTipText = "Delete";
             this.Action.UseColumnTextForButtonValue = true;
             // 
+            // personAttributeDtoBindingSource
+            // 
+            this.personAttributeDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductAttributeDto);
+            // 
             // frmProductDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -288,7 +351,6 @@
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtId);
-            this.Controls.Add(this.btnAddProductAttribute);
             this.Controls.Add(this.btnSaveUser);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblSubstances);
@@ -310,6 +372,7 @@
             this.Load += new System.EventHandler(this.frmProductDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductAttributes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personAttributeDtoBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -339,11 +402,17 @@
         private System.Windows.Forms.Button btnSaveUser;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.TextBox txtDescription;
-        private System.Windows.Forms.DataGridView dgvProductAttributes;
         private System.Windows.Forms.BindingSource personAttributeDtoBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn attributeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn attributeOptionValueDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label lblAttributeOption;
+        private System.Windows.Forms.Label lblAttribute;
+        private System.Windows.Forms.ComboBox comboAttributeOptionId;
+        private System.Windows.Forms.ComboBox comboAttributeId;
+        public System.Windows.Forms.DataGridView dgvProductAttributes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AttributeId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Attribute;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AttributeOptionId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AttributeOptionValue;
         private System.Windows.Forms.DataGridViewButtonColumn Action;
     }
 }

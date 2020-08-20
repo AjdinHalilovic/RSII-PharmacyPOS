@@ -28,8 +28,7 @@ namespace Pharmacy.WindowsUI.Billing
                 SearchTerm = txtPretraga.Text
             };
             var result = await _aPIServiceProducts.Get<List<ProductDto>>(searchObj);
-
-            dgvProducts.DataSource = result;
+            dgvProducts.DataSource = new BindingList<ProductDto>(result);
         }
 
         private void frmProducts_Load(object sender, EventArgs e)
@@ -52,6 +51,25 @@ namespace Pharmacy.WindowsUI.Billing
         {
             frmProductDetails frm = new frmProductDetails(null);
             frm.Show();
+        }
+
+        private async void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var row = dgvProducts.Rows[e.RowIndex];
+
+            if (e.ColumnIndex == 10)
+            {
+                try
+                {
+                    await _aPIServiceProducts.Delete(dgvProducts.Rows[e.RowIndex].Cells[0].Value);
+                    dgvProducts.Rows.RemoveAt(e.RowIndex);
+                    MessageBox.Show("Successfully deleted!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error");
+                }
+            }
         }
     }
 }

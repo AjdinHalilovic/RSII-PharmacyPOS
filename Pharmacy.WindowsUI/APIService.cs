@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Flurl.Http;
 using Flurl;
+using System.Net.Http;
 
 namespace Pharmacy.WindowsUI
 {
@@ -93,6 +94,14 @@ namespace Pharmacy.WindowsUI
                 return default(T);
             }
 
+        }
+
+
+        public async Task<HttpResponseMessage> Delete(object id)
+        {
+            var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
+
+            return await url.WithOAuthBearerToken(_token).DeleteAsync();
         }
     }
 }

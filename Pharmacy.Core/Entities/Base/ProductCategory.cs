@@ -18,7 +18,7 @@ namespace Pharmacy.Core.Entities.Base
 
         public DateTime? DeletedDateTime { get; set; }
 
-        public Substance Category { get; set; }
+        public Category Category { get; set; }
         public Product Product { get; set; }
     }
 

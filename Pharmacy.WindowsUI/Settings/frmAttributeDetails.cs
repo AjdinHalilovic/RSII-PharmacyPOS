@@ -1,5 +1,7 @@
 ﻿using Pharmacy.Core.Entities.Base;
 using Pharmacy.Core.Models;
+using Pharmacy.Core.Models.Billing;
+using Pharmacy.Core.Models.Settins;
 using Pharmacy.WindowsUI.Properties;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,7 @@ namespace Pharmacy.WindowsUI.Settings
     public partial class frmAttributeDetails : Form
     {
         private readonly APIService _aPIServiceAttributes = new APIService("Attributes");
+        private readonly APIService _aPIServiceAttributeOptions = new APIService("AttributeOptions");
 
         private int? _id = null;
         public frmAttributeDetails(int? id = null)
@@ -26,8 +29,15 @@ namespace Pharmacy.WindowsUI.Settings
 
         private async void frmCategoryDetails_LoadAsync(object sender, EventArgs e)
         {
+            dgvAttributeOptions.AllowUserToAddRows = false;
             if (_id.HasValue)
             {
+                var attributeOptionss = (await _aPIServiceAttributeOptions.Get<List<AttributeOption>>(new AttributeOptionSearchObject() { AttributeId = _id })).ToList();
+                foreach (var item in attributeOptionss)
+                {
+                    dgvAttributeOptions.Rows.Add(item.Id, item.Value);
+                }
+
                 var attribute = await _aPIServiceAttributes.GetById<Pharmacy.Core.Entities.Base.Attribute>(_id);
                 txtName.Text = attribute.Name;
             }
@@ -52,9 +62,22 @@ namespace Pharmacy.WindowsUI.Settings
             {
                 try
                 {
-                    BaseInsertRequest request = new BaseInsertRequest()
+                    var attributeOptionsList = new List<AttributeOption>();
+                    foreach (DataGridViewRow row in dgvAttributeOptions.Rows)
+                    {
+                        var productAttribute = new AttributeOption()
+                        {
+                            Id = (int)row.Cells[0].Value,
+                            AttributeId = 0,
+                            Value = row.Cells[1].Value.ToString()
+                        };
+                        attributeOptionsList.Add(productAttribute);
+                    }
+
+                    AttributeUpsertRequest request = new AttributeUpsertRequest()
                     {
                         Name = txtName.Text,
+                        AttributeOptions = attributeOptionsList
                     };
 
                     Pharmacy.Core.Entities.Base.Attribute attribute = null;
@@ -71,13 +94,45 @@ namespace Pharmacy.WindowsUI.Settings
                     if (attribute != null)
                     {
                         MessageBox.Show("Successfully saved!");
+                        this.Close();
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error");
-                    throw;
                 }
+            }
+        }
+
+        private void dgvAttributeOptions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var row = dgvAttributeOptions.Rows[e.RowIndex];
+
+            if (e.ColumnIndex == 2)
+            {
+                dgvAttributeOptions.Rows.RemoveAt(e.RowIndex);
+            }
+        }
+
+        private void btnAddAttributeValue_Click(object sender, EventArgs e)
+        {
+            var value = txtValue.Text;
+
+            if (string.IsNullOrEmpty(value))
+            {
+                errorProvider.SetError(txtValue, Resources.Validation_RequiredField);
+            }
+            else
+            {
+                errorProvider.SetError(txtValue, null);
+            }
+           
+
+            if (!string.IsNullOrEmpty(value))
+            {
+                dgvAttributeOptions.Rows.Add(0, value);
+
+                txtValue.Text = string.Empty;
             }
         }
     }

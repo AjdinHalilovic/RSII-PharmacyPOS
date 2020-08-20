@@ -29,7 +29,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
             {
                 query = query.Where(x => search.ListIds.Contains(x.SubstanceId));
             }
-
+            query = query.Where(x => !x.DeletedDateTime.HasValue);
             var list = await query.ToListAsync();
 
             return list;

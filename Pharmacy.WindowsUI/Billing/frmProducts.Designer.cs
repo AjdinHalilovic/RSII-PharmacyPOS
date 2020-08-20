@@ -47,6 +47,7 @@
             this.categoriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.substancesNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.attributeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvRowDeleteBtn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource1)).BeginInit();
@@ -56,8 +57,8 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(940, 11);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Location = new System.Drawing.Point(1017, 11);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(118, 26);
             this.btnAdd.TabIndex = 7;
@@ -68,7 +69,7 @@
             // txtPretraga
             // 
             this.txtPretraga.Location = new System.Drawing.Point(9, 9);
-            this.txtPretraga.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPretraga.Margin = new System.Windows.Forms.Padding(2);
             this.txtPretraga.Multiline = true;
             this.txtPretraga.Name = "txtPretraga";
             this.txtPretraga.Size = new System.Drawing.Size(666, 27);
@@ -76,8 +77,8 @@
             // 
             // btnShow
             // 
-            this.btnShow.Location = new System.Drawing.Point(861, 11);
-            this.btnShow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnShow.Location = new System.Drawing.Point(938, 11);
+            this.btnShow.Margin = new System.Windows.Forms.Padding(2);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(76, 26);
             this.btnShow.TabIndex = 5;
@@ -90,10 +91,10 @@
             this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.dgvProducts);
             this.groupBox1.Location = new System.Drawing.Point(7, 41);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(1051, 323);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(1130, 323);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Products";
@@ -115,17 +116,19 @@
             this.measurementUnitDataGridViewTextBoxColumn,
             this.categoriesDataGridViewTextBoxColumn,
             this.substancesNumberDataGridViewTextBoxColumn,
-            this.attributeNumberDataGridViewTextBoxColumn});
+            this.attributeNumberDataGridViewTextBoxColumn,
+            this.dgvRowDeleteBtn});
             this.dgvProducts.DataSource = this.productDtoBindingSource1;
             this.dgvProducts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProducts.Location = new System.Drawing.Point(2, 15);
-            this.dgvProducts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvProducts.Margin = new System.Windows.Forms.Padding(2);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.ReadOnly = true;
             this.dgvProducts.RowHeadersWidth = 51;
             this.dgvProducts.RowTemplate.Height = 24;
-            this.dgvProducts.Size = new System.Drawing.Size(1047, 306);
+            this.dgvProducts.Size = new System.Drawing.Size(1126, 306);
             this.dgvProducts.TabIndex = 0;
+            this.dgvProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellContentClick);
             this.dgvProducts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellDoubleClick);
             // 
             // productDtoBindingSource1
@@ -230,16 +233,25 @@
             this.attributeNumberDataGridViewTextBoxColumn.ReadOnly = true;
             this.attributeNumberDataGridViewTextBoxColumn.Width = 125;
             // 
+            // dgvRowDeleteBtn
+            // 
+            this.dgvRowDeleteBtn.HeaderText = "Action";
+            this.dgvRowDeleteBtn.Name = "dgvRowDeleteBtn";
+            this.dgvRowDeleteBtn.ReadOnly = true;
+            this.dgvRowDeleteBtn.Text = "Delete";
+            this.dgvRowDeleteBtn.ToolTipText = "Delete";
+            this.dgvRowDeleteBtn.UseColumnTextForButtonValue = true;
+            // 
             // frmProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1069, 377);
+            this.ClientSize = new System.Drawing.Size(1148, 377);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtPretraga);
             this.Controls.Add(this.btnShow);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmProducts";
             this.Text = "Products";
             this.Load += new System.EventHandler(this.frmProducts_Load);
@@ -273,5 +285,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn categoriesDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn substancesNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn attributeNumberDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn dgvRowDeleteBtn;
     }
 }

@@ -94,6 +94,10 @@ namespace Pharmacy.API.Areas.Access
                     DataUnitOfWork.BaseUow.PharmacyBranchUsersRepository.Add(pharmacyBranchUser);
                     await DataUnitOfWork.BaseUow.PharmacyBranchUsersRepository.SaveChangesAsync();
 
+                    Inventory inventory = new Inventory() { PharmacyBranchId = pharmacyBranch.Id };
+                    DataUnitOfWork.BaseUow.InventoriesRepository.Add(inventory);
+                    await DataUnitOfWork.BaseUow.InventoriesRepository.SaveChangesAsync();
+
                     #endregion
                     DataUnitOfWork.BaseUow.CommitTransaction();
 

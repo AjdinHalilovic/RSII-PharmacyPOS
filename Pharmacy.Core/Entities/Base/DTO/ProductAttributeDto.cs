@@ -10,7 +10,9 @@ namespace Pharmacy.Core.Entities.Base.DTO
     {
         [Key]
         public int Id { get; set; }
+        public int AttributeId { get; set; }
         public string Attribute { get; set; }
+        public int AttributeOptionId { get; set; }
         public string AttributeOptionValue { get; set; }
     }
 }
