@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Core.Models.Users
 {
-    public class PersonSearchObject
+    public class PersonSearchObject : BaseSearchObject
     {
         public string FullName { get; set; }
     }

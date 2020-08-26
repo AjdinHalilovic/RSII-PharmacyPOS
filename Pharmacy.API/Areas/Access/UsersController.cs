@@ -43,7 +43,7 @@ namespace Pharmacy.API.Areas.Access
         {
             try
             {
-                var users = await DataUnitOfWork.BaseUow.UsersRepository.GetAllByParametersAsync(search);
+                var users = await DataUnitOfWork.BaseUow.UsersRepository.GetAllByParametersAsync(ClaimUser.PharmacyBranchId,search);
 
                 return Ok(users);
             }
@@ -74,7 +74,7 @@ namespace Pharmacy.API.Areas.Access
                 if (user == null || !Cryptography.Hash.Validate(model.Password, user.PasswordSalt, user.PasswordHash))
                     return BadRequest("Incorrect username and/or password.");
 
-                UserDto userAccount = await DataUnitOfWork.BaseUow.UsersRepository.GetByUserIdAndInstitutionIdAsync(user.Id);
+                UserDto userAccount = await DataUnitOfWork.BaseUow.UsersRepository.GetDtoByUserIdAsync(user.Id);
                 if (!userAccount.Active) return BadRequest("Your account is not active.");
 
                 return Ok(await CreateAndSaveTokenAsync(userAccount));
@@ -245,7 +245,10 @@ namespace Pharmacy.API.Areas.Access
         {
             Claim[] claims =
             {
-                new Claim(type: nameof(Person), value: user.UserId.ToString()),
+                new Claim(type: nameof(UserDto.UserId), value: user.UserId.ToString()),
+                new Claim(type: nameof(UserDto.PharmacyId), value: user.PharmacyId.ToString()),
+                new Claim(type: nameof(UserDto.PharmacyBranchId), value: user.PharmacyBranchId.ToString()),
+                new Claim(type: nameof(UserDto.InventoryId), value: user.InventoryId.ToString()),
             };
 
             string accessToken = _tokenProcessor.GenerateAccessToken(claims);

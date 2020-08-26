@@ -35,6 +35,7 @@ namespace Pharmacy.API.Areas.Settings
         {
             try
             {
+                search.PharmacyBranchId = ClaimUser.PharmacyBranchId;
                 var categories = await DataUnitOfWork.BaseUow.CategoriesRepository.GetAllByParametersAsync(search);
 
                 return Ok(categories);
@@ -62,7 +63,7 @@ namespace Pharmacy.API.Areas.Settings
                 Category category = new Category()
                 {
                     Name = request.Name,
-                    PharmacyBranchId = 2 //modify from claims
+                    PharmacyBranchId = ClaimUser.PharmacyBranchId
                 };
                 DataUnitOfWork.BaseUow.CategoriesRepository.Add(category);
                 await DataUnitOfWork.BaseUow.CategoriesRepository.SaveChangesAsync();
@@ -86,6 +87,7 @@ namespace Pharmacy.API.Areas.Settings
             {
                 var category = await DataUnitOfWork.BaseUow.CategoriesRepository.GetByIdAsync(id);
                 category.Name = request.Name;
+                category.PharmacyBranchId = ClaimUser.PharmacyBranchId;
 
                 DataUnitOfWork.BaseUow.CategoriesRepository.Update(category);
                 await DataUnitOfWork.BaseUow.CategoriesRepository.SaveChangesAsync();

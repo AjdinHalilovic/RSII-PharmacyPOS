@@ -34,6 +34,7 @@ namespace Pharmacy.API.Areas.Users
         {
             try
             {
+                search.PharmacyBranchId = ClaimUser.PharmacyBranchId;
                 var persons = await DataUnitOfWork.BaseUow.PersonsRepository.GetAllDtosAsync(search);
 
                 return Ok(persons);
@@ -70,8 +71,8 @@ namespace Pharmacy.API.Areas.Users
 
                 List<UserRole> userRoles = request.Roles.Select(x => new UserRole()
                 {
-                    PharmacyBranchId = 2, //modifyy claims
-                    PharmacyId = 2,//modifyy claims
+                    PharmacyBranchId = ClaimUser.PharmacyBranchId,
+                    PharmacyId = ClaimUser.PharmacyId,
                     UserId = user.Id,
                     RoleId = x
                 }).ToList();
@@ -80,7 +81,7 @@ namespace Pharmacy.API.Areas.Users
 
                 PharmacyBranchUser pharmacyBranchUser = new PharmacyBranchUser()
                 {
-                    PharmacyBranchId = 2, //modifyy claims
+                    PharmacyBranchId = ClaimUser.PharmacyBranchId,
                     UserId = user.Id,
                     StartDateTime = DateTime.Now
                 };
@@ -131,8 +132,8 @@ namespace Pharmacy.API.Areas.Users
                 var newUserRoles = request.Roles.Where(x => !existingUserRoles.Select(y => y.RoleId).Contains(x))
                     .Select(x => new UserRole()
                     {
-                        PharmacyBranchId = 2, //modify claims
-                        PharmacyId = 2,
+                        PharmacyBranchId = ClaimUser.PharmacyBranchId,
+                        PharmacyId = ClaimUser.PharmacyId,
                         RoleId = x,
                         UserId = user.Id
                     });

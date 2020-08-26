@@ -34,6 +34,7 @@ namespace Pharmacy.API.Areas.Settings
         {
             try
             {
+                search.PharmacyBranchId = ClaimUser.PharmacyBranchId;
                 var substances = await DataUnitOfWork.BaseUow.SubstancesRepository.GetAllByParametersAsync(search);
 
                 return Ok(substances);
@@ -61,7 +62,7 @@ namespace Pharmacy.API.Areas.Settings
                 var substance = new Substance()
                 {
                     Name = request.Name,
-                    PharmacyBranchId = 2 //modify from claims
+                    PharmacyBranchId = ClaimUser.PharmacyBranchId
                 };
                 DataUnitOfWork.BaseUow.SubstancesRepository.Add(substance);
                 await DataUnitOfWork.BaseUow.SubstancesRepository.SaveChangesAsync();
@@ -85,6 +86,7 @@ namespace Pharmacy.API.Areas.Settings
             {
                 var substance = await DataUnitOfWork.BaseUow.SubstancesRepository.GetByIdAsync(id);
                 substance.Name = request.Name;
+                substance.PharmacyBranchId = ClaimUser.PharmacyBranchId;
 
                 DataUnitOfWork.BaseUow.SubstancesRepository.Update(substance);
                 await DataUnitOfWork.BaseUow.SubstancesRepository.SaveChangesAsync();

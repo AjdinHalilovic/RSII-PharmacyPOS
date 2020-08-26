@@ -36,6 +36,7 @@ namespace Pharmacy.API.Areas.Settings
         {
             try
             {
+                search.PharmacyBranchId = ClaimUser.PharmacyBranchId;
                 var attributes = await DataUnitOfWork.BaseUow.AttributesRepository.GetAllByParametersAsync(search);
 
                 return Ok(attributes);
@@ -64,7 +65,7 @@ namespace Pharmacy.API.Areas.Settings
                 var attribute = new Pharmacy.Core.Entities.Base.Attribute()
                 {
                     Name = request.Name,
-                    PharmacyBranchId = 2 //modify from claims
+                    PharmacyBranchId = ClaimUser.PharmacyBranchId
                 };
                 DataUnitOfWork.BaseUow.AttributesRepository.Add(attribute);
                 await DataUnitOfWork.BaseUow.AttributesRepository.SaveChangesAsync();
@@ -96,6 +97,7 @@ namespace Pharmacy.API.Areas.Settings
             {
                 var attribute = await DataUnitOfWork.BaseUow.AttributesRepository.GetByIdAsync(id);
                 attribute.Name = request.Name;
+                attribute.PharmacyBranchId = ClaimUser.PharmacyBranchId;
 
                 DataUnitOfWork.BaseUow.AttributesRepository.Update(attribute);
                 await DataUnitOfWork.BaseUow.AttributesRepository.SaveChangesAsync();

@@ -20,6 +20,10 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
             var query = Context.Attributes.AsQueryable();
 
+            if (search.PharmacyBranchId.HasValue)
+            {
+                query = query.Where(x => x.PharmacyBranchId == search.PharmacyBranchId);
+            }
             if (!string.IsNullOrWhiteSpace(search.SearchTerm))
             {
                 query = query.Where(x => x.Name.ToLower().StartsWith(search.SearchTerm));

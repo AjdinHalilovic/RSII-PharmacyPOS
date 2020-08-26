@@ -19,6 +19,9 @@ namespace Pharmacy.API.Controllers
             claims = claims.ToArray();
 
             UserId = int.Parse(claims.FirstOrDefault(x => x.Type.Equals(nameof(Pharmacy.Core.Entities.Base.DTO.UserDto.UserId)))?.Value ?? throw new InvalidOperationException());
+            PharmacyId = int.Parse(claims.FirstOrDefault(x => x.Type.Equals(nameof(Pharmacy.Core.Entities.Base.DTO.UserDto.PharmacyId)))?.Value ?? throw new InvalidOperationException());
+            PharmacyBranchId = int.Parse(claims.FirstOrDefault(x => x.Type.Equals(nameof(Pharmacy.Core.Entities.Base.DTO.UserDto.PharmacyBranchId)))?.Value ?? throw new InvalidOperationException());
+            InventoryId = int.Parse(claims.FirstOrDefault(x => x.Type.Equals(nameof(Pharmacy.Core.Entities.Base.DTO.UserDto.InventoryId)))?.Value ?? throw new InvalidOperationException());
 
             //Claim organizationIdClaim = claims.FirstOrDefault(x => x.Type.Equals(nameof(EmaHealth.Core.Entities.Base.DTO.UserDto.OrganizationId)));
             //OrganizationId = organizationIdClaim != null && organizationIdClaim.Value.IsSet() ? int.Parse(organizationIdClaim.Value) : (int?)null;
@@ -26,8 +29,9 @@ namespace Pharmacy.API.Controllers
         }
 
         public int UserId { get; set; }
-
-        //public int? OrganizationId { get; set; }
+        public int PharmacyId { get; set; }
+        public int InventoryId { get; set; }
+        public int PharmacyBranchId { get; set; }
 
 
     }

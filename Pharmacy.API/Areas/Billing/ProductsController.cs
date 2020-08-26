@@ -36,7 +36,7 @@ namespace Pharmacy.API.Areas.Billing
         {
             try
             {
-                search.PharmacyBranchId = 2;
+                search.PharmacyBranchId = ClaimUser.PharmacyBranchId;
                 var products = await DataUnitOfWork.BaseUow.ProductsRepository.GetAllDtosByParametersAsync(search);
 
                 return Ok(products);
@@ -64,7 +64,7 @@ namespace Pharmacy.API.Areas.Billing
             try
             {
                 Product product = request;
-                product.PharmacyBranchId = 2;
+                product.PharmacyBranchId = ClaimUser.PharmacyBranchId;
                 DataUnitOfWork.BaseUow.ProductsRepository.Add(product);
                 await DataUnitOfWork.BaseUow.ProductsRepository.SaveChangesAsync();
 
@@ -88,8 +88,7 @@ namespace Pharmacy.API.Areas.Billing
                 DataUnitOfWork.BaseUow.ProductCategoriesRepository.AddRange(productCategories);
                 await DataUnitOfWork.BaseUow.ProductCategoriesRepository.SaveChangesAsync();
 
-                // get inventoryId from claims or db
-                InventoryProduct inventoryProduct = new InventoryProduct() { InventoryId = 1, ProductId = product.Id, Quantity = 0 };
+                InventoryProduct inventoryProduct = new InventoryProduct() { InventoryId = ClaimUser.InventoryId, ProductId = product.Id, Quantity = 0 };
                 DataUnitOfWork.BaseUow.InventoryProductsRepository.Add(inventoryProduct);
                 await DataUnitOfWork.BaseUow.InventoryProductsRepository.SaveChangesAsync();
 
@@ -115,7 +114,7 @@ namespace Pharmacy.API.Areas.Billing
                 #region Product
                 Product product = request;
                 product.Id = id;
-                product.PharmacyBranchId = 2; // GET
+                product.PharmacyBranchId = ClaimUser.PharmacyBranchId; 
                 DataUnitOfWork.BaseUow.ProductsRepository.Update(product);
                 await DataUnitOfWork.BaseUow.ProductsRepository.SaveChangesAsync();
                 #endregion

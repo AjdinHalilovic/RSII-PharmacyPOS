@@ -11,9 +11,9 @@ namespace Pharmacy.Infrastructure.Repositories.Base.IRepository
         User GetByAccessToken(string accessToken);
         Task<User> GetByAccessTokenAsync(string accessToken);
         User GetByUsernameOrEmailAddress(string username);
-        Task<UserDto> GetByUserIdAndInstitutionIdAsync(int userId);
+        Task<UserDto> GetDtoByUserIdAsync(int userId);
         Task<UserDto> GetByUserTokensAndInstitutionIdAsync(string accessToken, string refreshToken);
-        Task<IEnumerable<User>> GetAllByParametersAsync(UsersSearchObject search);
+        Task<IEnumerable<User>> GetAllByParametersAsync(int pharmacyBranchId, UsersSearchObject search);
 
     }
 }

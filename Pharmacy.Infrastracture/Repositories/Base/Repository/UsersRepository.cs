@@ -35,7 +35,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
             return Context.Users.AsNoTracking().FirstOrDefault(x => !x.DeletedDateTime.HasValue && (x.Username.Equals(username) || x.Email.Equals(username)));
         }
 
-        public async Task<UserDto> GetByUserIdAndInstitutionIdAsync(int userId)
+        public async Task<UserDto> GetDtoByUserIdAsync(int userId)
         {
             return await DbConnection.QueryFunctionFirstOrDefaultAsync<UserDto>(DbObjects.BaseDbObjects.Functions.Users.users_getloginbyuserid, new { pUserId = userId});
         }
@@ -45,23 +45,26 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
             return await DbConnection.QueryFunctionFirstOrDefaultAsync<UserDto>(DbObjects.BaseDbObjects.Functions.Users.users_getloginbyusertokens, new { pAccessToken = accessToken, pRefreshToken = refreshToken });
         }
 
-        public async Task<IEnumerable<User>> GetAllByParametersAsync(UsersSearchObject search)
+        public async Task<IEnumerable<User>> GetAllByParametersAsync(int pharmacyBranchId, UsersSearchObject search)
         {
-            var query = Context.Users.AsQueryable();
+            var query = Context.PharmacyBranchUsers.Include(x=>x.User).AsQueryable();
+
+            query = query.Where(x => x.PharmacyBranchId == pharmacyBranchId);
+
             if (search.NotId.HasValue)
             {
-                query = query.Where(x => x.Id != search.NotId.Value);
+                query = query.Where(x => x.User.Id != search.NotId.Value);
             }
             if (!string.IsNullOrWhiteSpace(search.Username))
             {
-                query = query.Where(x => x.Username.ToLower().Equals(search.Username));
+                query = query.Where(x => x.User.Username.ToLower().Equals(search.Username));
             }
 
             if (!string.IsNullOrWhiteSpace(search.Email))
             {
-                query = query.Where(x => x.Email.ToLower().Equals(search.Email));
+                query = query.Where(x => x.User.Email.ToLower().Equals(search.Email));
             }
-            var list = await query.ToListAsync();
+            var list = await query.Select(x=>x.User).ToListAsync();
 
             return list;
         }
