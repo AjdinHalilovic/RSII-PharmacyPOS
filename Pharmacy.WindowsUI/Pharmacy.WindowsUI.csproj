@@ -179,6 +179,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Billing\frmBiling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Billing\frmBiling.Designer.cs">
+      <DependentUpon>frmBiling.cs</DependentUpon>
+    </Compile>
     <Compile Include="Billing\frmProductDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +266,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Billing\frmBiling.resx">
+      <DependentUpon>frmBiling.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Billing\frmProductDetails.resx">
       <DependentUpon>frmProductDetails.cs</DependentUpon>
     </EmbeddedResource>

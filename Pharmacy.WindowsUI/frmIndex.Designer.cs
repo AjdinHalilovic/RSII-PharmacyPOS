@@ -39,7 +39,6 @@
             this.categoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.attributesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.substancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,27 +56,26 @@
             this.productsToolStripMenuItem,
             this.categoriesToolStripMenuItem,
             this.attributesToolStripMenuItem,
-            this.substancesToolStripMenuItem,
-            this.settingsToolStripMenuItem});
+            this.substancesToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
             this.menuStrip.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menuStrip.Size = new System.Drawing.Size(155, 558);
+            this.menuStrip.Size = new System.Drawing.Size(130, 453);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
             // menuItemFullName
             // 
             this.menuItemFullName.Name = "menuItemFullName";
-            this.menuItemFullName.Size = new System.Drawing.Size(144, 4);
+            this.menuItemFullName.Size = new System.Drawing.Size(121, 4);
             // 
             // signOutToolStripMenuItem
             // 
             this.signOutToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 0, 0, 20);
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
             this.signOutToolStripMenuItem.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
+            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(121, 19);
             this.signOutToolStripMenuItem.Text = "Sign out";
             this.signOutToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
@@ -87,7 +85,7 @@
             this.dashboardToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
             this.dashboardToolStripMenuItem.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(144, 29);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             this.dashboardToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
@@ -97,7 +95,7 @@
             this.billingToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.billingToolStripMenuItem.Name = "billingToolStripMenuItem";
             this.billingToolStripMenuItem.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.billingToolStripMenuItem.Size = new System.Drawing.Size(144, 29);
+            this.billingToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
             this.billingToolStripMenuItem.Text = "Billing";
             this.billingToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -107,7 +105,7 @@
             this.reportsToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 0, 0, 20);
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
             this.reportsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(144, 29);
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
             this.reportsToolStripMenuItem.Text = "Reports";
             this.reportsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             // 
@@ -116,7 +114,7 @@
             this.usersToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
             this.usersToolStripMenuItem.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(144, 29);
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
             this.usersToolStripMenuItem.Text = "Users";
             this.usersToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
@@ -126,7 +124,7 @@
             this.productsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.productsToolStripMenuItem.Name = "productsToolStripMenuItem";
             this.productsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.productsToolStripMenuItem.Size = new System.Drawing.Size(144, 29);
+            this.productsToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
             this.productsToolStripMenuItem.Text = "Products";
             this.productsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.productsToolStripMenuItem.Click += new System.EventHandler(this.productsToolStripMenuItem_Click);
@@ -136,7 +134,7 @@
             this.categoriesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
             this.categoriesToolStripMenuItem.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.categoriesToolStripMenuItem.Size = new System.Drawing.Size(144, 29);
+            this.categoriesToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
             this.categoriesToolStripMenuItem.Text = "Categories";
             this.categoriesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.categoriesToolStripMenuItem.Click += new System.EventHandler(this.categoriesToolStripMenuItem_Click);
@@ -146,7 +144,7 @@
             this.attributesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.attributesToolStripMenuItem.Name = "attributesToolStripMenuItem";
             this.attributesToolStripMenuItem.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.attributesToolStripMenuItem.Size = new System.Drawing.Size(144, 29);
+            this.attributesToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
             this.attributesToolStripMenuItem.Text = "Attributes";
             this.attributesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.attributesToolStripMenuItem.Click += new System.EventHandler(this.attributesToolStripMenuItem_Click);
@@ -156,29 +154,20 @@
             this.substancesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.substancesToolStripMenuItem.Name = "substancesToolStripMenuItem";
             this.substancesToolStripMenuItem.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.substancesToolStripMenuItem.Size = new System.Drawing.Size(144, 29);
+            this.substancesToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
             this.substancesToolStripMenuItem.Text = "Substances";
             this.substancesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.substancesToolStripMenuItem.Click += new System.EventHandler(this.substancesToolStripMenuItem_Click);
             // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(144, 29);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // frmIndex
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 558);
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ClientSize = new System.Drawing.Size(698, 453);
             this.Controls.Add(this.menuStrip);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmIndex";
             this.RightToLeftLayout = true;
             this.Text = "POS Pharmacy";
@@ -203,7 +192,6 @@
         private System.Windows.Forms.ToolStripMenuItem categoriesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem attributesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem substancesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
     }
 }
 

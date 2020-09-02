@@ -19,7 +19,6 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         public PersonsRepository(PharmacyContext context) : base(context)
         {
         }
-
         public async Task<IEnumerable<PersonDto>> GetAllDtosAsync(PersonSearchObject search)
         {
             string searchTerm = string.IsNullOrEmpty(search.FullName) ? null : $"{Regex.Replace(search.FullName, @"\s+", " ").Replace(" ", ":*&")}:*";
