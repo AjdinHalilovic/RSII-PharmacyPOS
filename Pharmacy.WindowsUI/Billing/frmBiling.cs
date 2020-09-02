@@ -38,137 +38,128 @@ namespace Pharmacy.WindowsUI.Billing
         {
             if (ValidateChildren())
             {
-                var categoriesList = clbCategories.CheckedItems.Cast<Category>().Select(x => x.Id).ToList();
-                var substancesList = clbSubstances.CheckedItems.Cast<Substance>().Select(x => x.Id).ToList();
-                var productAttributesList = new List<ProductAttribute>();
-                foreach (DataGridViewRow row in dgvProductAttributes.Rows)
-                {
-                    var productAttribute = new ProductAttribute()
-                    {
-                        Id = (int)row.Cells[0].Value,
-                        ProductId = 0,
-                        AttributeId = (int)row.Cells[1].Value,
-                        AttributeOptionId = (int)row.Cells[3].Value
-                    };
-                    productAttributesList.Add(productAttribute);
-                }
-                try
-                {
-                    ProductUpsertRequest request = new ProductUpsertRequest()
-                    {
-                        Name = txtName.Text,
-                        Code = txtCode.Text,
-                        MeasurementUnitId = int.Parse(comboMeasurementUnitId.SelectedValue.ToString()),
-                        Price = decimal.Parse(txtPrice.Text.Replace(".", ",")),
-                        Description = txtDescription.Text,
-                        Categories = categoriesList,
-                        Substances = substancesList,
-                        ProductAttributes = productAttributesList
-                    };
+                //var categoriesList = clbCategories.CheckedItems.Cast<Category>().Select(x => x.Id).ToList();
+                //var substancesList = clbSubstances.CheckedItems.Cast<Substance>().Select(x => x.Id).ToList();
+                //var productAttributesList = new List<ProductAttribute>();
+                //foreach (DataGridViewRow row in dgvProductAttributes.Rows)
+                //{
+                //    var productAttribute = new ProductAttribute()
+                //    {
+                //        Id = (int)row.Cells[0].Value,
+                //        ProductId = 0,
+                //        AttributeId = (int)row.Cells[1].Value,
+                //        AttributeOptionId = (int)row.Cells[3].Value
+                //    };
+                //    productAttributesList.Add(productAttribute);
+                //}
+                //try
+                //{
+                //    ProductUpsertRequest request = new ProductUpsertRequest()
+                //    {
+                //        Name = txtName.Text,
+                //        Code = txtCode.Text,
+                //        MeasurementUnitId = int.Parse(comboMeasurementUnitId.SelectedValue.ToString()),
+                //        Price = decimal.Parse(txtPrice.Text.Replace(".", ",")),
+                //        Description = txtDescription.Text,
+                //        Categories = categoriesList,
+                //        Substances = substancesList,
+                //        ProductAttributes = productAttributesList
+                //    };
 
-                    Product product = null;
+                //    Product product = null;
 
-                    if (!_id.HasValue)
-                    {
-                        product = await _aPIServiceProducts.Insert<Product>(request);
-                    }
-                    else
-                    {
-                        product = await _aPIServiceProducts.Update<Product>(_id.Value, request);
-                    }
+                //    if (!_id.HasValue)
+                //    {
+                //        product = await _aPIServiceProducts.Insert<Product>(request);
+                //    }
+                //    else
+                //    {
+                //        product = await _aPIServiceProducts.Update<Product>(_id.Value, request);
+                //    }
 
-                    if (product != null)
-                    {
-                        MessageBox.Show("Successfully saved!");
-                        this.Close();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error");
-                }
+                //    if (product != null)
+                //    {
+                //        MessageBox.Show("Successfully saved!");
+                //        this.Close();
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Error");
+                //}
             }
         }
 
-        private async void frmProductDetails_Load(object sender, EventArgs e)
+        private async void frmBilling_Load(object sender, EventArgs e)
         {
-            await LoadMeasurementUnits();
-            await LoadAttributes();
+            await LoadCategories();
 
             var categories = await _aPIServiceCategories.Get<List<Category>>(null);
             var substances = await _aPIServiceSubstances.Get<List<Substance>>(null);
-            dgvProductAttributes.AllowUserToAddRows = false;
+            dgvProducts.AllowUserToAddRows = false;
 
             if (_id.HasValue)
             {
-                try
-                {
-                    var productCategories = await _aPIServiceProductCategories.Get<List<ProductCategory>>(new CategorySearchObject() { ProductId = _id });
-                    var selectedCategories = await _aPIServiceCategories.Get<List<Category>>(new CategorySearchObject() { ListIds = productCategories.Count > 0 ? productCategories.Select(x => x.CategoryId).ToArray() : new int[] { 0 } });
-                    categories = categories.Where(x => !selectedCategories.Select(y => y.Id).Contains(x.Id)).ToList();
-                    selectedCategories.ToList().ForEach(x => clbCategories.Items.Add(x, true));
+                //try
+                //{
+                //    var productCategories = await _aPIServiceProductCategories.Get<List<ProductCategory>>(new CategorySearchObject() { ProductId = _id });
+                //    var selectedCategories = await _aPIServiceCategories.Get<List<Category>>(new CategorySearchObject() { ListIds = productCategories.Count > 0 ? productCategories.Select(x => x.CategoryId).ToArray() : new int[] { 0 } });
+                //    categories = categories.Where(x => !selectedCategories.Select(y => y.Id).Contains(x.Id)).ToList();
+                //    selectedCategories.ToList().ForEach(x => clbCategories.Items.Add(x, true));
 
-                    var productSubstances = await _aPIServiceProductSubstances.Get<List<ProductSubstance>>(new SubstanceSearchObject() { ProductId = _id });
-                    var selectedSubstances = await _aPIServiceSubstances.Get<List<Substance>>(new SubstanceSearchObject() { ListIds = productSubstances.Select(x => x.SubstanceId).ToArray() });
-                    substances = substances.Where(x => !selectedSubstances.Select(y => y.Id).Contains(x.Id)).ToList();
-                    selectedSubstances.ToList().ForEach(x => clbSubstances.Items.Add(x, true));
+                //    var productSubstances = await _aPIServiceProductSubstances.Get<List<ProductSubstance>>(new SubstanceSearchObject() { ProductId = _id });
+                //    var selectedSubstances = await _aPIServiceSubstances.Get<List<Substance>>(new SubstanceSearchObject() { ListIds = productSubstances.Select(x => x.SubstanceId).ToArray() });
+                //    substances = substances.Where(x => !selectedSubstances.Select(y => y.Id).Contains(x.Id)).ToList();
+                //    selectedSubstances.ToList().ForEach(x => clbSubstances.Items.Add(x, true));
 
 
-                    var attributes = (await _aPIServiceProductAttributes.Get<List<ProductAttributeDto>>(new AttributeSearchObject() { ProductId = _id })).ToList();
-                    foreach (var item in attributes)
-                    {
-                        dgvProductAttributes.Rows.Add(item.Id, item.AttributeId, item.Attribute, item.AttributeOptionId, item.AttributeOptionValue);
-                    }
+                //    var attributes = (await _aPIServiceProductAttributes.Get<List<ProductAttributeDto>>(new AttributeSearchObject() { ProductId = _id })).ToList();
+                //    foreach (var item in attributes)
+                //    {
+                //        dgvProductAttributes.Rows.Add(item.Id, item.AttributeId, item.Attribute, item.AttributeOptionId, item.AttributeOptionValue);
+                //    }
 
-                    var product = await _aPIServiceProducts.GetById<Product>(_id);
-                    txtId.Text = _id.ToString();
-                    txtName.Text = product.Name;
-                    txtCode.Text = product.Code;
-                    txtPrice.Text = product.Price.ToString();
-                    txtDescription.Text = product.Description;
-                    comboMeasurementUnitId.SelectedValue = product.MeasurementUnitId;
-                }
-                catch (Exception ex)
-                {
+                //    var product = await _aPIServiceProducts.GetById<Product>(_id);
+                //    txtId.Text = _id.ToString();
+                //    txtName.Text = product.Name;
+                //    txtCode.Text = product.Code;
+                //    txtPrice.Text = product.Price.ToString();
+                //    txtDescription.Text = product.Description;
+                //    comboMeasurementUnitId.SelectedValue = product.MeasurementUnitId;
+                //}
+                //catch (Exception ex)
+                //{
 
-                    throw;
-                }
+                //    throw;
+                //}
 
             }
-            categories.ToList().ForEach(x => clbCategories.Items.Add(x));
-            clbCategories.DisplayMember = "Name";
+            //categories.ToList().ForEach(x => clbCategories.Items.Add(x));
+            //clbCategories.DisplayMember = "Name";
 
-            substances.ToList().ForEach(x => clbSubstances.Items.Add(x));
-            clbSubstances.DisplayMember = "Name";
+            //substances.ToList().ForEach(x => clbSubstances.Items.Add(x));
+            //clbSubstances.DisplayMember = "Name";
         }
 
-        private async Task LoadMeasurementUnits()
+        private async Task LoadCategories()
         {
-            var result = await _aPIServiceMeasurementUnits.Get<List<MeasurementUnit>>(null);
-            result.Insert(0, new MeasurementUnit() { Name = "Select measurement unit" });
-            comboMeasurementUnitId.ValueMember = "Id";
-            comboMeasurementUnitId.DisplayMember = "Name";
-            comboMeasurementUnitId.DataSource = result;
+            var result = await _aPIServiceCategories.Get<List<Category>>(null);
+            result.Insert(0, new Category() { Name = "Select category" });
+            comboCategoryId.ValueMember = "Id";
+            comboCategoryId.DisplayMember = "Name";
+            comboCategoryId.DataSource = result;
         }
 
 
-        private async Task LoadAttributes()
-        {
-            var result = await _aPIServiceAttributes.Get<List<Pharmacy.Core.Entities.Base.Attribute>>(null);
-            result.Insert(0, new Pharmacy.Core.Entities.Base.Attribute() { Name = "Select attribute" });
-
-            comboAttributeId.ValueMember = "Id";
-            comboAttributeId.DisplayMember = "Name";
-            comboAttributeId.DataSource = result;
-        }
+      
 
         private void dgvProductAttributes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var row = dgvProductAttributes.Rows[e.RowIndex];
+            var row = dgvProducts.Rows[e.RowIndex];
 
             if (e.ColumnIndex == 5)
             {
-                dgvProductAttributes.Rows.RemoveAt(e.RowIndex);
+                dgvProducts.Rows.RemoveAt(e.RowIndex);
             }
         }
 
@@ -196,7 +187,7 @@ namespace Pharmacy.WindowsUI.Billing
 
             if (attributeId != 0 && attributeOptionId != 0)
             {
-                dgvProductAttributes.Rows.Add(
+                dgvProducts.Rows.Add(
                     0,
                    attributeId,
                     (comboAttributeId.SelectedItem as Pharmacy.Core.Entities.Base.Attribute).Name,
@@ -223,56 +214,11 @@ namespace Pharmacy.WindowsUI.Billing
             }
         }
 
-        private void txtName_Validating(object sender, CancelEventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtName.Text))
-            {
-                e.Cancel = true;
-                errorProvider.SetError(txtName, Resources.Validation_RequiredField);
-            }
-            else
-            {
-                errorProvider.SetError(txtName, null);
-            }
+
         }
 
-        private void txtCode_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtCode.Text))
-            {
-                e.Cancel = true;
-                errorProvider.SetError(txtCode, Resources.Validation_RequiredField);
-            }
-            else
-            {
-                errorProvider.SetError(txtCode, null);
-            }
-        }
-
-        private void comboMeasurementUnitId_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(comboMeasurementUnitId.Text))
-            {
-                e.Cancel = true;
-                errorProvider.SetError(comboMeasurementUnitId, Resources.Validation_RequiredField);
-            }
-            else
-            {
-                errorProvider.SetError(comboMeasurementUnitId, null);
-            }
-        }
-
-        private void txtPrice_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtPrice.Text))
-            {
-                e.Cancel = true;
-                errorProvider.SetError(txtPrice, Resources.Validation_RequiredField);
-            }
-            else
-            {
-                errorProvider.SetError(txtPrice, null);
-            }
-        }
+        
     }
 }
