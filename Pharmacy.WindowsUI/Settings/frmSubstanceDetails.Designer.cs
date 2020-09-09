@@ -34,6 +34,8 @@
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.clbProhibitedSubstances = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +52,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(137, 131);
+            this.btnSave.Location = new System.Drawing.Point(268, 277);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(199, 39);
@@ -74,7 +76,7 @@
             this.txtName.Location = new System.Drawing.Point(46, 85);
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(409, 22);
+            this.txtName.Size = new System.Drawing.Size(650, 22);
             this.txtName.TabIndex = 46;
             this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
             // 
@@ -82,11 +84,31 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(46, 123);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(141, 17);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "Prohibited substance";
+            // 
+            // clbProhibitedSubstances
+            // 
+            this.clbProhibitedSubstances.FormattingEnabled = true;
+            this.clbProhibitedSubstances.Location = new System.Drawing.Point(46, 144);
+            this.clbProhibitedSubstances.Name = "clbProhibitedSubstances";
+            this.clbProhibitedSubstances.Size = new System.Drawing.Size(650, 106);
+            this.clbProhibitedSubstances.TabIndex = 49;
+            // 
             // frmSubstanceDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 197);
+            this.ClientSize = new System.Drawing.Size(734, 329);
+            this.Controls.Add(this.clbProhibitedSubstances);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.btnSave);
@@ -107,5 +129,7 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.CheckedListBox clbProhibitedSubstances;
+        private System.Windows.Forms.Label label1;
     }
 }

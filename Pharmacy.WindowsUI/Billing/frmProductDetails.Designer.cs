@@ -341,7 +341,7 @@
             // 
             // personAttributeDtoBindingSource
             // 
-            this.personAttributeDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductAttributeDto);
+            //this.personAttributeDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductAttributeDto);
             // 
             // frmProductDetails
             // 

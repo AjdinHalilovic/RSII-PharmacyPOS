@@ -134,7 +134,7 @@ namespace Pharmacy.API.Areas.Billing
                 await DataUnitOfWork.BaseUow.ProductCategoriesRepository.SaveChangesAsync();
                 #endregion
 
-                #region Categories
+                #region Substances
                 var existingProductSubstances = await DataUnitOfWork.BaseUow.ProductSubstancesRepository.GetByParametersAsync(new SubstanceSearchObject() { ProductId = id });
                 var newProductSubstances = request.Substances.Where(x => !existingProductSubstances.Select(y => y.ProductId).Contains(x))
                     .Select(x => new ProductSubstance()

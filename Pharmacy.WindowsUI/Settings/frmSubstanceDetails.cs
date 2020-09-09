@@ -1,5 +1,8 @@
 ﻿using Pharmacy.Core.Entities.Base;
 using Pharmacy.Core.Models;
+using Pharmacy.Core.Models.Billing;
+using Pharmacy.Core.Models.Settings;
+using Pharmacy.Core.Models.Settins;
 using Pharmacy.WindowsUI.Properties;
 using System;
 using System.Collections.Generic;
@@ -16,6 +19,7 @@ namespace Pharmacy.WindowsUI.Settings
     public partial class frmSubstanceDetails : Form
     {
         private readonly APIService _aPIServiceSubstances = new APIService("Substances");
+        private readonly APIService _aPIServiceProhibitedSubstances = new APIService("ProhibitedSubstances");
 
         private int? _id = null;
         public frmSubstanceDetails(int? id = null)
@@ -26,11 +30,19 @@ namespace Pharmacy.WindowsUI.Settings
 
         private async void frmCategoryDetails_LoadAsync(object sender, EventArgs e)
         {
+            var substances = await _aPIServiceSubstances.Get<List<Substance>>(null);
             if (_id.HasValue)
             {
                 var substance = await _aPIServiceSubstances.GetById<Substance>(_id);
                 txtName.Text = substance.Name;
+
+                var prohibitedSubstance = await _aPIServiceProhibitedSubstances.Get<List<ProhibitedSubstance>>(new ProhibitedSubstanceSearchObject() { SubstanceId = _id });
+                var selectedSubstances = await _aPIServiceSubstances.Get<List<Substance>>(new SubstanceSearchObject() { ListIds = prohibitedSubstance.Count > 0 ? prohibitedSubstance.Select(x => x.SubstanceId).ToArray() : new int[] { 0 } });
+                substances = substances.Where(x => !selectedSubstances.Select(y => y.Id).Contains(x.Id)).ToList();
+                selectedSubstances.ToList().ForEach(x => clbProhibitedSubstances.Items.Add(x, true));
             }
+            substances.ToList().ForEach(x => clbProhibitedSubstances.Items.Add(x));
+            clbProhibitedSubstances.DisplayMember = "Name";
         }
 
         private void txtName_Validating(object sender, CancelEventArgs e)
@@ -52,9 +64,12 @@ namespace Pharmacy.WindowsUI.Settings
             {
                 try
                 {
-                    BaseInsertRequest request = new BaseInsertRequest()
+                    var substancesList = clbProhibitedSubstances.CheckedItems.Cast<Substance>().Select(x => x.Id).ToList();
+
+                    SubstanceUpsertRequest request = new SubstanceUpsertRequest()
                     {
                         Name = txtName.Text,
+                        Substances = substancesList
                     };
 
                     Substance substance = null;

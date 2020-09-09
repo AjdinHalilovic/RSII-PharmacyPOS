@@ -9,6 +9,8 @@ using Pharmacy.Core.Helpers.TokenProcessor;
 using Pharmacy.Core.Models;
 using Pharmacy.Core.Models.Access;
 using Pharmacy.Core.Models.Billing;
+using Pharmacy.Core.Models.Settings;
+using Pharmacy.Core.Models.Settins;
 using Pharmacy.Infrastructure.UnitOfWorks;
 using System;
 using System.Collections.Generic;
@@ -55,8 +57,9 @@ namespace Pharmacy.API.Areas.Settings
 
         #region Insert
         [HttpPost]
-        public async Task<IActionResult> Insert(BaseInsertRequest request)
+        public async Task<IActionResult> Insert(SubstanceUpsertRequest request)
         {
+            DataUnitOfWork.BaseUow.BeginTransaction();
             try
             {
                 var substance = new Substance()
@@ -67,10 +70,20 @@ namespace Pharmacy.API.Areas.Settings
                 DataUnitOfWork.BaseUow.SubstancesRepository.Add(substance);
                 await DataUnitOfWork.BaseUow.SubstancesRepository.SaveChangesAsync();
 
+                List<ProhibitedSubstance> prohibitedSubstance = request.Substances.Select(x => new ProhibitedSubstance
+                {
+                    SubstanceId = substance.Id,
+                    ProhibitedSubstanceId = x
+                }).ToList();
+                DataUnitOfWork.BaseUow.ProhibitedSubstancesRepository.AddRange(prohibitedSubstance);
+                await DataUnitOfWork.BaseUow.ProhibitedSubstancesRepository.SaveChangesAsync();
+
+                DataUnitOfWork.BaseUow.CommitTransaction();
                 return Ok(substance);
             }
             catch (Exception ex)
             {
+                DataUnitOfWork.BaseUow.RollbackTransaction();
                 return BadRequest();
                 throw;
             }
@@ -80,8 +93,9 @@ namespace Pharmacy.API.Areas.Settings
 
         #region Update
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody]BaseInsertRequest request)
+        public async Task<IActionResult> Update(int id, [FromBody] SubstanceUpsertRequest request)
         {
+            DataUnitOfWork.BaseUow.BeginTransaction();
             try
             {
                 var substance = await DataUnitOfWork.BaseUow.SubstancesRepository.GetByIdAsync(id);
@@ -91,10 +105,26 @@ namespace Pharmacy.API.Areas.Settings
                 DataUnitOfWork.BaseUow.SubstancesRepository.Update(substance);
                 await DataUnitOfWork.BaseUow.SubstancesRepository.SaveChangesAsync();
 
+
+                var existingProhibitedSubstances = await DataUnitOfWork.BaseUow.ProhibitedSubstancesRepository.GetByParametersAsync(new ProhibitedSubstanceSearchObject() { SubstanceId = id });
+                var newProhibitedSubstances = request.Substances.Where(x => !existingProhibitedSubstances.Select(y => y.SubstanceId).Contains(x))
+                    .Select(x => new ProhibitedSubstance()
+                    {
+                        SubstanceId = id,
+                        ProhibitedSubstanceId = x
+                    });
+                var removedProhibitedSubstances = existingProhibitedSubstances.Where(x => !request.Substances.Contains(x.SubstanceId));
+
+                DataUnitOfWork.BaseUow.ProhibitedSubstancesRepository.RemoveRange(removedProhibitedSubstances);
+                DataUnitOfWork.BaseUow.ProhibitedSubstancesRepository.AddRange(newProhibitedSubstances);
+                await DataUnitOfWork.BaseUow.ProhibitedSubstancesRepository.SaveChangesAsync();
+
+                DataUnitOfWork.BaseUow.CommitTransaction();
                 return Ok(substance);
             }
             catch (Exception ex)
             {
+                DataUnitOfWork.BaseUow.RollbackTransaction();
                 return BadRequest();
                 throw;
             }
