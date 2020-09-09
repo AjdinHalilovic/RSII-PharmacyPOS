@@ -214,11 +214,29 @@ namespace Pharmacy.WindowsUI.Billing
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private async void label1_ClickAsync(object sender, EventArgs e)
         {
-
         }
 
-        
+        private async void txtSearch_TextChangedAsync(object sender, EventArgs e)
+        {
+            await searchProducts();
+        }
+
+        private async void comboCategoryId_ValueMemberChangedAsync(object sender, EventArgs e)
+        {
+            await searchProducts();
+        }
+
+        private async Task searchProducts()
+        {
+            var searchObj = new ProductSearchObject()
+            {
+                SearchTerm = txtSearch.Text,
+                CategoryId = comboCategoryId.SelectedValue != null ? int.Parse(comboCategoryId.SelectedValue.ToString()) : (int?)null
+            };
+            var result = await _aPIServiceProducts.Get<List<ProductDto>>(searchObj);
+            dgvProducts.DataSource = new BindingList<ProductDto>(result);
+        }
     }
 }

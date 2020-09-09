@@ -98,6 +98,7 @@
             this.billingToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
             this.billingToolStripMenuItem.Text = "Billing";
             this.billingToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.billingToolStripMenuItem.Click += new System.EventHandler(this.billingToolStripMenuItem_Click);
             // 
             // reportsToolStripMenuItem
             // 

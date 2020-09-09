@@ -41,7 +41,6 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.productDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,11 +52,11 @@
             this.substancesNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.attributeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvRowDeleteBtn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.productDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.comboCategoryId = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -73,10 +72,9 @@
             // 
             this.lblBiling.AutoSize = true;
             this.lblBiling.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBiling.Location = new System.Drawing.Point(45, 9);
-            this.lblBiling.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBiling.Location = new System.Drawing.Point(34, 7);
             this.lblBiling.Name = "lblBiling";
-            this.lblBiling.Size = new System.Drawing.Size(65, 22);
+            this.lblBiling.Size = new System.Drawing.Size(52, 17);
             this.lblBiling.TabIndex = 44;
             this.lblBiling.Text = "Billing";
             // 
@@ -87,11 +85,11 @@
             this.groupBox1.Controls.Add(this.comboAttributeOptionId);
             this.groupBox1.Controls.Add(this.comboAttributeId);
             this.groupBox1.Controls.Add(this.btnAddProductAttribute);
-            this.groupBox1.Location = new System.Drawing.Point(45, 439);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Location = new System.Drawing.Point(34, 357);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(999, 183);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(749, 149);
             this.groupBox1.TabIndex = 57;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Attributes";
@@ -99,48 +97,45 @@
             // lblAttribute
             // 
             this.lblAttribute.AutoSize = true;
-            this.lblAttribute.Location = new System.Drawing.Point(8, 22);
-            this.lblAttribute.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAttribute.Location = new System.Drawing.Point(6, 18);
             this.lblAttribute.Name = "lblAttribute";
-            this.lblAttribute.Size = new System.Drawing.Size(61, 17);
+            this.lblAttribute.Size = new System.Drawing.Size(46, 13);
             this.lblAttribute.TabIndex = 64;
             this.lblAttribute.Text = "Attribute";
             // 
             // lblAttributeOption
             // 
             this.lblAttributeOption.AutoSize = true;
-            this.lblAttributeOption.Location = new System.Drawing.Point(8, 74);
-            this.lblAttributeOption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAttributeOption.Location = new System.Drawing.Point(6, 60);
             this.lblAttributeOption.Name = "lblAttributeOption";
-            this.lblAttributeOption.Size = new System.Drawing.Size(107, 17);
+            this.lblAttributeOption.Size = new System.Drawing.Size(80, 13);
             this.lblAttributeOption.TabIndex = 66;
             this.lblAttributeOption.Text = "Attribute Option";
             // 
             // comboAttributeOptionId
             // 
             this.comboAttributeOptionId.FormattingEnabled = true;
-            this.comboAttributeOptionId.Location = new System.Drawing.Point(12, 92);
-            this.comboAttributeOptionId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboAttributeOptionId.Location = new System.Drawing.Point(9, 75);
+            this.comboAttributeOptionId.Margin = new System.Windows.Forms.Padding(2);
             this.comboAttributeOptionId.Name = "comboAttributeOptionId";
-            this.comboAttributeOptionId.Size = new System.Drawing.Size(469, 24);
+            this.comboAttributeOptionId.Size = new System.Drawing.Size(353, 21);
             this.comboAttributeOptionId.TabIndex = 65;
             // 
             // comboAttributeId
             // 
             this.comboAttributeId.FormattingEnabled = true;
-            this.comboAttributeId.Location = new System.Drawing.Point(12, 41);
-            this.comboAttributeId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboAttributeId.Location = new System.Drawing.Point(9, 33);
+            this.comboAttributeId.Margin = new System.Windows.Forms.Padding(2);
             this.comboAttributeId.Name = "comboAttributeId";
-            this.comboAttributeId.Size = new System.Drawing.Size(469, 24);
+            this.comboAttributeId.Size = new System.Drawing.Size(353, 21);
             this.comboAttributeId.TabIndex = 63;
             this.comboAttributeId.SelectedValueChanged += new System.EventHandler(this.comboAttributeId_SelectedValueChanged);
             // 
             // btnAddProductAttribute
             // 
-            this.btnAddProductAttribute.Location = new System.Drawing.Point(283, 150);
-            this.btnAddProductAttribute.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddProductAttribute.Location = new System.Drawing.Point(212, 122);
             this.btnAddProductAttribute.Name = "btnAddProductAttribute";
-            this.btnAddProductAttribute.Size = new System.Drawing.Size(200, 27);
+            this.btnAddProductAttribute.Size = new System.Drawing.Size(150, 22);
             this.btnAddProductAttribute.TabIndex = 59;
             this.btnAddProductAttribute.Text = "Add product attribute";
             this.btnAddProductAttribute.UseVisualStyleBackColor = true;
@@ -148,10 +143,9 @@
             // 
             // btnSaveUser
             // 
-            this.btnSaveUser.Location = new System.Drawing.Point(451, 650);
-            this.btnSaveUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSaveUser.Location = new System.Drawing.Point(338, 528);
             this.btnSaveUser.Name = "btnSaveUser";
-            this.btnSaveUser.Size = new System.Drawing.Size(199, 39);
+            this.btnSaveUser.Size = new System.Drawing.Size(149, 32);
             this.btnSaveUser.TabIndex = 58;
             this.btnSaveUser.Text = "Save";
             this.btnSaveUser.UseVisualStyleBackColor = true;
@@ -159,10 +153,9 @@
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(59, 667);
-            this.txtId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtId.Location = new System.Drawing.Point(44, 542);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(39, 22);
+            this.txtId.Size = new System.Drawing.Size(30, 20);
             this.txtId.TabIndex = 60;
             this.txtId.Visible = false;
             // 
@@ -170,11 +163,11 @@
             // 
             this.groupBox2.AutoSize = true;
             this.groupBox2.Controls.Add(this.dgvProducts);
-            this.groupBox2.Location = new System.Drawing.Point(49, 93);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Location = new System.Drawing.Point(37, 76);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(686, 278);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Size = new System.Drawing.Size(818, 226);
             this.groupBox2.TabIndex = 61;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Products";
@@ -200,18 +193,14 @@
             this.dgvRowDeleteBtn});
             this.dgvProducts.DataSource = this.productDtoBindingSource;
             this.dgvProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProducts.Location = new System.Drawing.Point(3, 17);
-            this.dgvProducts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvProducts.Location = new System.Drawing.Point(2, 15);
+            this.dgvProducts.Margin = new System.Windows.Forms.Padding(2);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.ReadOnly = true;
             this.dgvProducts.RowHeadersWidth = 51;
             this.dgvProducts.RowTemplate.Height = 24;
-            this.dgvProducts.Size = new System.Drawing.Size(680, 259);
+            this.dgvProducts.Size = new System.Drawing.Size(814, 209);
             this.dgvProducts.TabIndex = 1;
-            // 
-            // productDtoBindingSource
-            // 
-            this.productDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -320,60 +309,54 @@
             this.dgvRowDeleteBtn.UseColumnTextForButtonValue = true;
             this.dgvRowDeleteBtn.Width = 125;
             // 
+            // productDtoBindingSource
+            // 
+            this.productDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(413, 46);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(458, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 17);
+            this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 68;
             this.label1.Text = "Category";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Click += new System.EventHandler(this.label1_ClickAsync);
             // 
             // comboCategoryId
             // 
             this.comboCategoryId.FormattingEnabled = true;
-            this.comboCategoryId.Location = new System.Drawing.Point(416, 65);
-            this.comboCategoryId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboCategoryId.Location = new System.Drawing.Point(461, 52);
+            this.comboCategoryId.Margin = new System.Windows.Forms.Padding(2);
             this.comboCategoryId.Name = "comboCategoryId";
-            this.comboCategoryId.Size = new System.Drawing.Size(319, 24);
+            this.comboCategoryId.Size = new System.Drawing.Size(392, 21);
             this.comboCategoryId.TabIndex = 67;
+            this.comboCategoryId.ValueMemberChanged += new System.EventHandler(this.comboCategoryId_ValueMemberChangedAsync);
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(49, 65);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtSearch.Location = new System.Drawing.Point(37, 52);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(346, 24);
+            this.txtSearch.Size = new System.Drawing.Size(408, 21);
             this.txtSearch.TabIndex = 69;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChangedAsync);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 47);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(34, 38);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 17);
+            this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 70;
             this.label2.Text = "Search";
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(780, 213);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(264, 84);
-            this.listBox1.TabIndex = 71;
-            // 
             // frmBiling
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1119, 704);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(1236, 572);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label1);
@@ -383,7 +366,7 @@
             this.Controls.Add(this.btnSaveUser);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblBiling);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmBiling";
             this.Text = "Billing";
             this.Load += new System.EventHandler(this.frmBilling_Load);
@@ -428,6 +411,5 @@
         private System.Windows.Forms.ComboBox comboCategoryId;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.ListBox listBox1;
     }
 }
