@@ -168,5 +168,13 @@ namespace Pharmacy.WindowsUI
             frmProducts.MdiParent = this;
             frmProducts.Show();
         }
+
+        private void billingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frmBiling = new frmBiling();
+            frmBiling.WindowState = FormWindowState.Maximized;
+            frmBiling.MdiParent = this;
+            frmBiling.Show();
+        }
     }
 }
