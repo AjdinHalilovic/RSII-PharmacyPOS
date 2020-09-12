@@ -241,6 +241,7 @@ namespace Pharmacy.API.Areas.Access
         #endregion
 
         #region Helpers
+        [NonAction]
         private async Task<TokenResponse> CreateAndSaveTokenAsync(UserDto user)
         {
             Claim[] claims =

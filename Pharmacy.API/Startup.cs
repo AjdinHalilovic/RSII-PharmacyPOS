@@ -154,25 +154,30 @@ namespace Pharmacy.API
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Version = "v1",
-                    Title = "ToDo API",
-                    Description = "A simple example ASP.NET Core Web API",
-                    TermsOfService = new Uri("https://example.com/terms"),
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Ajdin Halilović",
-                        Email = "ajdin.halilovic@edu.fit.ba",
-                        Url = new Uri("https://twitter.com/spboyer"),
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "Use under LICX",
-                        Url = new Uri("https://example.com/license"),
-                    }
-                });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
+
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo
+            //    {
+            //        Version = "v1",
+            //        Title = "ToDo API",
+            //        Description = "A simple example ASP.NET Core Web API",
+            //        TermsOfService = new Uri("https://example.com/terms"),
+            //        Contact = new OpenApiContact
+            //        {
+            //            Name = "Ajdin Halilović",
+            //            Email = "ajdin.halilovic@edu.fit.ba",
+            //            Url = new Uri("https://twitter.com/spboyer"),
+            //        },
+            //        License = new OpenApiLicense
+            //        {
+            //            Name = "Use under LICX",
+            //            Url = new Uri("https://example.com/license"),
+            //        }
+            //    });
+            //});
 
             services.AddRouting(options => options.LowercaseUrls = true);
         }
@@ -194,14 +199,14 @@ namespace Pharmacy.API
             //// Register the Swagger generator and the Swagger UI middlewares
             //app.UseOpenApi(); // Doesn't work on this verion of .net core
             app.UseSwagger(); // There is old method but works on this version of .net
-            //app.UseSwaggerUi3();
+                              //app.UseSwaggerUi3();
 
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();

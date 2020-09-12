@@ -8,26 +8,37 @@
             x:Class="Pharmacy.Mobile.Views.MainPage">
 
     <TabbedPage.Children>
-        <NavigationPage Title="Browse">
+        <NavigationPage Title="Stock">
+            <x:Arguments>
+                <views:StockPage />
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="Statistics">
+            <x:Arguments>
+                <views:StatisticsPage />
+            </x:Arguments>
+        </NavigationPage>
+        
+        <NavigationPage Title="Brwwse">
+            <x:Arguments>
+                <views:ItemsPage />
+            </x:Arguments>
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
-            <x:Arguments>
-                <views:ItemsPage />
-            </x:Arguments>
         </NavigationPage>
         
         <NavigationPage Title="About">
+            <x:Arguments>
+                <views:AboutPage />
+            </x:Arguments>
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_about.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
-            <x:Arguments>
-                <views:AboutPage />
-            </x:Arguments>
         </NavigationPage>
     </TabbedPage.Children>
     

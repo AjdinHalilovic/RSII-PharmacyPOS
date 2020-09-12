@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pharmacy.Mobile.Views.StatisticsPage"
+                          xmlns:vm="clr-namespace:Pharmacy.Mobile.ViewModels"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:StatisticsViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="SALES REVANUE" BackgroundColor="aliceblue"
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="Fill" Clicked="GetSalesRevanue">
+            </Button>
+            <Button Text="GOODS ENTRY" BackgroundColor="aliceblue"
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="Fill" Clicked="GetGoodsEntry">
+            </Button>
+            <Button Text="OTUPUT OF GOODS" BackgroundColor="aliceblue"
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="Fill" Clicked="GetOutputOfGoods">
+            </Button>
+            <Button Text="WAREHOUSE" BackgroundColor="aliceblue"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="Fill" Clicked="GetWarehouse">
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

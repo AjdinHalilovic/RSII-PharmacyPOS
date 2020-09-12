@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharmacy.Mobile.Android", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharmacy.Mobile.iOS", "Pharmacy.Mobile\Pharmacy.Mobile.iOS\Pharmacy.Mobile.iOS.csproj", "{F5C77CB9-79C9-4CE0-A970-F040F6520AD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharmacy.Mobile", "Pharmacy.Mobile\Pharmacy.Mobile\Pharmacy.Mobile.csproj", "{300CD5E1-1210-4C48-8B14-8F8B65811B9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pharmacy.Mobile", "Pharmacy.Mobile\Pharmacy.Mobile\Pharmacy.Mobile.csproj", "{300CD5E1-1210-4C48-8B14-8F8B65811B9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -134,6 +134,8 @@ Global
 		{E11E843D-47B9-4A45-8927-57E2D01C63C0}.Release|x86.ActiveCfg = Release|Any CPU
 		{E11E843D-47B9-4A45-8927-57E2D01C63C0}.Release|x86.Build.0 = Release|Any CPU
 		{AFEA7F07-9C02-4149-BAEA-6FB0F4883E9C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{AFEA7F07-9C02-4149-BAEA-6FB0F4883E9C}.Debug|Any CPU.Build.0 = Debug|x86
+		{AFEA7F07-9C02-4149-BAEA-6FB0F4883E9C}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{AFEA7F07-9C02-4149-BAEA-6FB0F4883E9C}.Debug|ARM.ActiveCfg = Debug|ARM
 		{AFEA7F07-9C02-4149-BAEA-6FB0F4883E9C}.Debug|ARM.Build.0 = Debug|ARM
 		{AFEA7F07-9C02-4149-BAEA-6FB0F4883E9C}.Debug|ARM.Deploy.0 = Debug|ARM

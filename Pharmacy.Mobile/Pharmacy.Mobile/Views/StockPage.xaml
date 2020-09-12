@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          xmlns:vm="clr-namespace:Pharmacy.Mobile.ViewModels"
+             x:Class="Pharmacy.Mobile.Views.StockPage"
+             Title="{Binding Title}">
+    
+    <ContentPage.BindingContext>
+        <vm:StockViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="0" Margin="0">
+            <Button Text="WAREHOUSE OF GOODS" BackgroundColor="aliceblue"
+                   VerticalOptions="FillAndExpand" 
+                HorizontalOptions="Fill"  Clicked="AddWarehouseOfGoods">
+            </Button>
+            <Button Text="INTER STORAGE" BackgroundColor="aliceblue"
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="Fill" Clicked="AddInterStorage">
+            </Button>
+            <Button Text="WRITE-OFF OF THE BALANCE" BackgroundColor="aliceblue"
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="Fill" Clicked="AddWriteOff">
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
