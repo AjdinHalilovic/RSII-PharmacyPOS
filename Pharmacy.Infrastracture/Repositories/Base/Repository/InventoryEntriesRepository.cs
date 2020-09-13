@@ -4,6 +4,13 @@ using Pharmacy.Core.Entities.Base;
 using Pharmacy.Infrastructure.Contexts.Base;
 using Pharmacy.Infrastructure.Repositories.Base.IRepository;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
+using Pharmacy.Core.Models;
+using Pharmacy.Core.Entities.Base.DTO;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using Pharmacy.Infrastracture;
+using Pharmacy.Infrastracture.Helpers;
 
 namespace Pharmacy.Infrastructure.Repositories.Base.Repository
 {
@@ -13,7 +20,11 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
         }
 
-
+        public async Task<IEnumerable<InventoryEntryDto>> GetAllDtosByParametersAsync(BaseSearchObject search)
+        {
+            string searchTerm = string.IsNullOrEmpty(search.SearchTerm) ? null : $"{Regex.Replace(search.SearchTerm, @"\s+", " ").Replace(" ", ":*&")}:*";
+            return await DbConnection.QueryFunctionAsync<InventoryEntryDto>(DbObjects.BaseDbObjects.Functions.InventoryEntries.inventoryentries_getdtosbyparameters, new { pPharmacyBranchId = search.PharmacyBranchId, pSearchTerm = searchTerm });
+        }
 
     }
 }

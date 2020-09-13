@@ -13,7 +13,7 @@ namespace Pharmacy.Core.Entities.Base
         [Required, ForeignKey(nameof(InventoryEntry))]
         public int InventoryEntryId { get; set; }
        [Required]
-        public decimal Quantity { get; set; }
+        public int Quantity { get; set; }
         [Required, ForeignKey(nameof(Product))]
         public int ProductId { get; set; }
         public DateTime? DeletedDateTime { get; set; }

@@ -35,6 +35,11 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
             return list;
         }
 
+        public async Task<IEnumerable<ProductSubstance>> GetByProductIdsAsync(List<int> productIds)
+        {
+            return await Context.ProductSubstances.Include(x => x.Product).Where(x => productIds.Contains(x.ProductId)).ToListAsync();
+        }
+
 
     }
 }

@@ -8,5 +8,6 @@ namespace Pharmacy.Infrastructure.Repositories.Base.IRepository
     public interface IProductSubstancesRepository : IRepository<ProductSubstance, int>
     {
         Task<IEnumerable<ProductSubstance>> GetByParametersAsync(SubstanceSearchObject search);
+        Task<IEnumerable<ProductSubstance>> GetByProductIdsAsync(List<int> productIds);
     }
 }

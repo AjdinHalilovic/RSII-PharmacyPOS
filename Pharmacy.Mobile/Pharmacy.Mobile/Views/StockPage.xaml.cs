@@ -19,17 +19,17 @@ namespace Pharmacy.Mobile.Views
 
         async void AddWarehouseOfGoods(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+            await Navigation.PushAsync(new WarehouseOfGoodsPage());
         }
 
         async void AddInterStorage(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+            await Navigation.PushAsync(new InterStoragePage());
         }
 
         async void AddWriteOff(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+            await Navigation.PushAsync(new WriteOffPage());
         }
     }
 }

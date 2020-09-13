@@ -22,6 +22,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\GoodsEntryPage.xaml.cs">
+      <DependentUpon>GoodsEntryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\InterStoragePage.xaml.cs">
+      <DependentUpon>InterStoragePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\InventoryEntryDetailPage.xaml.cs">
+      <DependentUpon>InventoryEntryDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\OutputOfGoodsPage.xaml.cs">
+      <DependentUpon>OutputOfGoodsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\WriteOffPage.xaml.cs">
+      <DependentUpon>WriteOffPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\WarehouseOfGoodsPage.xaml.cs">
+      <DependentUpon>WarehouseOfGoodsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\WarehousePage.xaml.cs">
       <DependentUpon>WarehousePage.xaml</DependentUpon>
     </Compile>

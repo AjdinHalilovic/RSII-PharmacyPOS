@@ -11,29 +11,30 @@ namespace Pharmacy.Mobile.Views
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
-    public partial class ItemDetailPage : ContentPage
+    public partial class InventoryEntryDetailPage : ContentPage
     {
-        ItemDetailViewModel viewModel;
+        InventoryEntryDetailViewModel viewModel;
 
-        public ItemDetailPage(ItemDetailViewModel viewModel)
+        public InventoryEntryDetailPage(InventoryEntryDetailViewModel viewModel)
         {
             InitializeComponent();
 
             BindingContext = this.viewModel = viewModel;
         }
 
-        public ItemDetailPage()
+        public InventoryEntryDetailPage()
         {
             InitializeComponent();
+        }
 
-            var item = new Item
-            {
-                Text = "Item 1",
-                Description = "This is an item description."
-            };
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
 
-            viewModel = new ItemDetailViewModel(item);
-            BindingContext = viewModel;
+            await viewModel.ExecuteLoadItemsCommand();
+
+            if (viewModel.Items.Count == 0)
+                viewModel.IsBusy = true;
         }
     }
 }

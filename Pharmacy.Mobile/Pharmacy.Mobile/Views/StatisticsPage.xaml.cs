@@ -23,17 +23,15 @@ namespace Pharmacy.Mobile.Views
         }
         async void GetGoodsEntry(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+            await Navigation.PushAsync(new GoodsEntryPage());
         }
         async void GetOutputOfGoods(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+            await Navigation.PushAsync(new OutputOfGoodsPage());
         }
         async void GetWarehouse(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new WarehousePage());
-
-            //await Navigation.PushModalAsync(new NavigationPage(new WarehousePage()));
         }
     }
 }

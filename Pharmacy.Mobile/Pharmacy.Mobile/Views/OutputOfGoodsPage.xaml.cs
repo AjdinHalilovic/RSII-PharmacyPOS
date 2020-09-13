@@ -16,15 +16,15 @@ namespace Pharmacy.Mobile.Views
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
-    public partial class WarehousePage : ContentPage
+    public partial class OutputOfGoodsPage : ContentPage
     {
-        WarehouseViewModel viewModel;
+        OutputOfGoodsViewModel viewModel;
 
-        public WarehousePage()
+        public OutputOfGoodsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new WarehouseViewModel();
+            BindingContext = viewModel = new OutputOfGoodsViewModel();
         }
 
         async void OnItemSelected(object sender, EventArgs args)

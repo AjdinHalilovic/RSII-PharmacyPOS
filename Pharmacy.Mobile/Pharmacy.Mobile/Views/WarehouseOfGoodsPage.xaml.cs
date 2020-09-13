@@ -10,33 +10,43 @@ using Xamarin.Forms.Xaml;
 using Pharmacy.Mobile.Models;
 using Pharmacy.Mobile.Views;
 using Pharmacy.Mobile.ViewModels;
+using Pharmacy.Core.Entities.Base.DTO;
 
 namespace Pharmacy.Mobile.Views
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
-    public partial class ItemsPage : ContentPage
+    public partial class WarehouseOfGoodsPage : ContentPage
     {
-        ItemsViewModel viewModel;
+        WarehouseOfGoodsViewModel viewModel;
 
-        public ItemsPage()
+        public WarehouseOfGoodsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = viewModel = new WarehouseOfGoodsViewModel();
         }
 
-        async void OnItemSelected(object sender, EventArgs args)
+        void OnItemSelected(object sender, EventArgs args)
         {
             var layout = (BindableObject)sender;
-            var item = (Item)layout.BindingContext;
-            //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            var product = (InventoryEntryProductDto)layout.BindingContext;
+            viewModel.RemoveProductFromList(product);
         }
 
-        async void AddItem_Clicked(object sender, EventArgs e)
+        async void SaveEntry(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+            if (await viewModel.SaveEntry())
+            {
+                await DisplayAlert("Successfully saved!", "", "OK");
+                await Navigation.PopAsync();
+            }
+        }
+
+        void AddProductToList(object sender, EventArgs e)
+        {
+            viewModel.AddProductToListCommand.Execute(null);
         }
 
         protected override void OnAppearing()

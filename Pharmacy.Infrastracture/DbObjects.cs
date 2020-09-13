@@ -23,6 +23,11 @@ namespace Pharmacy.Infrastracture
                 {
                     public const string products_getdtosbyparameters = "fn_products_getdtosbyparameters";
                 }
+
+                public static class InventoryEntries
+                {
+                    public const string inventoryentries_getdtosbyparameters = "fn_inventoryentries_getdtosbyparameters";
+                }
             }
         }
     }

@@ -10,28 +10,29 @@ using Xamarin.Forms.Xaml;
 using Pharmacy.Mobile.Models;
 using Pharmacy.Mobile.Views;
 using Pharmacy.Mobile.ViewModels;
+using Pharmacy.Core.Entities.Base.DTO;
 
 namespace Pharmacy.Mobile.Views
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
-    public partial class WarehousePage : ContentPage
+    public partial class GoodsEntryPage : ContentPage
     {
-        WarehouseViewModel viewModel;
+        GoodsEntryViewModel viewModel;
 
-        public WarehousePage()
+        public GoodsEntryPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new WarehouseViewModel();
+            BindingContext = viewModel = new GoodsEntryViewModel();
         }
 
         async void OnItemSelected(object sender, EventArgs args)
         {
-            //var layout = (BindableObject)sender;
-            //var item = (Item)layout.BindingContext;
-            //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            var layout = (BindableObject)sender;
+            var item = (InventoryEntryDto)layout.BindingContext;
+            await Navigation.PushAsync(new InventoryEntryDetailPage(new InventoryEntryDetailViewModel(item.Id, item.EntryNumber)));
         }
 
         //async void AddItem_Clicked(object sender, EventArgs e)

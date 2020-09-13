@@ -17,7 +17,7 @@ namespace Pharmacy.Core.Entities.Base
         public int ProductId { get; set; }
 
         [Required]
-        public decimal Quantity { get; set; }
+        public int Quantity { get; set; }
 
         public DateTime? DeletedDateTime { get; set; }
 

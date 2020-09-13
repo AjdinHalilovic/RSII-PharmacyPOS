@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Pharmacy.Mobile.Views.WriteOffPage"
+             Title="{Binding Title}"
+             x:Name="BrowseItemsPage">
+
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
+    </ContentPage.ToolbarItems>-->
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Vertical" Padding="5,30,5,0">
+                <Label LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16">Reason</Label>
+                <Editor Placeholder="Reason" Text="{Binding Reason}" HorizontalOptions="FillAndExpand" />
+                <!--<Entry Placeholder="Entry number" Text="{Binding WriteOffNumber}" HorizontalOptions="FillAndExpand" />-->
+                <Label LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16">Entry date time</Label>
+                <DatePicker  Date="{Binding WriteOffDateTime}" HorizontalOptions="FillAndExpand"/>
+                <Label Padding="0,30,0,0" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16">Product</Label>
+                <Picker HorizontalOptions="FillAndExpand" ItemsSource="{Binding ProductList}" 
+                    SelectedItem="{Binding SelectedProduct}"
+                    ItemDisplayBinding="{Binding Name}" ></Picker>
+                <Label LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16">Quantity</Label>
+                <Entry Placeholder="Quantity" Text="{Binding Quantity}" HorizontalOptions="FillAndExpand" />
+
+                <!--<Button Text="ADD PRODUCT TO LIST" Clicked="AddProductToList" />-->
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Padding="5,10,5,0">
+                
+
+                <Button IsEnabled="{Binding HasProductsList}" Clicked="SaveEntry" Text="SAVE ENTRY" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

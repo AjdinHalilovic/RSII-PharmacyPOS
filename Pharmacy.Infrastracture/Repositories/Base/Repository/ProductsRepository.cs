@@ -28,5 +28,10 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
 
         }
 
+        public async Task<IEnumerable<Product>> GetByListIdsAsync(List<int> ids)
+        {
+            return await Context.Products.Where(x => ids.Contains(x.Id)).ToListAsync();
+        }
+
     }
 }
