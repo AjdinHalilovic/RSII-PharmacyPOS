@@ -10,6 +10,7 @@ namespace Pharmacy.Core.Models.Settings
     public class ProhibitedSubstanceSearchObject : BaseSearchObject
     {
         public int? SubstanceId { get; set; }
+        public int? ProhibitedSubstanceId { get; set; }
         public int[] ListIds { get; set; }
 
     }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Pharmacy.API.Controllers;
 using Pharmacy.API.Filters;
 using Pharmacy.Core.Constants.Configurations;
@@ -244,12 +245,14 @@ namespace Pharmacy.API.Areas.Access
         [NonAction]
         private async Task<TokenResponse> CreateAndSaveTokenAsync(UserDto user)
         {
+            var userRoles = (await DataUnitOfWork.BaseUow.UserRolesRepository.GetByParametersAsync(new RolesSearchObject() { UserId = user.Id })).ToList();
             Claim[] claims =
             {
                 new Claim(type: nameof(UserDto.UserId), value: user.UserId.ToString()),
                 new Claim(type: nameof(UserDto.PharmacyId), value: user.PharmacyId.ToString()),
                 new Claim(type: nameof(UserDto.PharmacyBranchId), value: user.PharmacyBranchId.ToString()),
                 new Claim(type: nameof(UserDto.InventoryId), value: user.InventoryId.ToString()),
+                new Claim(type: nameof(List<UserRole>), value: JsonConvert.SerializeObject(userRoles)),
             };
 
             string accessToken = _tokenProcessor.GenerateAccessToken(claims);

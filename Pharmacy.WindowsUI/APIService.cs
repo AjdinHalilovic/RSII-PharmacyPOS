@@ -34,18 +34,28 @@ namespace Pharmacy.WindowsUI
                 }
                 return await url.WithOAuthBearerToken(_token).GetJsonAsync<T>();
             }
-            catch (Exception ex)
+            catch (FlurlHttpException ex)
             {
-                MessageBox.Show("Niste authentificirani");
-                throw;
+                var message = await ex.GetResponseStringAsync();
+                MessageBox.Show(message);
+                return default(T);
             }
         }
 
         public async Task<T> GetById<T>(object id)
         {
-            var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
+            try
+            {
+                var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
 
-            return await url.WithOAuthBearerToken(_token).GetJsonAsync<T>();
+                return await url.WithOAuthBearerToken(_token).GetJsonAsync<T>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var message = await ex.GetResponseStringAsync();
+                MessageBox.Show(message);
+                return default(T);
+            }
         }
 
         public async Task<T> Insert<T>(object request)
@@ -58,15 +68,8 @@ namespace Pharmacy.WindowsUI
             }
             catch (FlurlHttpException ex)
             {
-                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
-
-                var stringBuilder = new StringBuilder();
-                foreach (var error in errors)
-                {
-                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
-                }
-
-                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var message = await ex.GetResponseStringAsync();
+                MessageBox.Show(message);
                 return default(T);
             }
 
@@ -82,15 +85,8 @@ namespace Pharmacy.WindowsUI
             }
             catch (FlurlHttpException ex)
             {
-                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
-
-                var stringBuilder = new StringBuilder();
-                foreach (var error in errors)
-                {
-                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
-                }
-
-                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var message = await ex.GetResponseStringAsync();
+                MessageBox.Show(message);
                 return default(T);
             }
 
@@ -99,9 +95,18 @@ namespace Pharmacy.WindowsUI
 
         public async Task<HttpResponseMessage> Delete(object id)
         {
-            var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
+            try
+            {
+                var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
 
-            return await url.WithOAuthBearerToken(_token).DeleteAsync();
+                return await url.WithOAuthBearerToken(_token).DeleteAsync();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var message = await ex.GetResponseStringAsync();
+                MessageBox.Show(message);
+                return default(HttpResponseMessage);
+            }
         }
     }
 }

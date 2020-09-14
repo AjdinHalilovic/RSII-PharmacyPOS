@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pharmacy.API.Controllers;
 using Pharmacy.API.Filters;
+using Pharmacy.Core.Constants;
 using Pharmacy.Core.Constants.Configurations;
 using Pharmacy.Core.Entities.Base;
 using Pharmacy.Core.Entities.Base.DTO;
@@ -22,7 +23,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.API.Areas.Settings
 {
-    [ApiController,TokenValidation, Area("Settings")]
+    [ApiController, TokenValidation(false,new [] {Enumerations.WebRole.Administrator,Enumerations.WebRole.SuperAdministrator}), Area("Settings")]
     [Route("[controller]")]
     public class SubstancesController : BaseController
     {
@@ -36,7 +37,7 @@ namespace Pharmacy.API.Areas.Settings
         {
             try
             {
-                search.PharmacyBranchId = ClaimUser.PharmacyBranchId;
+                search.PharmacyBranchId = ClaimUser?.PharmacyBranchId;
                 var substances = await DataUnitOfWork.BaseUow.SubstancesRepository.GetAllByParametersAsync(search);
 
                 return Ok(substances);
@@ -107,13 +108,13 @@ namespace Pharmacy.API.Areas.Settings
 
 
                 var existingProhibitedSubstances = await DataUnitOfWork.BaseUow.ProhibitedSubstancesRepository.GetByParametersAsync(new ProhibitedSubstanceSearchObject() { SubstanceId = id });
-                var newProhibitedSubstances = request.Substances.Where(x => !existingProhibitedSubstances.Select(y => y.SubstanceId).Contains(x))
+                var newProhibitedSubstances = request.Substances.Where(x => !existingProhibitedSubstances.Select(y => y.ProhibitedSubstanceId).Contains(x))
                     .Select(x => new ProhibitedSubstance()
                     {
                         SubstanceId = id,
                         ProhibitedSubstanceId = x
                     });
-                var removedProhibitedSubstances = existingProhibitedSubstances.Where(x => !request.Substances.Contains(x.SubstanceId));
+                var removedProhibitedSubstances = existingProhibitedSubstances.Where(x => !request.Substances.Contains(x.ProhibitedSubstanceId));
 
                 DataUnitOfWork.BaseUow.ProhibitedSubstancesRepository.RemoveRange(removedProhibitedSubstances);
                 DataUnitOfWork.BaseUow.ProhibitedSubstancesRepository.AddRange(newProhibitedSubstances);

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Pharmacy.API.Filters;
+using Pharmacy.Core.Entities.Base;
 using Pharmacy.Infrastructure.UnitOfWorks;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,10 @@ namespace Pharmacy.API.Controllers
             PharmacyId = int.Parse(claims.FirstOrDefault(x => x.Type.Equals(nameof(Pharmacy.Core.Entities.Base.DTO.UserDto.PharmacyId)))?.Value ?? throw new InvalidOperationException());
             PharmacyBranchId = int.Parse(claims.FirstOrDefault(x => x.Type.Equals(nameof(Pharmacy.Core.Entities.Base.DTO.UserDto.PharmacyBranchId)))?.Value ?? throw new InvalidOperationException());
             InventoryId = int.Parse(claims.FirstOrDefault(x => x.Type.Equals(nameof(Pharmacy.Core.Entities.Base.DTO.UserDto.InventoryId)))?.Value ?? throw new InvalidOperationException());
+            InventoryId = int.Parse(claims.FirstOrDefault(x => x.Type.Equals(nameof(Pharmacy.Core.Entities.Base.DTO.UserDto.InventoryId)))?.Value ?? throw new InvalidOperationException());
+
+            UserRole = JsonConvert.DeserializeObject<List<UserRole>>(claims.FirstOrDefault(x => x.Type.Equals(nameof(List<Pharmacy.Core.Entities.Base.UserRole>)))?.Value ?? throw new InvalidOperationException()); 
+            //UserRole = (List<UserRole>)(claims.FirstOrDefault(x => x.Type.Equals(nameof(Pharmacy.Core.Entities.Base.UserRole)))?.Value ?? throw new InvalidOperationException());
 
             //Claim organizationIdClaim = claims.FirstOrDefault(x => x.Type.Equals(nameof(EmaHealth.Core.Entities.Base.DTO.UserDto.OrganizationId)));
             //OrganizationId = organizationIdClaim != null && organizationIdClaim.Value.IsSet() ? int.Parse(organizationIdClaim.Value) : (int?)null;
@@ -32,6 +38,7 @@ namespace Pharmacy.API.Controllers
         public int PharmacyId { get; set; }
         public int InventoryId { get; set; }
         public int PharmacyBranchId { get; set; }
+        public List<UserRole> UserRole { get; set; }
 
 
     }

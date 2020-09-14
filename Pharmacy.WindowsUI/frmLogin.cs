@@ -44,10 +44,10 @@ namespace Pharmacy.WindowsUI
 
 
             }
-            catch (Exception ex)
+            catch (FlurlHttpException ex)
             {
-
-                throw;
+                var message = await ex.GetResponseStringAsync();
+                MessageBox.Show(message);
             }
         }
 

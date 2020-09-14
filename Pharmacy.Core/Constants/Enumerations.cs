@@ -6,9 +6,7 @@ namespace Pharmacy.Core.Constants
     {
         public enum UserType
         {
-            Staff = 1,
-            Patient = 2,
-            Member = 3
+            Staff = 1
         }
 
 
@@ -31,15 +29,8 @@ namespace Pharmacy.Core.Constants
             SuperAdministrator = 1,
             Administrator,
 
-            InstitutionStaff,
-            InstitutionMember,
-
-            OrganizationAdministrator,
-            OrganizationManagement,
-            OrganizationDoctor,
-            OrganizationStaff,
-
-            InstitutionAdministrator
+            Seller,
+            Stockman
         }
 
         public enum LogActivity

@@ -1,4 +1,5 @@
-﻿using System; using System.Text.Json;
+﻿using System;
+using System.Text.Json;
 using System.Collections.Generic;
 using System.Net;
 using System.Security.Claims;
@@ -7,6 +8,9 @@ using Pharmacy.Core.Helpers.TokenProcessor;
 using Pharmacy.Infrastructure.UnitOfWorks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.Linq;
+using Pharmacy.Core.Constants;
+using Pharmacy.API.Controllers;
 
 namespace Pharmacy.API.Filters
 {
@@ -14,18 +18,21 @@ namespace Pharmacy.API.Filters
     public class TokenValidation : ActionFilterAttribute
     {
         private readonly bool _ignoreTokenExpirationDateTime;
+        private Enumerations.WebRole[] _roles { get; }
 
-        public TokenValidation(bool ignoreTokenExpirationDateTime = false)
+        public TokenValidation(bool ignoreTokenExpirationDateTime = false, Enumerations.WebRole[] roles = null)
         {
             _ignoreTokenExpirationDateTime = ignoreTokenExpirationDateTime;
+            _roles = roles;
+
         }
 
-        public override void OnActionExecuting(ActionExecutingContext context)
+        public override async void OnActionExecuting(ActionExecutingContext context)
         {
             IDataUnitOfWork dataUnitOfWork =
-                (IDataUnitOfWork) context.HttpContext.RequestServices.GetService(typeof(IDataUnitOfWork));
+                (IDataUnitOfWork)context.HttpContext.RequestServices.GetService(typeof(IDataUnitOfWork));
             ITokenProcessor tokenProcessor =
-                (ITokenProcessor) context.HttpContext.RequestServices.GetService(typeof(ITokenProcessor));
+                (ITokenProcessor)context.HttpContext.RequestServices.GetService(typeof(ITokenProcessor));
 
             string token =
                 tokenProcessor.ConvertTokenFormatIfNedeed(
@@ -33,7 +40,7 @@ namespace Pharmacy.API.Filters
 
             if (!token.IsSet())
             {
-                context.HttpContext.Response.StatusCode = (int) HttpStatusCode.Forbidden;
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
                 context.Result =
                     new JsonResult("Access token is not sent with the request. Check your request headers!");
             }
@@ -42,6 +49,7 @@ namespace Pharmacy.API.Filters
                 bool addClaimsToHttpContext = true;
                 //ToDo :: encrypt whole jwt token with hardcoded key
                 User user = dataUnitOfWork.BaseUow.UsersRepository.GetByAccessToken(token);
+
 
                 if (user == null)
                 {
@@ -62,6 +70,7 @@ namespace Pharmacy.API.Filters
                     addClaimsToHttpContext = false;
                 }
 
+
                 if (addClaimsToHttpContext)
                 {
                     IEnumerable<Claim> claims = tokenProcessor.GetTokenClaims(token);
@@ -69,6 +78,27 @@ namespace Pharmacy.API.Filters
                     {
                         ClaimsIdentity appIdentity = new ClaimsIdentity(claims);
                         context.HttpContext.User.AddIdentity(appIdentity);
+                    }
+
+                    if (_roles != null)
+                    {
+                        ClaimUser ClaimUser = context.HttpContext.User.Claims.Any() ? new ClaimUser(context.HttpContext.User.Claims) : null;
+                        var roles = ClaimUser.UserRole;
+
+                        var authorized = false;
+                        foreach (var role in _roles)
+                        {
+                            if (roles.Select(x => x.RoleId).Contains((int)role))
+                            {
+                                authorized = true;
+                            }
+                        }
+                        if (!authorized)
+                        {
+                            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                            context.Result = new JsonResult("You are not authorized to access requested resource.");
+                            addClaimsToHttpContext = false;
+                        }
                     }
                 }
             }

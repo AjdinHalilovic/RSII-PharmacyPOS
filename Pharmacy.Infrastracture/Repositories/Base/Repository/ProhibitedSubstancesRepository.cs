@@ -22,6 +22,10 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
             {
                 query = query.Where(x => search.SubstanceId == x.SubstanceId);
             }
+            if (search.ProhibitedSubstanceId.HasValue)
+            {
+                query = query.Where(x => search.ProhibitedSubstanceId == x.ProhibitedSubstanceId);
+            }
             if (!string.IsNullOrWhiteSpace(search.SearchTerm))
             {
                 query = query.Where(x => x.Substance.Name.ToLower().Equals(search.SearchTerm));

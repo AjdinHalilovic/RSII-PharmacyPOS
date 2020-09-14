@@ -36,8 +36,14 @@ namespace Pharmacy.WindowsUI.Settings
                 var substance = await _aPIServiceSubstances.GetById<Substance>(_id);
                 txtName.Text = substance.Name;
 
-                var prohibitedSubstance = await _aPIServiceProhibitedSubstances.Get<List<ProhibitedSubstance>>(new ProhibitedSubstanceSearchObject() { SubstanceId = _id });
-                var selectedSubstances = await _aPIServiceSubstances.Get<List<Substance>>(new SubstanceSearchObject() { ListIds = prohibitedSubstance.Count > 0 ? prohibitedSubstance.Select(x => x.SubstanceId).ToArray() : new int[] { 0 } });
+                var prohibitedSubstance = (await _aPIServiceProhibitedSubstances.Get<List<ProhibitedSubstance>>(new ProhibitedSubstanceSearchObject() { SubstanceId = _id })).ToList();
+                prohibitedSubstance.AddRange((await _aPIServiceProhibitedSubstances.Get<List<ProhibitedSubstance>>(new ProhibitedSubstanceSearchObject() { ProhibitedSubstanceId = _id })).ToList());
+
+                List<int> prohibitedIds = new List<int>();
+                prohibitedIds.AddRange(prohibitedSubstance.Where(x => x.SubstanceId == _id).Select(x => x.ProhibitedSubstanceId).ToList());
+                prohibitedIds.AddRange(prohibitedSubstance.Where(x => x.ProhibitedSubstanceId == _id).Select(x => x.SubstanceId).ToList());
+
+                var selectedSubstances = await _aPIServiceSubstances.Get<List<Substance>>(new SubstanceSearchObject() { ListIds = prohibitedIds.Distinct().ToList().Count > 0 ? prohibitedIds.ToArray() : new int[] { 0 } });
                 substances = substances.Where(x => !selectedSubstances.Select(y => y.Id).Contains(x.Id)).ToList();
                 selectedSubstances.ToList().ForEach(x => clbProhibitedSubstances.Items.Add(x, true));
             }

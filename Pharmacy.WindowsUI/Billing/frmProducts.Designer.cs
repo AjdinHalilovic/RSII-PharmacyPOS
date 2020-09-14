@@ -34,9 +34,6 @@
             this.btnShow = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.productDtoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.baseDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +45,9 @@
             this.substancesNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.attributeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvRowDeleteBtn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.productDtoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.baseDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource1)).BeginInit();
@@ -57,7 +57,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(1017, 11);
+            this.btnAdd.Location = new System.Drawing.Point(1082, 11);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(118, 26);
@@ -77,7 +77,7 @@
             // 
             // btnShow
             // 
-            this.btnShow.Location = new System.Drawing.Point(938, 11);
+            this.btnShow.Location = new System.Drawing.Point(1003, 11);
             this.btnShow.Margin = new System.Windows.Forms.Padding(2);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(76, 26);
@@ -94,7 +94,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(1130, 323);
+            this.groupBox1.Size = new System.Drawing.Size(1193, 323);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Products";
@@ -126,22 +126,10 @@
             this.dgvProducts.ReadOnly = true;
             this.dgvProducts.RowHeadersWidth = 51;
             this.dgvProducts.RowTemplate.Height = 24;
-            this.dgvProducts.Size = new System.Drawing.Size(1126, 306);
+            this.dgvProducts.Size = new System.Drawing.Size(1189, 306);
             this.dgvProducts.TabIndex = 0;
             this.dgvProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellContentClick);
             this.dgvProducts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellDoubleClick);
-            // 
-            // productDtoBindingSource1
-            // 
-            this.productDtoBindingSource1.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
-            // 
-            // baseDtoBindingSource
-            // 
-            this.baseDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.BaseDto);
-            // 
-            // productDtoBindingSource
-            // 
-            this.productDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -242,11 +230,23 @@
             this.dgvRowDeleteBtn.ToolTipText = "Delete";
             this.dgvRowDeleteBtn.UseColumnTextForButtonValue = true;
             // 
+            // productDtoBindingSource1
+            // 
+            this.productDtoBindingSource1.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
+            // 
+            // baseDtoBindingSource
+            // 
+            this.baseDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.BaseDto);
+            // 
+            // productDtoBindingSource
+            // 
+            this.productDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
+            // 
             // frmProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1148, 377);
+            this.ClientSize = new System.Drawing.Size(1211, 377);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtPretraga);
             this.Controls.Add(this.btnShow);
