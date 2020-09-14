@@ -57,11 +57,20 @@
             this.comboCategoryId = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dgvBillItems = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Attribute = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Action = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBillItems)).BeginInit();
             this.SuspendLayout();
             // 
             // errorProvider
@@ -201,6 +210,7 @@
             this.dgvProducts.RowTemplate.Height = 24;
             this.dgvProducts.Size = new System.Drawing.Size(814, 209);
             this.dgvProducts.TabIndex = 1;
+            this.dgvProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductAttributes_CellContentClickAsync);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -304,8 +314,8 @@
             this.dgvRowDeleteBtn.MinimumWidth = 6;
             this.dgvRowDeleteBtn.Name = "dgvRowDeleteBtn";
             this.dgvRowDeleteBtn.ReadOnly = true;
-            this.dgvRowDeleteBtn.Text = "Delete";
-            this.dgvRowDeleteBtn.ToolTipText = "Delete";
+            this.dgvRowDeleteBtn.Text = "Add item";
+            this.dgvRowDeleteBtn.ToolTipText = "Add item";
             this.dgvRowDeleteBtn.UseColumnTextForButtonValue = true;
             this.dgvRowDeleteBtn.Width = 125;
             // 
@@ -321,7 +331,6 @@
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 68;
             this.label1.Text = "Category";
-            this.label1.Click += new System.EventHandler(this.label1_ClickAsync);
             // 
             // comboCategoryId
             // 
@@ -352,11 +361,78 @@
             this.label2.TabIndex = 70;
             this.label2.Text = "Search";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.AutoSize = true;
+            this.groupBox3.Controls.Add(this.dgvBillItems);
+            this.groupBox3.Location = new System.Drawing.Point(885, 76);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Size = new System.Drawing.Size(563, 226);
+            this.groupBox3.TabIndex = 71;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Products";
+            // 
+            // dgvBillItems
+            // 
+            this.dgvBillItems.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvBillItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBillItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.Name,
+            this.Attribute,
+            this.Quantity,
+            this.Action});
+            this.dgvBillItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvBillItems.Location = new System.Drawing.Point(2, 15);
+            this.dgvBillItems.Name = "dgvBillItems";
+            this.dgvBillItems.ReadOnly = true;
+            this.dgvBillItems.Size = new System.Drawing.Size(559, 209);
+            this.dgvBillItems.TabIndex = 1;
+            this.dgvBillItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBillItems_CellContentClick);
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // Name
+            // 
+            this.Name.HeaderText = "Name";
+            this.Name.Name = "Name";
+            this.Name.ReadOnly = true;
+            // 
+            // Attribute
+            // 
+            this.Attribute.DataPropertyName = "Price";
+            this.Attribute.HeaderText = "Price";
+            this.Attribute.Name = "Attribute";
+            this.Attribute.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            // 
+            // Action
+            // 
+            this.Action.HeaderText = "Action";
+            this.Action.Name = "Action";
+            this.Action.ReadOnly = true;
+            this.Action.Text = "Remove";
+            this.Action.ToolTipText = "Remove";
+            this.Action.UseColumnTextForButtonValue = true;
+            // 
             // frmBiling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1236, 572);
+            this.ClientSize = new System.Drawing.Size(1475, 572);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label1);
@@ -367,7 +443,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblBiling);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "frmBiling";
+            //this.Name = "frmBiling";
             this.Text = "Billing";
             this.Load += new System.EventHandler(this.frmBilling_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
@@ -376,6 +452,8 @@
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBillItems)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -396,6 +474,10 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgvProducts;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.BindingSource productDtoBindingSource;
+        private System.Windows.Forms.ComboBox comboCategoryId;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
@@ -407,9 +489,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn substancesNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn attributeNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn dgvRowDeleteBtn;
-        private System.Windows.Forms.BindingSource productDtoBindingSource;
-        private System.Windows.Forms.ComboBox comboCategoryId;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.GroupBox groupBox3;
+        public System.Windows.Forms.DataGridView dgvBillItems;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Attribute;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
+        private System.Windows.Forms.DataGridViewButtonColumn Action;
     }
 }

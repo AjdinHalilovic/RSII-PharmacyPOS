@@ -97,6 +97,7 @@ namespace Pharmacy.WindowsUI.Billing
             var categories = await _aPIServiceCategories.Get<List<Category>>(null);
             var substances = await _aPIServiceSubstances.Get<List<Substance>>(null);
             dgvProducts.AllowUserToAddRows = false;
+            dgvBillItems.AllowUserToAddRows = false;
 
             if (_id.HasValue)
             {
@@ -149,17 +150,45 @@ namespace Pharmacy.WindowsUI.Billing
             comboCategoryId.DisplayMember = "Name";
             comboCategoryId.DataSource = result;
         }
-
-
-      
-
-        private void dgvProductAttributes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvProductAttributes_CellContentClickAsync(object sender, DataGridViewCellEventArgs e)
         {
             var row = dgvProducts.Rows[e.RowIndex];
 
-            if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 10)
             {
-                dgvProducts.Rows.RemoveAt(e.RowIndex);
+                var totalQuantity = int.Parse(row.Cells[4].Value.ToString());
+                if (totalQuantity > 0)
+                {
+                    int rowIndex = -1;
+                    var id = row.Cells[0].Value;
+                    var name = row.Cells[1].Value;
+                    var price = row.Cells[3].Value;
+                    var quantity = 1;
+
+
+                    foreach (DataGridViewRow itemRow in dgvBillItems.Rows)
+                    {
+                        if (itemRow.Cells[0].Value.ToString().Equals(id.ToString()))
+                        {
+                            rowIndex = itemRow.Index;
+                            break;
+                        }
+                    }
+                    if (rowIndex != -1)
+                    {
+
+                        var existingRow = dgvBillItems.Rows[rowIndex];
+                        existingRow.Cells[3].Value = (int)existingRow.Cells[3].Value + 1;
+                        quantity = (int)existingRow.Cells[3].Value;
+
+                    }
+                    else
+                    {
+                        dgvBillItems.Rows.Add(id, name, price, quantity);
+                    }
+
+                    changeProductQuantity(int.Parse(id.ToString()), -1);
+                }
             }
         }
 
@@ -214,9 +243,6 @@ namespace Pharmacy.WindowsUI.Billing
             }
         }
 
-        private async void label1_ClickAsync(object sender, EventArgs e)
-        {
-        }
 
         private async void txtSearch_TextChangedAsync(object sender, EventArgs e)
         {
@@ -237,6 +263,54 @@ namespace Pharmacy.WindowsUI.Billing
             };
             var result = await _aPIServiceProducts.Get<List<ProductDto>>(searchObj);
             dgvProducts.DataSource = new BindingList<ProductDto>(result);
+        }
+
+        private void changeProductQuantity(int productId, int quantity)
+        {
+            List<ProductDto> products = new List<ProductDto>();
+            foreach (DataGridViewRow row in dgvProducts.Rows)
+            {
+                var productAttribute = new ProductDto()
+                {
+                    Id = (int)row.Cells[0].Value,
+                    Name = row.Cells[1].Value?.ToString(),
+                    Code = row.Cells[2].Value?.ToString(),
+                    Price = decimal.Parse(row.Cells[3].Value.ToString()),
+                    Quantity = decimal.Parse(row.Cells[4].Value.ToString()),
+                    Description = row.Cells[5].Value?.ToString(),
+                    MeasurementUnit = row.Cells[6].Value?.ToString(),
+                    Categories = row.Cells[7].Value?.ToString(),
+                    SubstancesNumber = (int)row.Cells[8].Value,
+                    AttributeNumber = (int)row.Cells[9].Value
+                };
+                products.Add(productAttribute);
+            }
+
+            //var searchObj = new ProductSearchObject()
+            //{
+            //    SearchTerm = txtSearch.Text,
+            //    CategoryId = comboCategoryId.SelectedValue != null ? int.Parse(comboCategoryId.SelectedValue.ToString()) : (int?)null
+            //};
+            //var result = await _aPIServiceProducts.Get<List<ProductDto>>(searchObj);
+            products.FirstOrDefault(x => x.Id == productId).Quantity += quantity;
+            dgvProducts.DataSource = new BindingList<ProductDto>(products);
+        }
+
+        private async void dgvBillItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var row = dgvBillItems.Rows[e.RowIndex];
+            var id = row.Cells[0].Value;
+            if (e.ColumnIndex == 4)
+            {
+                row.Cells[3].Value = (int)row.Cells[3].Value - 1;
+                var quantity = (int)row.Cells[3].Value;
+                if (quantity == 0)
+                {
+                    dgvBillItems.Rows.RemoveAt(e.RowIndex);
+                }
+
+                changeProductQuantity(int.Parse(id.ToString()), 1);
+            }
         }
     }
 }
