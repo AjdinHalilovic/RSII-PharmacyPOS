@@ -102,6 +102,14 @@ namespace Pharmacy.API
 
             services.AddSingleton(_appSettingsConfiguration);
             services.AddSingleton(_appSettingsConfiguration.Database);
+            _appSettingsConfiguration.Token = new TokenConfiguration()
+            {
+                Issuer = "https://localhost:44370",
+                Audience = "https://localhost:44370",
+                SecurityString = "E48VLW8JF8UTMPZNR801QD9DPAZ75625HNU59YSU",
+                AccessExpiresInMinutes = 20,
+                RefreshExpiresInMinutes = 1440
+            };
             services.AddSingleton(_appSettingsConfiguration.Token); //docker ex
 
             #endregion
