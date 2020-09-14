@@ -102,7 +102,7 @@ namespace Pharmacy.API
 
             services.AddSingleton(_appSettingsConfiguration);
             services.AddSingleton(_appSettingsConfiguration.Database);
-            services.AddSingleton(_appSettingsConfiguration.Token);
+            services.AddSingleton(_appSettingsConfiguration.Token); //docker ex
 
             #endregion
 
