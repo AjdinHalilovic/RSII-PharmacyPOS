@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pharmacy.API.Controllers;
 using Pharmacy.API.Filters;
+using Pharmacy.Core.Constants;
 using Pharmacy.Core.Constants.Configurations;
 using Pharmacy.Core.Entities.Base;
 using Pharmacy.Core.Entities.Base.DTO;
@@ -56,11 +57,12 @@ namespace Pharmacy.API.Areas.Access
                     };
                     DataUnitOfWork.BaseUow.UsersRepository.Add(user);
                     await DataUnitOfWork.BaseUow.UsersRepository.SaveChangesAsync();
+
                     #endregion
 
                     #region Pharmacy data
                     Pharmacy.Core.Entities.Base.Pharmacy pharmacy = null;
-                    var existingPharmacy = DataUnitOfWork.BaseUow.PharmaciesRepository.GetByUniqueIdentifier(model.PharmacyUniqueIdentifier);
+                    var existingPharmacy = await DataUnitOfWork.BaseUow.PharmaciesRepository.GetByUniqueIdentifier(model.PharmacyUniqueIdentifier);
                     if (existingPharmacy == null)
                     {
                         pharmacy = new Pharmacy.Core.Entities.Base.Pharmacy()
@@ -80,7 +82,7 @@ namespace Pharmacy.API.Areas.Access
                         CountryId = model.CountryId.GetValueOrDefault(),
                         CityId = model.CityId.GetValueOrDefault(),
                         Address = model.Address,
-                        Central = model.CentralBranch
+                        Central = existingPharmacy == null ? model.CentralBranch : false
                     };
                     DataUnitOfWork.BaseUow.PharmacyBranchesRepository.Add(pharmacyBranch);
                     await DataUnitOfWork.BaseUow.PharmacyBranchesRepository.SaveChangesAsync();
@@ -97,6 +99,16 @@ namespace Pharmacy.API.Areas.Access
                     Inventory inventory = new Inventory() { PharmacyBranchId = pharmacyBranch.Id };
                     DataUnitOfWork.BaseUow.InventoriesRepository.Add(inventory);
                     await DataUnitOfWork.BaseUow.InventoriesRepository.SaveChangesAsync();
+
+                    UserRole userRole = new UserRole()
+                    {
+                        PharmacyBranchId = pharmacyBranch.Id,
+                        PharmacyId = existingPharmacy?.Id ?? pharmacy.Id,
+                        RoleId = existingPharmacy == null ? (int)Enumerations.WebRole.SuperAdministrator : (int)Enumerations.WebRole.Administrator,
+                        UserId = user.Id
+                    };
+                    DataUnitOfWork.BaseUow.UserRolesRepository.Add(userRole);
+                    await DataUnitOfWork.BaseUow.UserRolesRepository.SaveChangesAsync();
 
                     #endregion
                     DataUnitOfWork.BaseUow.CommitTransaction();
