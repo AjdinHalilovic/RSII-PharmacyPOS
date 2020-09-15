@@ -1,4 +1,6 @@
-Za pokretanje aplikacije prethodno je potrebno na lokalnom postgresu izvrsiti skriptu local_db_script
+Za pokretanje aplikacije prethodno je potrebno:
+
+uraditi backup sa fajla "160048" ili na lokalnoj masini izvrsiti skriptu local_db_script
 
 te unutar appsettins fajla upisati u connection string password lokalne masine postgresa
 
