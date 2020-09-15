@@ -68,7 +68,7 @@ namespace Pharmacy.WindowsUI.Billing
                 //valuesY.Add(15);
                 //valuesX.Add(DateTime.Now.AddDays(2));
 
-                chartSalesByTime.Series["Series1"].Points.DataBindXY(valuesX, valuesY);
+                chartSalesByTime.Series["Prihod"].Points.DataBindXY(valuesX, valuesY);
             }
             catch (Exception ex)
             {
