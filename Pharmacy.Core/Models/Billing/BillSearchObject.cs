@@ -10,5 +10,8 @@ namespace Pharmacy.Core.Models.Billing
     public class BillSearchObject : BaseSearchObject
     {
         public int? UserId { get; set; }
+
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
     }
 }

@@ -41,6 +41,17 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
                 query = query.Where(x => x.Number.ToString().ToLower().Equals(search.SearchTerm.ToLower()) );
             }
 
+            if (search.DateFrom.HasValue)
+            {
+                query = query.Where(x => x.CreatedDateTime >= search.DateFrom);
+            }
+
+            if (search.DateTo.HasValue)
+            {
+                query = query.Where(x => x.CreatedDateTime <= search.DateTo);
+            }
+
+
             query = query.Where(x => !x.DeletedDateTime.HasValue);
 
             var list = await query.Select(x => new BillDto()
@@ -49,6 +60,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
                 CreatedDateTime = x.CreatedDateTime,
                 Number = x.Number.ToString(),
                 Total = x.Total.ToString(),
+                Amount = x.Total,
                 UserFullName = $"{x.User.Person.FirstName} {x.User.Person.LastName}"
             }).ToListAsync();
 

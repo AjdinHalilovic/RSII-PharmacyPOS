@@ -46,8 +46,7 @@ namespace Pharmacy.WindowsUI
             }
             catch (FlurlHttpException ex)
             {
-                var message = await ex.GetResponseStringAsync();
-                MessageBox.Show(message);
+                MessageBox.Show("Incorect username or password");
             }
         }
 

@@ -1,5 +1,7 @@
 CREATE DATABASE "160048";
 
+-- CONECT TO DATABASE 160048
+
 create table public."Countries"
 (
     "Id"              serial       not null
@@ -10,7 +12,7 @@ create table public."Countries"
 );
 
 alter table public."Countries"
-    owner to ajdinuser;
+    owner to postgres;
 
 create table public."Cities"
 (
@@ -27,7 +29,7 @@ create table public."Cities"
 );
 
 alter table public."Cities"
-    owner to ajdinuser;
+    owner to postgres;
 
 create index "IX_Cities_CountryId"
     on public."Cities" ("CountryId");
@@ -43,7 +45,7 @@ create table public."MeasurementUnits"
 );
 
 alter table public."MeasurementUnits"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index measurementunits_id_uindex
     on public."MeasurementUnits" ("Id");
@@ -70,7 +72,7 @@ create table public."Persons"
 );
 
 alter table public."Persons"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index """persons""_""id""_uindex"
     on public."Persons" ("Id");
@@ -87,7 +89,7 @@ create table public."Roles"
 );
 
 alter table public."Roles"
-    owner to ajdinuser;
+    owner to postgres;
 
 create table public."Users"
 (
@@ -113,7 +115,7 @@ create table public."Users"
 );
 
 alter table public."Users"
-    owner to ajdinuser;
+    owner to postgres;
 
 create table public."Pharmacies"
 (
@@ -130,7 +132,7 @@ create table public."Pharmacies"
 );
 
 alter table public."Pharmacies"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index pharmacies_id_uindex
     on public."Pharmacies" ("Id");
@@ -165,7 +167,7 @@ create table public."PharmacyBranches"
 );
 
 alter table public."PharmacyBranches"
-    owner to ajdinuser;
+    owner to postgres;
 
 create table public."Attributes"
 (
@@ -181,7 +183,7 @@ create table public."Attributes"
 );
 
 alter table public."Attributes"
-    owner to ajdinuser;
+    owner to postgres;
 
 create table public."AttributeOptions"
 (
@@ -197,7 +199,7 @@ create table public."AttributeOptions"
 );
 
 alter table public."AttributeOptions"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index attributeoptions_id_uindex
     on public."AttributeOptions" ("Id");
@@ -226,7 +228,7 @@ create table "public"."Bills"
 );
 
 alter table public."Bills"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index bills_id_uindex
     on public."Bills" ("Id");
@@ -245,7 +247,7 @@ create table public."Categories"
 );
 
 alter table public."Categories"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index categories_id_uindex
     on public."Categories" ("Id");
@@ -263,7 +265,7 @@ create table public."Inventories"
 );
 
 alter table public."Inventories"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index inventory_id_uindex
     on public."Inventories" ("Id");
@@ -287,7 +289,7 @@ create table public."InventoryEntries"
 );
 
 alter table public."InventoryEntries"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index inventoryentires_id_uindex
     on public."InventoryEntries" ("Id");
@@ -314,7 +316,7 @@ create table public."InventoryIntermediates"
 );
 
 alter table public."InventoryIntermediates"
-    owner to ajdinuser;
+    owner to postgres;
 
 create table public."InventoryIntermediateProducts"
 (
@@ -331,7 +333,7 @@ create table public."InventoryIntermediateProducts"
 );
 
 alter table public."InventoryIntermediateProducts"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index inventoryintermediateproducts_id_uindex
     on public."InventoryIntermediateProducts" ("Id");
@@ -358,7 +360,7 @@ create table public."PharmacyBranchUsers"
 );
 
 alter table public."PharmacyBranchUsers"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index pharmacybranchusers_id_uindex
     on public."PharmacyBranchUsers" ("Id");
@@ -390,7 +392,7 @@ create table public."Products"
 );
 
 alter table public."Products"
-    owner to ajdinuser;
+    owner to postgres;
 
 create table public."BillItems"
 (
@@ -412,7 +414,7 @@ create table public."BillItems"
 );
 
 alter table public."BillItems"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index billitems_id_uindex
     on public."BillItems" ("Id");
@@ -435,7 +437,7 @@ create table public."InventoryProducts"
 );
 
 alter table public."InventoryProducts"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index inventoryproducts_id_uindex
     on public."InventoryProducts" ("Id");
@@ -461,7 +463,7 @@ create table public."ProductAttributes"
 );
 
 alter table public."ProductAttributes"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index productattributes_id_uindex
     on public."ProductAttributes" ("Id");
@@ -483,7 +485,7 @@ create table public."ProductCategories"
 );
 
 alter table public."ProductCategories"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index productcategories_id_uindex
     on public."ProductCategories" ("Id");
@@ -505,7 +507,7 @@ create table public."Substances"
 );
 
 alter table public."Substances"
-    owner to ajdinuser;
+    owner to postgres;
 
 create table public."ProductSubstances"
 (
@@ -524,7 +526,7 @@ create table public."ProductSubstances"
 );
 
 alter table public."ProductSubstances"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index productsubstances_id_uindex
     on public."ProductSubstances" ("Id");
@@ -546,7 +548,7 @@ create table public."ProhibitedSubstances"
 );
 
 alter table public."ProhibitedSubstances"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index prohibitedsubstances_id_uindex
     on public."ProhibitedSubstances" ("Id");
@@ -579,7 +581,7 @@ create table public."UserRoles"
 );
 
 alter table public."UserRoles"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index userroles_id_uindex
     on public."UserRoles" ("Id");
@@ -602,7 +604,7 @@ create table public."InventoryEntryProducts"
 );
 
 alter table public."InventoryEntryProducts"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index inventoryentryproducts_id_uindex
     on public."InventoryEntryProducts" ("Id");
@@ -627,7 +629,7 @@ create table public."WriteOffInventoryDocuments"
 );
 
 alter table public."WriteOffInventoryDocuments"
-    owner to ajdinuser;
+    owner to postgres;
 
 create unique index writeoffinventorystatuses_id_uindex
     on public."WriteOffInventoryDocuments" ("Id");
@@ -694,8 +696,8 @@ insert into "Products" ("Id", "PharmacyBranchId", "Name", "Code", "Description",
 insert into "Products" ("Id", "PharmacyBranchId", "Name", "Code", "Description", "DeletedDateTime", "MeasurementUnitId", "Price") values (3, 2, 'Paracetamol', 'PC', 'desc', null, 1, 2.5);
 
 insert into "InventoryProducts" ("Id", "InventoryId", "ProductId", "Quantity", "DeletedDateTime") values (1, 1, 2, 10, null);
-insert into "InventoryProducts" ("Id", "InventoryId", "ProductId", "Quantity", "DeletedDateTime") values (3, 1, 1, 15, null);
-insert into "InventoryProducts" ("Id", "InventoryId", "ProductId", "Quantity", "DeletedDateTime") values (2, 1, 3, 19, null);
+insert into "InventoryProducts" ("Id", "InventoryId", "ProductId", "Quantity", "DeletedDateTime") values (3, 1, 1, 12, null);
+insert into "InventoryProducts" ("Id", "InventoryId", "ProductId", "Quantity", "DeletedDateTime") values (2, 1, 3, 16, null);
 
 insert into "ProductAttributes" ("Id", "ProductId", "AttributeId", "AttributeOptionId", "DeletedDateTime") values (1, 1, 1, 1, null);
 insert into "ProductAttributes" ("Id", "ProductId", "AttributeId", "AttributeOptionId", "DeletedDateTime") values (2, 2, 1, 1, '2020-08-20 12:31:10.109881');
@@ -736,7 +738,14 @@ insert into "InventoryEntryProducts" ("Id", "InventoryEntryId", "ProductId", "Qu
 insert into "WriteOffInventoryDocuments" ("Id", "InventoryProductId", "WriteOffDateTime", "Quantity", "DeletedDateTime", "UserId", "Reason") values (1, 2, '2020-09-13 20:53:31.538176', 2, null, 3, 'Isteko rok');
 insert into "WriteOffInventoryDocuments" ("Id", "InventoryProductId", "WriteOffDateTime", "Quantity", "DeletedDateTime", "UserId", "Reason") values (2, 2, '2020-09-13 20:56:22.613651', 4, null, 3, 'Rok opet');
 
+insert into "Bills" ("Id", "PharmacyBranchId", "Number", "CreatedDateTime", "CancelDateTime", "Total", "DeletedDateTime", "AddUserId") values (1, 2, 0, '2020-09-14 11:34:46.706762', null, 10, null, 3);
+insert into "Bills" ("Id", "PharmacyBranchId", "Number", "CreatedDateTime", "CancelDateTime", "Total", "DeletedDateTime", "AddUserId") values (2, 2, 1, '2020-09-15 11:37:31.439415', null, 12.5, null, 3);
+insert into "Bills" ("Id", "PharmacyBranchId", "Number", "CreatedDateTime", "CancelDateTime", "Total", "DeletedDateTime", "AddUserId") values (3, 2, 2, '2020-09-19 12:07:16.919529', null, 5, null, 4);
 
+insert into "BillItems" ("Id", "BillId", "ProductId", "Quantity", "UnitPrice", "Total", "DeletedDateTime") values (1, 1, 2, 2, 5, 10, null);
+insert into "BillItems" ("Id", "BillId", "ProductId", "Quantity", "UnitPrice", "Total", "DeletedDateTime") values (2, 2, 2, 1, 5, 5, null);
+insert into "BillItems" ("Id", "BillId", "ProductId", "Quantity", "UnitPrice", "Total", "DeletedDateTime") values (3, 2, 1, 1, 7.5, 7.5, null);
+insert into "BillItems" ("Id", "BillId", "ProductId", "Quantity", "UnitPrice", "Total", "DeletedDateTime") values (4, 3, 3, 2, 2.5, 5, null);
 
 
 create function "public"."fn_users_getloginbyusertokens"("pAccessToken" text, "pRefreshToken" text)

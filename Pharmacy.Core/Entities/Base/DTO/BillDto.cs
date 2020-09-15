@@ -16,5 +16,6 @@ namespace Pharmacy.Core.Entities.Base.DTO
         public DateTime CreatedDateTime { get; set; }
         public string CreatedDateTimeFormated => $"{CreatedDateTime.ToShortDateString()} {CreatedDateTime.ToShortTimeString()}";
         public string Total { get; set; }
+        public decimal Amount { get; set; }
     }
 }

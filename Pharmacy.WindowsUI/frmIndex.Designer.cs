@@ -31,7 +31,6 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuItemFullName = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.billingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +48,6 @@
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemFullName,
             this.signOutToolStripMenuItem,
-            this.dashboardToolStripMenuItem,
             this.billingToolStripMenuItem,
             this.reportsToolStripMenuItem,
             this.usersToolStripMenuItem,
@@ -80,16 +78,6 @@
             this.signOutToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
             // 
-            // dashboardToolStripMenuItem
-            // 
-            this.dashboardToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
-            this.dashboardToolStripMenuItem.Text = "Dashboard";
-            this.dashboardToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
-            // 
             // billingToolStripMenuItem
             // 
             this.billingToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
@@ -109,6 +97,7 @@
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
             this.reportsToolStripMenuItem.Text = "Reports";
             this.reportsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.reportsToolStripMenuItem.Click += new System.EventHandler(this.reportsToolStripMenuItem_Click);
             // 
             // usersToolStripMenuItem
             // 
@@ -185,7 +174,6 @@
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem menuItemFullName;
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dashboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem billingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
