@@ -1,3 +1,5 @@
+Za pokretanje aplikacije prethodno je potrebno na lokalnom postgresu izvrsiti skriptu local_db_script
+
 Username | Password
 
 admin | test ,
