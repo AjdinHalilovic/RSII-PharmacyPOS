@@ -80,7 +80,7 @@ namespace Pharmacy.API
             if (!_hostingEnvironment.IsDevelopment())
                 services.Configure<MvcOptions>(options => {
                     options.EnableEndpointRouting = false;
-                    options.Filters.Add(new RequireHttpsAttribute());
+                    //options.Filters.Add(new RequireHttpsAttribute());
                 });
         }
 

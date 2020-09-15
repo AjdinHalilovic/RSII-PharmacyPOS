@@ -29,7 +29,7 @@ namespace Pharmacy.API.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            var user = DataUnitOfWork.BaseUow.UsersRepository.GetById(1);
+            //var user = DataUnitOfWork.BaseUow.UsersRepository.GetById(1);
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
