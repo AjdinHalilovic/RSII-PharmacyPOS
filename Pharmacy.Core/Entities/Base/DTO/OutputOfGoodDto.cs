@@ -51,5 +51,21 @@ namespace Pharmacy.Core.Entities.Base.DTO
 
             return product;
         }
+
+        public static implicit operator OutputOfGoodDto(BillItemDto model)
+        {
+            OutputOfGoodDto product = new OutputOfGoodDto()
+            {
+                Id = model.Id,
+                CreatedDateTime = model.CreatedDateTime,
+                Product = model.Product,
+                ProductCode = model.ProductCode,
+                ProductId = model.ProductId,
+                Quantity = model.Quantity,
+                Type = model.Type
+            };
+
+            return product;
+        }
     }
 }

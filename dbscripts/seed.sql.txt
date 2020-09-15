@@ -203,20 +203,24 @@ create unique index attributeoptions_id_uindex
 create unique index attributes_id_uindex
     on public."Attributes" ("Id");
 
-create table public."Bills"
+create table "public"."Bills"
 (
     "Id"               serial    not null
-        constraint bills_pk
+        constraint "bills_pk"
             primary key,
     "PharmacyBranchId" integer   not null
         constraint "FK_Bills_PharmacyBranches_PharmacyBranchId"
-            references public."PharmacyBranches"
+            references "public"."PharmacyBranches"
             on delete restrict,
-    "Number"           text      not null,
+    "Number"           integer   not null,
     "CreatedDateTime"  timestamp not null,
     "CancelDateTime"   timestamp,
     "Total"            numeric   not null,
-    "DeletedDateTime"  timestamp
+    "DeletedDateTime"  timestamp,
+    "AddUserId"        integer   not null
+        constraint "FK_Bills_Users_AddUserId"
+            references "public"."Users"
+            on delete restrict
 );
 
 alter table public."Bills"
@@ -399,7 +403,7 @@ create table public."BillItems"
         constraint "FK_BillITems_Products_ProductId"
             references public."Products"
             on delete restrict,
-    "Quantity"        numeric not null,
+    "Quantity"        integer not null,
     "UnitPrice"       numeric not null,
     "Total"           numeric not null,
     "DeletedDateTime" timestamp

@@ -19,7 +19,7 @@ namespace Pharmacy.Mobile.Views
 
         async void GetSalesRevanue(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+            await Navigation.PushAsync(new SalesRevanuePage());
         }
         async void GetGoodsEntry(object sender, EventArgs e)
         {

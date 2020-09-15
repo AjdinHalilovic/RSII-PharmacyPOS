@@ -6,6 +6,8 @@ using Pharmacy.Infrastructure.Repositories.Base.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Pharmacy.Core.Models.Billing;
+using Pharmacy.Infrastracture.Helpers;
+using Pharmacy.Infrastracture;
 
 namespace Pharmacy.Infrastructure.Repositories.Base.Repository
 {
@@ -38,6 +40,12 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         public async Task<IEnumerable<ProductSubstance>> GetByProductIdsAsync(List<int> productIds)
         {
             return await Context.ProductSubstances.Include(x => x.Product).Where(x => productIds.Contains(x.ProductId)).ToListAsync();
+        }
+
+        public async Task<bool> CheckProhibitedSubstances(ProductSubstanceSearchObject search)
+        {
+            var productIds = string.Join(",", search.ProhibitedProductIds);
+            return await DbConnection.QueryFunctionFirstOrDefaultAsync<bool>(DbObjects.BaseDbObjects.Functions.ProductSubstances.productsubstances_anyprohibitedsubstance, new { pProductId = search.ProductId, pProductIds = productIds });
         }
 
 

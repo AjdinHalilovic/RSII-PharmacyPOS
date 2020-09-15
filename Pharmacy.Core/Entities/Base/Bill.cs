@@ -9,11 +9,14 @@ namespace Pharmacy.Core.Entities.Base
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        
+
+        [Required, ForeignKey(nameof(User))]
+        public int AddUserId { get; set; }
+
         [Required, ForeignKey(nameof(PharmacyBranch))]
         public int PharmacyBranchId { get; set; }
         [Required]
-        public string Number { get; set; }
+        public int Number { get; set; }
         [Required]
         public DateTime CreatedDateTime { get; set; }
         public DateTime? CancelDateTime { get; set; }
@@ -22,6 +25,7 @@ namespace Pharmacy.Core.Entities.Base
         public DateTime? DeletedDateTime { get; set; }
 
         public PharmacyBranch PharmacyBranch { get; set; }
+        public User User { get; set; }
     }
 
   

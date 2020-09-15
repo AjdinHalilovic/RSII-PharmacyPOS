@@ -45,7 +45,6 @@ namespace Pharmacy.Mobile.ViewModels
 
         async Task Login()
         {
-            IsBusy = true;
 
             LoginRequest request = new LoginRequest()
             {
@@ -65,7 +64,6 @@ namespace Pharmacy.Mobile.ViewModels
             }
             catch (FlurlHttpException ex)
             {
-                IsBusy = false;
                 await Application.Current.MainPage.DisplayAlert("Greška", "Niste authentificirani", "OK");
             }
         }

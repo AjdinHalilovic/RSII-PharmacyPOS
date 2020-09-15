@@ -14,6 +14,6 @@ namespace Pharmacy.Core.Entities.Base.DTO
         public int SubstancesNumber { get; set; }
         public int AttributeNumber { get; set; }
         public decimal Price { get; set; }
-        public decimal Quantity { get; set; }
+        public int Quantity { get; set; }
     }
 }

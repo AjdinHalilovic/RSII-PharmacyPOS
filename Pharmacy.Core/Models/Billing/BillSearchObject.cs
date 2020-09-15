@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pharmacy.Core.Models.Users
+namespace Pharmacy.Core.Models.Billing
 {
-    public class PersonSearchObject : BaseSearchObject
+    public class BillSearchObject : BaseSearchObject
     {
-        public string FullName { get; set; }
-        public int? PersonId { get; set; }
+        public int? UserId { get; set; }
     }
 }

@@ -44,5 +44,26 @@ namespace Pharmacy.API.Areas.Billing
                 throw;
             }
         }
+
+        [HttpGet,Route("CheckProhibitedSubstances")]
+        public async Task<IActionResult> CheckProhibitedSubstances([FromQuery] ProductSubstanceSearchObject search)
+        {
+            try
+            {
+                if(search.ProhibitedProductIds == null)
+                {
+                    return Ok(false);
+                }
+                var prohibited = await DataUnitOfWork.BaseUow.ProductSubstancesRepository.CheckProhibitedSubstances(search);
+
+                return Ok(prohibited);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest();
+                throw;
+            }
+        }
     }
 }

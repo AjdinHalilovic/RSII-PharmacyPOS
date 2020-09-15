@@ -34,6 +34,10 @@ namespace Pharmacy.API.Areas.Users
         {
             try
             {
+                if(search == null)
+                {
+                    search = new PersonSearchObject();
+                }
                 search.PharmacyBranchId = ClaimUser.PharmacyBranchId;
                 var persons = await DataUnitOfWork.BaseUow.PersonsRepository.GetAllDtosAsync(search);
 

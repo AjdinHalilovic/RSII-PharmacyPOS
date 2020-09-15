@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flurl.Http;
+using Pharmacy.Mobile.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,9 @@ namespace Pharmacy.Mobile.Views
         public LoginPage()
         {
             InitializeComponent();
+
+
         }
+
     }
 }

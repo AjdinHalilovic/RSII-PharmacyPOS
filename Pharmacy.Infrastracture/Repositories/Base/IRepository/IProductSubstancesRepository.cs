@@ -9,5 +9,6 @@ namespace Pharmacy.Infrastructure.Repositories.Base.IRepository
     {
         Task<IEnumerable<ProductSubstance>> GetByParametersAsync(SubstanceSearchObject search);
         Task<IEnumerable<ProductSubstance>> GetByProductIdsAsync(List<int> productIds);
+        Task<bool> CheckProhibitedSubstances(ProductSubstanceSearchObject search);
     }
 }

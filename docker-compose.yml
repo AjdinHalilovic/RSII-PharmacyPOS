@@ -13,7 +13,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 58555:5050     
+      - 58643:5050     
     environment:
       DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=160048;username=ajdinuser;password=ajdinuser"
     networks:

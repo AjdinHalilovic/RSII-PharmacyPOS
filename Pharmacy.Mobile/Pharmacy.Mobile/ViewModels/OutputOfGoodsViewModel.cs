@@ -20,6 +20,7 @@ namespace Pharmacy.Mobile.ViewModels
     {
         private readonly APIService _writeOffInventoryDocumentsService = new APIService("WriteOffInventoryDocuments");
         private readonly APIService _inventoryIntermediateProductsService = new APIService("InventoryIntermediateProducts");
+        private readonly APIService _billItemsService = new APIService("BillItems");
 
         public ObservableCollection<OutputOfGoodDto> Items { get; set; } = new ObservableCollection<OutputOfGoodDto>();
         public Command LoadItemsCommand { get; set; }
@@ -61,6 +62,9 @@ namespace Pharmacy.Mobile.ViewModels
                 InventoryIntermediateProductsSearchObject searchIntermediate = new InventoryIntermediateProductsSearchObject() { SearchTerm = SearchTerm, FromInventoryProducts = true };
                 var intermediateProducts = await _inventoryIntermediateProductsService.Get<List<InventoryIntermediateProductDto>>(searchIntermediate);
 
+                BaseSearchObject searchBillItems = new BaseSearchObject() { SearchTerm = SearchTerm };
+                var billItems = await _billItemsService.Get<List<BillItemDto>>(search);
+
                 Items.Clear();
                 foreach (var item in writeOffProducts)
                 {
@@ -68,6 +72,11 @@ namespace Pharmacy.Mobile.ViewModels
                 }
 
                 foreach (var item in intermediateProducts)
+                {
+                    Items.Add(item);
+                }
+
+                foreach (var item in billItems)
                 {
                     Items.Add(item);
                 }
