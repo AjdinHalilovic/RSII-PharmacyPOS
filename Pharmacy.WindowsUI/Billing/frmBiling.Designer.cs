@@ -35,18 +35,8 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.measurementUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.substancesNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.attributeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvRowDeleteBtn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.productDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.comboCategoryId = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -60,12 +50,22 @@
             this.Action = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.measurementUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.substancesNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attributeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBillItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // errorProvider
@@ -144,34 +144,6 @@
             this.dgvProducts.TabIndex = 1;
             this.dgvProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductAttributes_CellContentClickAsync);
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            this.idDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // codeDataGridViewTextBoxColumn
-            // 
-            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            this.codeDataGridViewTextBoxColumn.HeaderText = "Code";
-            this.codeDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
-            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codeDataGridViewTextBoxColumn.Width = 125;
-            // 
             // Price
             // 
             this.Price.DataPropertyName = "Price";
@@ -180,65 +152,6 @@
             this.Price.Name = "Price";
             this.Price.ReadOnly = true;
             this.Price.Width = 125;
-            // 
-            // quantityDataGridViewTextBoxColumn
-            // 
-            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
-            this.quantityDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.descriptionDataGridViewTextBoxColumn.Visible = false;
-            this.descriptionDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // measurementUnitDataGridViewTextBoxColumn
-            // 
-            this.measurementUnitDataGridViewTextBoxColumn.DataPropertyName = "MeasurementUnit";
-            this.measurementUnitDataGridViewTextBoxColumn.HeaderText = "MeasurementUnit";
-            this.measurementUnitDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.measurementUnitDataGridViewTextBoxColumn.Name = "measurementUnitDataGridViewTextBoxColumn";
-            this.measurementUnitDataGridViewTextBoxColumn.ReadOnly = true;
-            this.measurementUnitDataGridViewTextBoxColumn.Visible = false;
-            this.measurementUnitDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // categoriesDataGridViewTextBoxColumn
-            // 
-            this.categoriesDataGridViewTextBoxColumn.DataPropertyName = "Categories";
-            this.categoriesDataGridViewTextBoxColumn.HeaderText = "Categories";
-            this.categoriesDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.categoriesDataGridViewTextBoxColumn.Name = "categoriesDataGridViewTextBoxColumn";
-            this.categoriesDataGridViewTextBoxColumn.ReadOnly = true;
-            this.categoriesDataGridViewTextBoxColumn.Visible = false;
-            this.categoriesDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // substancesNumberDataGridViewTextBoxColumn
-            // 
-            this.substancesNumberDataGridViewTextBoxColumn.DataPropertyName = "SubstancesNumber";
-            this.substancesNumberDataGridViewTextBoxColumn.HeaderText = "SubstancesNumber";
-            this.substancesNumberDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.substancesNumberDataGridViewTextBoxColumn.Name = "substancesNumberDataGridViewTextBoxColumn";
-            this.substancesNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            this.substancesNumberDataGridViewTextBoxColumn.Visible = false;
-            this.substancesNumberDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // attributeNumberDataGridViewTextBoxColumn
-            // 
-            this.attributeNumberDataGridViewTextBoxColumn.DataPropertyName = "AttributeNumber";
-            this.attributeNumberDataGridViewTextBoxColumn.HeaderText = "AttributeNumber";
-            this.attributeNumberDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.attributeNumberDataGridViewTextBoxColumn.Name = "attributeNumberDataGridViewTextBoxColumn";
-            this.attributeNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            this.attributeNumberDataGridViewTextBoxColumn.Visible = false;
-            this.attributeNumberDataGridViewTextBoxColumn.Width = 125;
             // 
             // dgvRowDeleteBtn
             // 
@@ -250,10 +163,6 @@
             this.dgvRowDeleteBtn.ToolTipText = "Add item";
             this.dgvRowDeleteBtn.UseColumnTextForButtonValue = true;
             this.dgvRowDeleteBtn.Width = 125;
-            // 
-            // productDtoBindingSource
-            // 
-            this.productDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
             // 
             // label1
             // 
@@ -272,7 +181,7 @@
             this.comboCategoryId.Name = "comboCategoryId";
             this.comboCategoryId.Size = new System.Drawing.Size(392, 21);
             this.comboCategoryId.TabIndex = 67;
-            this.comboCategoryId.ValueMemberChanged += new System.EventHandler(this.comboCategoryId_ValueMemberChangedAsync);
+            this.comboCategoryId.SelectedValueChanged += new System.EventHandler(this.comboCategoryId_ValueMemberChangedAsync);
             // 
             // txtSearch
             // 
@@ -379,6 +288,97 @@
             this.lblTotal.TabIndex = 73;
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            this.idDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // codeDataGridViewTextBoxColumn
+            // 
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn.HeaderText = "Code";
+            this.codeDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.codeDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // quantityDataGridViewTextBoxColumn
+            // 
+            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
+            this.quantityDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.descriptionDataGridViewTextBoxColumn.Visible = false;
+            this.descriptionDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // measurementUnitDataGridViewTextBoxColumn
+            // 
+            this.measurementUnitDataGridViewTextBoxColumn.DataPropertyName = "MeasurementUnit";
+            this.measurementUnitDataGridViewTextBoxColumn.HeaderText = "MeasurementUnit";
+            this.measurementUnitDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.measurementUnitDataGridViewTextBoxColumn.Name = "measurementUnitDataGridViewTextBoxColumn";
+            this.measurementUnitDataGridViewTextBoxColumn.ReadOnly = true;
+            this.measurementUnitDataGridViewTextBoxColumn.Visible = false;
+            this.measurementUnitDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // categoriesDataGridViewTextBoxColumn
+            // 
+            this.categoriesDataGridViewTextBoxColumn.DataPropertyName = "Categories";
+            this.categoriesDataGridViewTextBoxColumn.HeaderText = "Categories";
+            this.categoriesDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.categoriesDataGridViewTextBoxColumn.Name = "categoriesDataGridViewTextBoxColumn";
+            this.categoriesDataGridViewTextBoxColumn.ReadOnly = true;
+            this.categoriesDataGridViewTextBoxColumn.Visible = false;
+            this.categoriesDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // substancesNumberDataGridViewTextBoxColumn
+            // 
+            this.substancesNumberDataGridViewTextBoxColumn.DataPropertyName = "SubstancesNumber";
+            this.substancesNumberDataGridViewTextBoxColumn.HeaderText = "SubstancesNumber";
+            this.substancesNumberDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.substancesNumberDataGridViewTextBoxColumn.Name = "substancesNumberDataGridViewTextBoxColumn";
+            this.substancesNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.substancesNumberDataGridViewTextBoxColumn.Visible = false;
+            this.substancesNumberDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // attributeNumberDataGridViewTextBoxColumn
+            // 
+            this.attributeNumberDataGridViewTextBoxColumn.DataPropertyName = "AttributeNumber";
+            this.attributeNumberDataGridViewTextBoxColumn.HeaderText = "AttributeNumber";
+            this.attributeNumberDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.attributeNumberDataGridViewTextBoxColumn.Name = "attributeNumberDataGridViewTextBoxColumn";
+            this.attributeNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.attributeNumberDataGridViewTextBoxColumn.Visible = false;
+            this.attributeNumberDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // productDtoBindingSource
+            // 
+            this.productDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
+            // 
             // frmBiling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -402,9 +402,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBillItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
