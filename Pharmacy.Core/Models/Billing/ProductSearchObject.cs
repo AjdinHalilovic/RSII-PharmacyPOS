@@ -9,7 +9,6 @@ namespace Pharmacy.Core.Models.Billing
 {
     public class ProductSearchObject : BaseSearchObject
     {
-        public int PharmacyBranchId { get; set; }
         public int? CategoryId { get; set; }
     }
 }

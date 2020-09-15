@@ -8,18 +8,18 @@ services:
   dockerapi:
     image: dockerapi:latest
     depends_on:
-      - "postgres_image"
+      - "postgres_image1"
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - 58643:5050     
     environment:
-      DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=160048;username=ajdinuser;password=ajdinuser"
+      DB_CONNECTION_STRING: "host=postgres_image1;port=5432;database=160048;username=ajdinuser;password=ajdinuser"
     networks:
       - dockerapi-dev  
   
-  postgres_image:
+  postgres_image1:
     image: postgres:latest
     ports:
       - "5432"
