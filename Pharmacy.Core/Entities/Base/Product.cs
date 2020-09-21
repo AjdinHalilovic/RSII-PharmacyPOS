@@ -19,7 +19,7 @@ namespace Pharmacy.Core.Entities.Base
         public string Description { get; set; }
         [Required, ForeignKey(nameof(MeasurementUnit))]
         public int MeasurementUnitId { get; set; }
-        [Required]
+        [Required, Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
         public DateTime? DeletedDateTime { get; set; }

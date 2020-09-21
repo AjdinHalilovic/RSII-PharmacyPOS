@@ -1,40 +1,34 @@
-version: '3.4'
-
-networks:
-  dockerapi-dev:
-    driver: bridge 
-
+  
+version: '3'
 services:
-  dockerapi:
-    image: dockerapi:latest
-    depends_on:
-      - "postgres_image1"
+#mssql docker
+  pharmacy-sql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=QWElkj132!
+      - MSSQL_PID=Developer
+    ports:
+      - 1401:1433
+    networks:
+      - pharmacynet
+
+  fitbody-api:
+    restart: unless-stopped
     build:
       context: .
-      dockerfile: Dockerfile
-    ports:
-      - 58643:5050     
     environment:
-      DB_CONNECTION_STRING: "host=postgres_image1;port=5432;database=160048;username=ajdinuser;password=ajdinuser"
-    networks:
-      - dockerapi-dev  
-  
-  postgres_image1:
-    image: postgres:latest
+      - ConnectionStrings:pharmacyPos=Server=pharmacy-sql,1433;Database=IB160048;User=sa;Password=QWElkj132!;ConnectRetryCount=0
     ports:
-      - "5432"
-    restart: always
-    volumes:
-      - db_volume:/var/lib/postgresql/data
-      - ./dbscripts/seed.sql :/docker-entrypoint-initdb.d/seed.sql
-    environment:
-      POSTGRES_USER: "ajdinuser"
-      POSTGRES_PASSWORD: "ajdinuser"
-      POSTGRES_DB: "160048"
+      - 58744:5050
     networks:
-      - dockerapi-dev
-volumes:
-  db_volume:
-         
-    
-     
+      - pharmacynet
+    links:
+      - pharmacy-sql
+    depends_on:
+      - pharmacy-sql
+      
+networks:
+  pharmacynet:
+    driver: bridge

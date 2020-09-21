@@ -15,7 +15,7 @@ namespace Pharmacy.Core.Entities.Base
 
         [Required, ForeignKey(nameof(Product))]
         public int ProductId { get; set; }
-        [Required]
+        [Required, Column(TypeName = "decimal(18,2)")]
         public decimal Quantity { get; set; }
         
 

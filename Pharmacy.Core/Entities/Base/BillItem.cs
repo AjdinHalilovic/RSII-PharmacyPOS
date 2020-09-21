@@ -18,9 +18,9 @@ namespace Pharmacy.Core.Entities.Base
 
         [Required]
         public int Quantity { get; set; }
-        [Required]
+        [Required, Column(TypeName = "decimal(18,2)")]
         public decimal UnitPrice { get; set; }
-        [Required]
+        [Required, Column(TypeName = "decimal(18,2)")]
         public decimal Total { get; set; }
 
         public DateTime? DeletedDateTime { get; set; }

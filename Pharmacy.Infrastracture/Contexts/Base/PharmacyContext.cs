@@ -45,9 +45,10 @@ namespace Pharmacy.Infrastructure.Contexts.Base
 
         #endregion
 
-        public PharmacyContext(DbContextOptions options) : base(options)
+        public PharmacyContext(DbContextOptions<PharmacyContext> options) : base(options)
         {
         }
+
 
         #region Save changes
 
@@ -92,6 +93,12 @@ namespace Pharmacy.Infrastructure.Contexts.Base
 
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=160048; Integrated Security = true");
+            base.OnConfiguring(optionsBuilder);
         }
     }
 }

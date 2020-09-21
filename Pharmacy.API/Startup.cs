@@ -86,9 +86,15 @@ namespace Pharmacy.API
 
         private void ConfigureDatabases(IServiceCollection services)
         {
-            services.AddDbContextPool<PharmacyContext>(options =>
-                options.UseNpgsql(_appSettingsConfiguration.Database.BaseConnectionString));
+            //services.AddDbContextPool<PharmacyContext>(options =>
+            //    options.UseNpgsql(_appSettingsConfiguration.Database.BaseConnectionString));
+
+            //services.AddDbContext<PharmacyContext>(options =>
+            //   options.UseSqlServer(_appSettingsConfiguration.Database.BaseConnectionString));
+            services.AddDbContext<PharmacyContext>(options =>
+               options.UseSqlServer(_appSettingsConfiguration.Database.BaseConnectionString));
             
+
         }
 
         private static void ConfigureDataUnitOfWork(IServiceCollection services)
