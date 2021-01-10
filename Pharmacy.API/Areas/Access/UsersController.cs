@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Pharmacy.API.Controllers;
 using Pharmacy.API.Filters;
+using Pharmacy.Core.Constants;
 using Pharmacy.Core.Constants.Configurations;
 using Pharmacy.Core.Entities.Base;
 using Pharmacy.Core.Entities.Base.DTO;
@@ -272,13 +273,16 @@ namespace Pharmacy.API.Areas.Access
             DataUnitOfWork.BaseUow.UsersRepository.Update(baseUser);
             await DataUnitOfWork.BaseUow.UsersRepository.SaveChangesAsync();
 
+            var roles = (await DataUnitOfWork.BaseUow.UserRolesRepository.GetByParametersAsync(new RolesSearchObject { UserId = user.UserId })).ToList();
+
             return new TokenResponse
             {
                 UserFullName = user.UserFullName,
                 AccessToken = accessToken,
                 AccessTokenExpiresIn = accessTokenExpiresIn,
                 RefreshToken = refreshToken,
-                RefreshTokenExpiresIn = refreshTokenExpiresIn
+                RefreshTokenExpiresIn = refreshTokenExpiresIn,
+                IsAdmin = roles.Any(x=> x.Role.Code == (int)Enumerations.WebRole.Administrator || x.Role.Code == (int)Enumerations.WebRole.SuperAdministrator)
             };
         }
         #endregion

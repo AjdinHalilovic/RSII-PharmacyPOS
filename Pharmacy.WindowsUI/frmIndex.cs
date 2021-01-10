@@ -70,7 +70,7 @@ namespace Pharmacy.WindowsUI
         {
         }
 
-       
+
 
         private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -103,7 +103,7 @@ namespace Pharmacy.WindowsUI
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            
+
         }
 
         private async void signOutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -115,6 +115,7 @@ namespace Pharmacy.WindowsUI
 
                 APIService._token = null;
                 APIService._userFullName = null;
+                APIService._isAdmin = false;
                 this.Close();
             }
             catch (Exception ex)
@@ -127,6 +128,8 @@ namespace Pharmacy.WindowsUI
         private void frmIndex_Load(object sender, EventArgs e)
         {
             menuItemFullName.Text = APIService._userFullName;
+            if (!APIService._isAdmin)
+                usersToolStripMenuItem.Visible = false;
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)

@@ -13,6 +13,7 @@ namespace Pharmacy.WindowsUI
     public class APIService
     {
         public static string _token { get; set; }
+        public static bool _isAdmin { get; set; }
         public static string _userFullName { get; set; }
         private string _route = null;
         public APIService(string route)
