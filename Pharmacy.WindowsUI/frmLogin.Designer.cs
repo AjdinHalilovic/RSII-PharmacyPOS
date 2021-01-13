@@ -85,10 +85,10 @@
             this.lblLinkSignUp.AutoSize = true;
             this.lblLinkSignUp.Location = new System.Drawing.Point(218, 241);
             this.lblLinkSignUp.Name = "lblLinkSignUp";
-            this.lblLinkSignUp.Size = new System.Drawing.Size(56, 17);
+            this.lblLinkSignUp.Size = new System.Drawing.Size(101, 17);
             this.lblLinkSignUp.TabIndex = 5;
             this.lblLinkSignUp.TabStop = true;
-            this.lblLinkSignUp.Text = "Sign up";
+            this.lblLinkSignUp.Text = "New pharmacy";
             this.lblLinkSignUp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLinkSignUp_LinkClicked);
             // 
             // label1

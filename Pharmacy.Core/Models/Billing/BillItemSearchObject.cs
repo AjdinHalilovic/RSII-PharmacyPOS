@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Core.Models.Billing
 {
-    public class BillSearchObject : BaseSearchObject
+    public class BillItemSearchObject : BaseSearchObject
     {
-        public int? UserId { get; set; }
         public int? ProductId { get; set; }
 
         public DateTime? DateFrom { get; set; }

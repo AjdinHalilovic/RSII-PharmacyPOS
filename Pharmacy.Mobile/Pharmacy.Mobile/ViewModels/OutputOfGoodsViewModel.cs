@@ -56,13 +56,13 @@ namespace Pharmacy.Mobile.ViewModels
             try
             {
 
-                BaseSearchObject search = new BaseSearchObject() { SearchTerm = SearchTerm };
+                BillItemSearchObject search = new BillItemSearchObject() { SearchTerm = SearchTerm };
                 var writeOffProducts = await _writeOffInventoryDocumentsService.Get<List<WriteOffInventoryDocumentDto>>(search);
 
                 InventoryIntermediateProductsSearchObject searchIntermediate = new InventoryIntermediateProductsSearchObject() { SearchTerm = SearchTerm, FromInventoryProducts = true };
                 var intermediateProducts = await _inventoryIntermediateProductsService.Get<List<InventoryIntermediateProductDto>>(searchIntermediate);
 
-                BaseSearchObject searchBillItems = new BaseSearchObject() { SearchTerm = SearchTerm };
+                BillItemSearchObject searchBillItems = new BillItemSearchObject() { SearchTerm = SearchTerm };
                 var billItems = await _billItemsService.Get<List<BillItemDto>>(search);
 
                 Items.Clear();

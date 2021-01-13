@@ -32,7 +32,7 @@ namespace Pharmacy.API.Areas.Billing
         #region Get
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] BaseSearchObject search)
+        public async Task<IActionResult> Get([FromQuery] BillItemSearchObject search)
         {
             try
             {

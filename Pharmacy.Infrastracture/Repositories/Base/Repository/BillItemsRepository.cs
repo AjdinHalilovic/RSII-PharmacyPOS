@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Pharmacy.Core.Entities.Base.DTO;
 using System.Collections.Generic;
 using Pharmacy.Core.Models;
+using Pharmacy.Core.Models.Billing;
 
 namespace Pharmacy.Infrastructure.Repositories.Base.Repository
 {
@@ -15,7 +16,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         public BillItemsRepository(PharmacyContext context) : base(context)
         {
         }
-        public async Task<IEnumerable<BillItemDto>> GetAllDtosByParametersAsync(BaseSearchObject search)
+        public async Task<IEnumerable<BillItemDto>> GetAllDtosByParametersAsync(BillItemSearchObject search)
         {
             var query = Context.BillItems.Include(x=>x.Bill).Include(x => x.Product).AsQueryable();
 
@@ -24,9 +25,24 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
                 query = query.Where(x => x.Product.PharmacyBranchId == search.PharmacyBranchId);
             }
 
+            if (search.ProductId.HasValue)
+            {
+                query = query.Where(x => x.ProductId == search.ProductId);
+            }
+
             if (!string.IsNullOrWhiteSpace(search.SearchTerm))
             {
                 query = query.Where(x => x.Product.Name.ToLower().StartsWith(search.SearchTerm) || x.Product.Code.ToLower().StartsWith(search.SearchTerm));
+            }
+
+            if (search.DateFrom.HasValue)
+            {
+                query = query.Where(x => x.Bill.CreatedDateTime >= search.DateFrom);
+            }
+
+            if (search.DateTo.HasValue)
+            {
+                query = query.Where(x => x.Bill.CreatedDateTime <= search.DateTo);
             }
 
             query = query.Where(x => !x.DeletedDateTime.HasValue);
@@ -39,6 +55,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
                 ProductCode = x.Product.Code,
                 ProductId = x.ProductId,
                 Quantity = x.Quantity,
+                Amount = x.Total,
                 Type = "SALES - InvoiceNo "+x.Bill.Number
             }).ToListAsync();
 
