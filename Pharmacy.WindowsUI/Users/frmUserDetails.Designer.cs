@@ -59,6 +59,8 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.lblPhone = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboPharmacyBranchId = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -215,7 +217,7 @@
             // lblConfirmPassword
             // 
             this.lblConfirmPassword.AutoSize = true;
-            this.lblConfirmPassword.Location = new System.Drawing.Point(568, 338);
+            this.lblConfirmPassword.Location = new System.Drawing.Point(392, 338);
             this.lblConfirmPassword.Name = "lblConfirmPassword";
             this.lblConfirmPassword.Size = new System.Drawing.Size(120, 17);
             this.lblConfirmPassword.TabIndex = 40;
@@ -223,11 +225,11 @@
             // 
             // txtConfirmPassword
             // 
-            this.txtConfirmPassword.Location = new System.Drawing.Point(568, 362);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(392, 362);
             this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.PasswordChar = '*';
-            this.txtConfirmPassword.Size = new System.Drawing.Size(468, 22);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(307, 22);
             this.txtConfirmPassword.TabIndex = 39;
             this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmPassword_Validating);
             // 
@@ -246,7 +248,7 @@
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(480, 22);
+            this.txtPassword.Size = new System.Drawing.Size(307, 22);
             this.txtPassword.TabIndex = 37;
             this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassword_Validating);
             // 
@@ -341,11 +343,33 @@
             this.txtPhone.Size = new System.Drawing.Size(308, 22);
             this.txtPhone.TabIndex = 45;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(731, 336);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 17);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "Branch";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // comboPharmacyBranchId
+            // 
+            this.comboPharmacyBranchId.FormattingEnabled = true;
+            this.comboPharmacyBranchId.Location = new System.Drawing.Point(728, 360);
+            this.comboPharmacyBranchId.Margin = new System.Windows.Forms.Padding(4);
+            this.comboPharmacyBranchId.Name = "comboPharmacyBranchId";
+            this.comboPharmacyBranchId.Size = new System.Drawing.Size(307, 24);
+            this.comboPharmacyBranchId.TabIndex = 47;
+            // 
             // frmUserDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1121, 601);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboPharmacyBranchId);
             this.Controls.Add(this.lblPhone);
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.txtId);
@@ -417,5 +441,7 @@
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboPharmacyBranchId;
     }
 }

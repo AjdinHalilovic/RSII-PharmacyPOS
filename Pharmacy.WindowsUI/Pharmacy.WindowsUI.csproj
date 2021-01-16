@@ -333,6 +333,12 @@
     <Compile Include="Users\frmUserDetails.Designer.cs">
       <DependentUpon>frmUserDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Users\frmPharmacyBranches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\frmPharmacyBranches.Designer.cs">
+      <DependentUpon>frmPharmacyBranches.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users\frmUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -383,6 +389,9 @@
     <EmbeddedResource Include="Users\frmUserDetails.resx">
       <DependentUpon>frmUserDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Users\frmPharmacyBranches.resx">
+      <DependentUpon>frmPharmacyBranches.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Users\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>
     </EmbeddedResource>
@@ -400,6 +409,7 @@
     <None Include="Pharmacy.Core.Entities.Base.DTO.BaseDto.datasource" />
     <None Include="Pharmacy.Core.Entities.Base.DTO.PersonAttributeDto.datasource" />
     <None Include="Pharmacy.Core.Entities.Base.DTO.PersonDto.datasource" />
+    <None Include="Pharmacy.Core.Entities.Base.DTO.PharmacyBranchDto.datasource" />
     <None Include="Pharmacy.Core.Entities.Base.DTO.ProductDto.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>

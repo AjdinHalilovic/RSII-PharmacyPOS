@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Core.Entities.Base;
+using Pharmacy.Core.Entities.Base.DTO;
 using Pharmacy.Core.Models.Users;
 using Pharmacy.WindowsUI.Properties;
 using System;
@@ -21,6 +22,8 @@ namespace Pharmacy.WindowsUI.Users
         APIService _aPIServiceUserRoles = new APIService("UserRoles");
         APIService _aPIServiceCities = new APIService("Cities");
         APIService _aPIServiceCountries = new APIService("Countries");
+        APIService _aPIServicePharmacyBranches = new APIService("PharmacyBranches");
+        APIService _aPIServicePharmacyBranchUsers = new APIService("PharmacyBranchUsers");
         private int? _id = null;
         public frmUserDetails(int? id = null)
         {
@@ -50,7 +53,8 @@ namespace Pharmacy.WindowsUI.Users
                         Phone = txtPhone.Text,
                         Password = txtPassword.Text,
                         PasswordConfirmation = txtConfirmPassword.Text,
-                        Roles = roleList
+                        Roles = roleList,
+                        PharmacyBranchId = int.Parse(comboPharmacyBranchId.SelectedValue.ToString())
                     };
 
                     Person person = null;
@@ -81,6 +85,7 @@ namespace Pharmacy.WindowsUI.Users
         {
             await LoadCountries();
             await LoadCities();
+            await LoadPharmacyBranches();
 
             var roles = await _aPIServiceRoles.Get<List<Role>>(null);
             if (_id.HasValue)
@@ -98,12 +103,18 @@ namespace Pharmacy.WindowsUI.Users
             {
                 User user = await _aPIServiceUsers.GetById<User>(_id);
                 Person person = await _aPIServicePersons.GetById<Person>(_id);
+                var searchBranchUser = new PharmacyBranchUserSearchObject
+                {
+                    UserId = _id
+                };
+                List<PharmacyBranchUser> branchUser = await _aPIServicePharmacyBranchUsers.Get<List<PharmacyBranchUser>>(searchBranchUser);
                 txtId.Text = _id.GetValueOrDefault().ToString();
                 txtFirstName.Text = person.FirstName;
                 txtLastName.Text = person.LastName;
-                dtpDateOfBirth.Value = person.DateOfBirth ?? new DateTime();
+                dtpDateOfBirth.Value = person.DateOfBirth ?? DateTime.Now;
                 comboCountryId.SelectedValue = person.CountryId ?? 0;
                 comboCityId.SelectedValue = person.CityId ?? 0;
+                comboPharmacyBranchId.SelectedValue = branchUser.FirstOrDefault().PharmacyBranchId;
                 txtAddress.Text = person.Address;
                 txtNote.Text = person.Note;
 
@@ -129,6 +140,13 @@ namespace Pharmacy.WindowsUI.Users
             comboCityId.ValueMember = "Id";
             comboCityId.DisplayMember = "Name";
             comboCityId.DataSource = result;
+        }
+        private async Task LoadPharmacyBranches()
+        {
+            var result = await _aPIServicePharmacyBranches.Get<List<PharmacyBranchDto>>(null);
+            comboPharmacyBranchId.ValueMember = "Id";
+            comboPharmacyBranchId.DisplayMember = "BranchIdentifier";
+            comboPharmacyBranchId.DataSource = result;
         }
 
         private void txtFirstName_Validating(object sender, CancelEventArgs e)
@@ -281,6 +299,9 @@ namespace Pharmacy.WindowsUI.Users
             }
         }
 
-        
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

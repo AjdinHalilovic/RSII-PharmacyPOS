@@ -30,15 +30,15 @@ namespace Pharmacy.API.Areas.Users
         #region Get
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] PersonSearchObject search)
+        public async Task<IActionResult> Get([FromQuery] BaseSearchOBject search)
         {
             try
             {
-                if(search == null)
+                if (search == null)
                 {
-                    search = new PersonSearchObject();
+                    search = new BaseSearchOBject();
                 }
-                search.PharmacyBranchId = ClaimUser.PharmacyBranchId;
+                search.PharmacyId = ClaimUser.PharmacyId;
                 var persons = await DataUnitOfWork.BaseUow.PersonsRepository.GetAllDtosAsync(search);
 
                 return Ok(persons);
@@ -75,7 +75,7 @@ namespace Pharmacy.API.Areas.Users
 
                 List<UserRole> userRoles = request.Roles.Select(x => new UserRole()
                 {
-                    PharmacyBranchId = ClaimUser.PharmacyBranchId,
+                    PharmacyBranchId = request.PharmacyBranchId,
                     PharmacyId = ClaimUser.PharmacyId,
                     UserId = user.Id,
                     RoleId = x
@@ -85,7 +85,7 @@ namespace Pharmacy.API.Areas.Users
 
                 PharmacyBranchUser pharmacyBranchUser = new PharmacyBranchUser()
                 {
-                    PharmacyBranchId = ClaimUser.PharmacyBranchId,
+                    PharmacyBranchId = request.PharmacyBranchId,
                     UserId = user.Id,
                     StartDateTime = DateTime.Now
                 };
@@ -107,7 +107,7 @@ namespace Pharmacy.API.Areas.Users
 
         #region Update
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody]UserUpsertRequest request)
+        public async Task<IActionResult> Update(int id, [FromBody] UserUpsertRequest request)
         {
             try
             {
@@ -129,6 +129,15 @@ namespace Pharmacy.API.Areas.Users
                 user.UpdateDateTime = DateTime.Now;
                 DataUnitOfWork.BaseUow.UsersRepository.Update(user);
                 await DataUnitOfWork.BaseUow.UsersRepository.SaveChangesAsync();
+
+                var pharmacyBranchUser = (await DataUnitOfWork.BaseUow.PharmacyBranchUsersRepository.GetByParametersAsync(new PharmacyBranchUserSearchObject
+                {
+                    UserId = user.Id
+                })).FirstOrDefault();
+                pharmacyBranchUser.PharmacyBranchId = request.PharmacyBranchId;
+
+                DataUnitOfWork.BaseUow.PharmacyBranchUsersRepository.Update(pharmacyBranchUser);
+                await DataUnitOfWork.BaseUow.PharmacyBranchUsersRepository.SaveChangesAsync();
                 #endregion
 
                 #region Roles
@@ -136,15 +145,19 @@ namespace Pharmacy.API.Areas.Users
                 var newUserRoles = request.Roles.Where(x => !existingUserRoles.Select(y => y.RoleId).Contains(x))
                     .Select(x => new UserRole()
                     {
-                        PharmacyBranchId = ClaimUser.PharmacyBranchId,
+                        PharmacyBranchId = request.PharmacyBranchId,
                         PharmacyId = ClaimUser.PharmacyId,
                         RoleId = x,
                         UserId = user.Id
                     });
                 var removedUserRoles = existingUserRoles.Where(x => !request.Roles.Contains(x.RoleId));
 
+                var updatedUserRoles = existingUserRoles.Where(x => request.Roles.Contains(x.RoleId));
+                updatedUserRoles.ToList().ForEach(x => x.PharmacyBranchId = request.PharmacyBranchId);
+
                 DataUnitOfWork.BaseUow.UserRolesRepository.RemoveRange(removedUserRoles);
                 DataUnitOfWork.BaseUow.UserRolesRepository.AddRange(newUserRoles);
+                DataUnitOfWork.BaseUow.UserRolesRepository.UpdateRange(updatedUserRoles);
                 await DataUnitOfWork.BaseUow.UserRolesRepository.SaveChangesAsync();
                 #endregion
                 return Ok(person);

@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Core.Models.Users
 {
-    public class BaseSearchOBject : BaseSearchObject
+    public class PharmacyBranchUserSearchObject : BaseSearchObject
     {
-        public string FullName { get; set; }
-        public int? PersonId { get; set; }
+        public int? UserId { get; set; }
     }
 }

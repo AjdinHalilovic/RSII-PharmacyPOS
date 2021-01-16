@@ -115,6 +115,7 @@ namespace Pharmacy.WindowsUI
 
                 APIService._token = null;
                 APIService._userFullName = null;
+                APIService._branchIdentifier = null;
                 APIService._isAdmin = false;
                 this.Close();
             }
@@ -128,8 +129,11 @@ namespace Pharmacy.WindowsUI
         private void frmIndex_Load(object sender, EventArgs e)
         {
             menuItemFullName.Text = APIService._userFullName;
-            if (!APIService._isAdmin)
+            branchIdentifier.Text = APIService._branchIdentifier;
+            if (!APIService._isAdmin) {
+                branchesToolStripMenuItem.Visible = false;
                 usersToolStripMenuItem.Visible = false;
+            }
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -186,6 +190,14 @@ namespace Pharmacy.WindowsUI
             frmReports.WindowState = FormWindowState.Maximized;
             frmReports.MdiParent = this;
             frmReports.Show();
+        }
+
+        private void branchesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frmPharmacyBranches = new frmPharmacyBranches();
+            frmPharmacyBranches.WindowState = FormWindowState.Maximized;
+            frmPharmacyBranches.MdiParent = this;
+            frmPharmacyBranches.Show();
         }
     }
 }

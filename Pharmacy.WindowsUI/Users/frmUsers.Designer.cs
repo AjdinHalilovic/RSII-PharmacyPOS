@@ -31,8 +31,15 @@
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.btnPrikazi = new System.Windows.Forms.Button();
+            this.txtPretraga = new System.Windows.Forms.TextBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.personDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.personDtoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.personDtoBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.branchIdentifierDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateOfBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateOfBirthFormatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,23 +48,21 @@
             this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.placeFormatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.personDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnPrikazi = new System.Windows.Forms.Button();
-            this.txtPretraga = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personDtoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personDtoBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personDtoBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgvUsers);
-            this.groupBox1.Location = new System.Drawing.Point(10, 43);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Location = new System.Drawing.Point(13, 53);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(981, 323);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(1308, 398);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Users";
@@ -72,6 +77,7 @@
             this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.fullNameDataGridViewTextBoxColumn,
+            this.branchIdentifierDataGridViewTextBoxColumn,
             this.dateOfBirthDataGridViewTextBoxColumn,
             this.dateOfBirthFormatedDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn,
@@ -80,18 +86,61 @@
             this.cityDataGridViewTextBoxColumn,
             this.addressDataGridViewTextBoxColumn,
             this.placeFormatedDataGridViewTextBoxColumn});
-            this.dgvUsers.DataSource = this.personDtoBindingSource;
+            this.dgvUsers.DataSource = this.personDtoBindingSource2;
             this.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvUsers.Location = new System.Drawing.Point(2, 15);
-            this.dgvUsers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvUsers.Location = new System.Drawing.Point(3, 17);
+            this.dgvUsers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
             this.dgvUsers.RowHeadersWidth = 51;
             this.dgvUsers.RowTemplate.Height = 24;
-            this.dgvUsers.Size = new System.Drawing.Size(977, 306);
+            this.dgvUsers.Size = new System.Drawing.Size(1302, 379);
             this.dgvUsers.TabIndex = 0;
             this.dgvUsers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellDoubleClick);
             this.dgvUsers.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dgvKorisnici_Scroll);
+            // 
+            // btnPrikazi
+            // 
+            this.btnPrikazi.Location = new System.Drawing.Point(1057, 16);
+            this.btnPrikazi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPrikazi.Name = "btnPrikazi";
+            this.btnPrikazi.Size = new System.Drawing.Size(101, 32);
+            this.btnPrikazi.TabIndex = 1;
+            this.btnPrikazi.Text = "Show";
+            this.btnPrikazi.UseVisualStyleBackColor = true;
+            this.btnPrikazi.Click += new System.EventHandler(this.btnPrikazi_ClickAsync);
+            // 
+            // txtPretraga
+            // 
+            this.txtPretraga.Location = new System.Drawing.Point(16, 14);
+            this.txtPretraga.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtPretraga.Multiline = true;
+            this.txtPretraga.Name = "txtPretraga";
+            this.txtPretraga.Size = new System.Drawing.Size(652, 32);
+            this.txtPretraga.TabIndex = 2;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(1164, 16);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(157, 32);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "Add user";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // personDtoBindingSource
+            // 
+            this.personDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.PersonDto);
+            // 
+            // personDtoBindingSource1
+            // 
+            this.personDtoBindingSource1.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.PersonDto);
+            // 
+            // personDtoBindingSource2
+            // 
+            this.personDtoBindingSource2.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.PersonDto);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -111,6 +160,15 @@
             this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
             this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.fullNameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // branchIdentifierDataGridViewTextBoxColumn
+            // 
+            this.branchIdentifierDataGridViewTextBoxColumn.DataPropertyName = "BranchIdentifier";
+            this.branchIdentifierDataGridViewTextBoxColumn.HeaderText = "BranchIdentifier";
+            this.branchIdentifierDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.branchIdentifierDataGridViewTextBoxColumn.Name = "branchIdentifierDataGridViewTextBoxColumn";
+            this.branchIdentifierDataGridViewTextBoxColumn.ReadOnly = true;
+            this.branchIdentifierDataGridViewTextBoxColumn.Width = 125;
             // 
             // dateOfBirthDataGridViewTextBoxColumn
             // 
@@ -188,57 +246,24 @@
             this.placeFormatedDataGridViewTextBoxColumn.ReadOnly = true;
             this.placeFormatedDataGridViewTextBoxColumn.Width = 125;
             // 
-            // personDtoBindingSource
-            // 
-            this.personDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.PersonDto);
-            // 
-            // btnPrikazi
-            // 
-            this.btnPrikazi.Location = new System.Drawing.Point(793, 13);
-            this.btnPrikazi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnPrikazi.Name = "btnPrikazi";
-            this.btnPrikazi.Size = new System.Drawing.Size(76, 26);
-            this.btnPrikazi.TabIndex = 1;
-            this.btnPrikazi.Text = "Show";
-            this.btnPrikazi.UseVisualStyleBackColor = true;
-            this.btnPrikazi.Click += new System.EventHandler(this.btnPrikazi_ClickAsync);
-            // 
-            // txtPretraga
-            // 
-            this.txtPretraga.Location = new System.Drawing.Point(12, 11);
-            this.txtPretraga.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtPretraga.Multiline = true;
-            this.txtPretraga.Name = "txtPretraga";
-            this.txtPretraga.Size = new System.Drawing.Size(490, 27);
-            this.txtPretraga.TabIndex = 2;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(873, 13);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(118, 26);
-            this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "Add user";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // frmUsers
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1002, 375);
+            this.ClientSize = new System.Drawing.Size(1336, 462);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtPretraga);
             this.Controls.Add(this.btnPrikazi);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmUsers";
             this.Text = "POS Pharmacy - Users";
             this.Load += new System.EventHandler(this.frmUsers_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personDtoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personDtoBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personDtoBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,8 +276,10 @@
         private System.Windows.Forms.Button btnPrikazi;
         private System.Windows.Forms.TextBox txtPretraga;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.BindingSource personDtoBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn branchIdentifierDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateOfBirthDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateOfBirthFormatedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
@@ -261,6 +288,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn placeFormatedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource personDtoBindingSource;
+        private System.Windows.Forms.BindingSource personDtoBindingSource2;
+        private System.Windows.Forms.BindingSource personDtoBindingSource1;
     }
 }

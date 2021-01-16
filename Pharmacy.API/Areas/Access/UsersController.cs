@@ -273,11 +273,14 @@ namespace Pharmacy.API.Areas.Access
             DataUnitOfWork.BaseUow.UsersRepository.Update(baseUser);
             await DataUnitOfWork.BaseUow.UsersRepository.SaveChangesAsync();
 
+            var pharmacyBranch = await DataUnitOfWork.BaseUow.PharmacyBranchesRepository.GetByIdAsync(user.PharmacyBranchId);
+
             var roles = (await DataUnitOfWork.BaseUow.UserRolesRepository.GetByParametersAsync(new RolesSearchObject { UserId = user.UserId })).ToList();
 
             return new TokenResponse
             {
                 UserFullName = user.UserFullName,
+                BranchIdentifier = pharmacyBranch.BranchIdentifier,
                 AccessToken = accessToken,
                 AccessTokenExpiresIn = accessTokenExpiresIn,
                 RefreshToken = refreshToken,

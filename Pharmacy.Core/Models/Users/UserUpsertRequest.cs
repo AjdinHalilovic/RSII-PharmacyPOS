@@ -28,8 +28,8 @@ namespace Pharmacy.Core.Models.Users
         public int? CityId { get; set; }
         public string Address { get; set; }
         public string Note { get; set; }
-
-
+        [Required]
+        public int PharmacyBranchId { get; set; }
 
         [Required]
         public string Username { get; set; }

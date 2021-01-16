@@ -19,11 +19,11 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         public PersonsRepository(PharmacyContext context) : base(context)
         {
         }
-        public async Task<IEnumerable<PersonDto>> GetAllDtosAsync(PersonSearchObject search)
+        public async Task<IEnumerable<PersonDto>> GetAllDtosAsync(BaseSearchOBject search)
         {
             string searchTerm = string.IsNullOrEmpty(search.FullName) ? null : $"{Regex.Replace(search.FullName, @"\s+", " ").Replace(" ", ":*&")}:*";
 
-            return await DbConnection.QueryFunctionAsync<PersonDto>(DbObjects.BaseDbObjects.Functions.Persons.persons_getdtosbyparameters, new { pFullName = searchTerm, pPharmacyBranchId = search.PharmacyBranchId });
+            return await DbConnection.QueryFunctionAsync<PersonDto>(DbObjects.BaseDbObjects.Functions.Persons.persons_getdtosbyparameters, new { pFullName = searchTerm, pPharmacyId = search.PharmacyId });
         }
 
     }

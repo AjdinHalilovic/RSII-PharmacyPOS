@@ -15,11 +15,10 @@ using Pharmacy.Core.Models.Users;
 
 namespace Pharmacy.WindowsUI.Users
 {
-    public partial class frmUsers : Form
+    public partial class frmPharmacyBranches : Form
     {
-        private readonly APIService _aPIServiceUsers = new APIService("Users");
-        private readonly APIService _aPIServicePersons = new APIService("Persons");
-        public frmUsers()
+        private readonly APIService _aPIServicePharmacyBranches = new APIService("PharmacyBranches");
+        public frmPharmacyBranches()
         {
             InitializeComponent();
         }
@@ -33,9 +32,9 @@ namespace Pharmacy.WindowsUI.Users
         {
             var searchObj = new BaseSearchOBject()
             {
-                FullName = txtPretraga.Text
+                SearchTerm = txtPretraga.Text
             };
-            var result = await _aPIServicePersons.Get<List<PersonDto>>(searchObj);
+            var result = await _aPIServicePharmacyBranches.Get<List<PharmacyBranchDto>>(searchObj);
 
             dgvUsers.DataSource = result;
         }
@@ -54,12 +53,6 @@ namespace Pharmacy.WindowsUI.Users
                 frmUserDetails frm = new frmUserDetails(userId);
                 frm.Show();
             }
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            frmUserDetails frm = new frmUserDetails(null);
-            frm.Show();
         }
     }
 }

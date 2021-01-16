@@ -38,6 +38,7 @@ namespace Pharmacy.WindowsUI
                 APIService._token = response.AccessToken;
                 APIService._userFullName = response.UserFullName;
                 APIService._isAdmin = response.IsAdmin;
+                APIService._branchIdentifier = response.BranchIdentifier;
 
                 frmIndex frm = new frmIndex();
                 frm.WindowState = FormWindowState.Maximized;

@@ -18,6 +18,7 @@ namespace Pharmacy.Core.Entities.Base.DTO
         public string Country { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
+        public string BranchIdentifier { get; set; }
         public string PlaceFormated => $"{Country}, {City}, {Address}";
     }
 }

@@ -8,6 +8,6 @@ namespace Pharmacy.Infrastructure.Repositories.Base.IRepository
 {
     public interface IPersonsRepository : IRepository<Person, int>
     {
-        Task<IEnumerable<PersonDto>> GetAllDtosAsync(PersonSearchObject search);
+        Task<IEnumerable<PersonDto>> GetAllDtosAsync(BaseSearchOBject search);
     }
 }
