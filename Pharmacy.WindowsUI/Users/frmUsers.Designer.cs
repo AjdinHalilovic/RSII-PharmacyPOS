@@ -31,12 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.personDtoBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.btnPrikazi = new System.Windows.Forms.Button();
             this.txtPretraga = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.personDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.personDtoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.personDtoBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.branchIdentifierDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,9 +50,9 @@
             this.placeFormatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personDtoBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personDtoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personDtoBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.personDtoBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -99,6 +99,10 @@
             this.dgvUsers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellDoubleClick);
             this.dgvUsers.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dgvKorisnici_Scroll);
             // 
+            // personDtoBindingSource2
+            // 
+            this.personDtoBindingSource2.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.PersonDto);
+            // 
             // btnPrikazi
             // 
             this.btnPrikazi.Location = new System.Drawing.Point(1057, 16);
@@ -138,10 +142,6 @@
             // 
             this.personDtoBindingSource1.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.PersonDto);
             // 
-            // personDtoBindingSource2
-            // 
-            this.personDtoBindingSource2.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.PersonDto);
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -155,7 +155,7 @@
             // fullNameDataGridViewTextBoxColumn
             // 
             this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Full name";
             this.fullNameDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
             this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
@@ -164,7 +164,7 @@
             // branchIdentifierDataGridViewTextBoxColumn
             // 
             this.branchIdentifierDataGridViewTextBoxColumn.DataPropertyName = "BranchIdentifier";
-            this.branchIdentifierDataGridViewTextBoxColumn.HeaderText = "BranchIdentifier";
+            this.branchIdentifierDataGridViewTextBoxColumn.HeaderText = "Branch Identifier";
             this.branchIdentifierDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.branchIdentifierDataGridViewTextBoxColumn.Name = "branchIdentifierDataGridViewTextBoxColumn";
             this.branchIdentifierDataGridViewTextBoxColumn.ReadOnly = true;
@@ -183,7 +183,7 @@
             // dateOfBirthFormatedDataGridViewTextBoxColumn
             // 
             this.dateOfBirthFormatedDataGridViewTextBoxColumn.DataPropertyName = "DateOfBirthFormated";
-            this.dateOfBirthFormatedDataGridViewTextBoxColumn.HeaderText = "DateOfBirthFormated";
+            this.dateOfBirthFormatedDataGridViewTextBoxColumn.HeaderText = "Date of birth";
             this.dateOfBirthFormatedDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.dateOfBirthFormatedDataGridViewTextBoxColumn.Name = "dateOfBirthFormatedDataGridViewTextBoxColumn";
             this.dateOfBirthFormatedDataGridViewTextBoxColumn.ReadOnly = true;
@@ -240,7 +240,7 @@
             // placeFormatedDataGridViewTextBoxColumn
             // 
             this.placeFormatedDataGridViewTextBoxColumn.DataPropertyName = "PlaceFormated";
-            this.placeFormatedDataGridViewTextBoxColumn.HeaderText = "PlaceFormated";
+            this.placeFormatedDataGridViewTextBoxColumn.HeaderText = "Place";
             this.placeFormatedDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.placeFormatedDataGridViewTextBoxColumn.Name = "placeFormatedDataGridViewTextBoxColumn";
             this.placeFormatedDataGridViewTextBoxColumn.ReadOnly = true;
@@ -261,9 +261,9 @@
             this.Load += new System.EventHandler(this.frmUsers_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personDtoBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personDtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personDtoBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.personDtoBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,6 +277,8 @@
         private System.Windows.Forms.TextBox txtPretraga;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.BindingSource personDtoBindingSource;
+        private System.Windows.Forms.BindingSource personDtoBindingSource2;
+        private System.Windows.Forms.BindingSource personDtoBindingSource1;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn branchIdentifierDataGridViewTextBoxColumn;
@@ -288,7 +290,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn placeFormatedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource personDtoBindingSource2;
-        private System.Windows.Forms.BindingSource personDtoBindingSource1;
     }
 }

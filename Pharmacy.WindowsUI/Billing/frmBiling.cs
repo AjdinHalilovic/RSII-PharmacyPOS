@@ -22,6 +22,8 @@ namespace Pharmacy.WindowsUI.Billing
         APIService _aPIServiceCategories = new APIService("Categories");
         APIService _aPIServiceBills = new APIService("Bills");
 
+        Dictionary<int, int> _selectedProductQuantities = new Dictionary<int, int>();
+
         private int? _relatedProductId = null;
         private decimal _total = 0;
         public frmBiling()
@@ -118,6 +120,7 @@ namespace Pharmacy.WindowsUI.Billing
                         existingRow.Cells[3].Value = (int)existingRow.Cells[3].Value + 1;
                         quantity = (int)existingRow.Cells[3].Value;
 
+                        _selectedProductQuantities[int.Parse(id.ToString())] = quantity;
                     }
                     else
                     {
@@ -132,6 +135,9 @@ namespace Pharmacy.WindowsUI.Billing
                         {
                             MessageBox.Show("The selected product contains active substances that should not be mixed with those from other products");
                         }
+
+                        _selectedProductQuantities.Add(int.Parse(id.ToString()),quantity);
+
                     }
 
                     _total += decimal.Parse(price.ToString());
@@ -163,6 +169,13 @@ namespace Pharmacy.WindowsUI.Billing
                 CategoryId = comboCategoryId.SelectedValue != null ? int.Parse(comboCategoryId.SelectedValue.ToString()) : (int?)null
             };
             var result = await _aPIServiceProducts.Get<List<ProductDto>>(searchObj);
+            foreach (var product in result)
+            {
+                if(_selectedProductQuantities.TryGetValue(product.Id,out int quantity))
+                {
+                    product.Quantity -= quantity;
+                }
+            }
             dgvProducts.DataSource = new BindingList<ProductDto>(result);
         }
 
@@ -199,15 +212,19 @@ namespace Pharmacy.WindowsUI.Billing
             if (e.ColumnIndex == 4)
             {
                 row.Cells[3].Value = (int)row.Cells[3].Value - 1;
+                _selectedProductQuantities[int.Parse(id.ToString())] = _selectedProductQuantities[int.Parse(id.ToString())] - 1;
                 var quantity = (int)row.Cells[3].Value;
                 if (quantity == 0)
                 {
+                    _selectedProductQuantities.Remove(int.Parse(id.ToString()));
                     dgvBillItems.Rows.RemoveAt(e.RowIndex);
                 }
                 _total -= decimal.Parse(price.ToString());
                 _relatedProductId = dgvBillItems.Rows.Count == 0 ? (int?)null : int.Parse(dgvBillItems.Rows[dgvBillItems.Rows.Count - 1].Cells[0].Value.ToString());
                 lblTotal.Text = _total.ToString();
                 changeProductQuantity(int.Parse(id.ToString()), 1);
+
+
 
                 await searchProducts();
             }

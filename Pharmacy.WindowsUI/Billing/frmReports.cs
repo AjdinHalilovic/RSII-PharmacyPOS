@@ -180,7 +180,7 @@ namespace Pharmacy.WindowsUI.Billing
                 var billItems = await _aPIServiceBillItems.Get<List<BillItemDto>>(searchBillItems);
                 #endregion
 
-                Stream stream = File.OpenWrite($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\Sales{DateTime.Now.ToShortDateString()}.pdf");
+                Stream stream = File.OpenWrite($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\SalesCharts{DateTime.Now.ToString("yyyyMMddHHmmss")}.pdf");
                 Document doc = new Document();
                 PdfWriter.GetInstance(doc, stream);
                 doc.Open();

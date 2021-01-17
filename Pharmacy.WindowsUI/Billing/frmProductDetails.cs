@@ -251,7 +251,7 @@ namespace Pharmacy.WindowsUI.Billing
 
         private void comboMeasurementUnitId_Validating(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(comboMeasurementUnitId.Text))
+            if (string.IsNullOrWhiteSpace(comboMeasurementUnitId.SelectedValue?.ToString()) || comboMeasurementUnitId.SelectedValue?.ToString() == "0")
             {
                 e.Cancel = true;
                 errorProvider.SetError(comboMeasurementUnitId, Resources.Validation_RequiredField);
