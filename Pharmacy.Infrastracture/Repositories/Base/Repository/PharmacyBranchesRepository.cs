@@ -16,6 +16,10 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
         }
 
+        public PharmacyBranch GetCentralBranch(int pharmacyId)
+        {
+            return Context.PharmacyBranches.FirstOrDefault(x => x.PharmacyId == pharmacyId);
+        }
         public async Task<IEnumerable<PharmacyBranchDto>> GetByParametersAsync(BaseSearchObject search)
         {
             var query = Context.PharmacyBranches.Include(x => x.Pharmacy).Include(x => x.Country).Include(x => x.City).AsQueryable();

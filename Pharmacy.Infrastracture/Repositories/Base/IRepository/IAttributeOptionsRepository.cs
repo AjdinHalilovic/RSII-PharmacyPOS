@@ -7,6 +7,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.IRepository
 {
     public interface IAttributeOptionsRepository : IRepository<AttributeOption, int>
     {
+        IEnumerable<AttributeOption> GetByPharmacyBranchId(int pharmacyBranchId);
         Task<IEnumerable<AttributeOption>> GetAllByParametersAsync(AttributeOptionSearchObject search);
     }
 }

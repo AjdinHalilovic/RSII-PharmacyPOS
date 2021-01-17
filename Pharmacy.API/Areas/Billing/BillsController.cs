@@ -59,7 +59,7 @@ namespace Pharmacy.API.Areas.Billing
             DataUnitOfWork.BaseUow.BeginTransaction();
             try
             {
-                var lastBill =  await DataUnitOfWork.BaseUow.BillsRepository.GetLastBill(ClaimUser.PharmacyBranchId);
+                var lastBill =  await DataUnitOfWork.BaseUow.BillsRepository.GetLastBill(ClaimUser.PharmacyId);
                 Bill bill = new Bill()
                 {
                     CreatedDateTime = DateTime.Now,

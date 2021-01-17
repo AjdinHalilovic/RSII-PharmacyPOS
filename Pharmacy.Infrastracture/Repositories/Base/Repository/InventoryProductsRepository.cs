@@ -14,6 +14,10 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
         }
 
+        public IEnumerable<InventoryProduct> GetByPharmacyBranchId(int pharmacyBranchId)
+        {
+            return Context.InventoryProducts.Include(x => x.Product).Where(x => x.Product.PharmacyBranchId == pharmacyBranchId);
+        }
         public async Task<IEnumerable<InventoryProduct>> GetByInventoryIdAndProductIds(int inventoryId, List<int> productIds)
         {
             return await Context.InventoryProducts.Where(x => !x.DeletedDateTime.HasValue && x.InventoryId == inventoryId && productIds.Contains(x.ProductId)).ToListAsync();

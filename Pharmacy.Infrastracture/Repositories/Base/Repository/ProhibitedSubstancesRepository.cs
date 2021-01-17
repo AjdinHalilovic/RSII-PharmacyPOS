@@ -15,6 +15,11 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
         }
 
+        public IEnumerable<ProhibitedSubstance> GetByPharmacyBranchId(int pharmacyBranchId)
+        {
+            return Context.ProhibitedSubstances.Include(x => x.ProhibitedSubstanceTo).Include(x => x.Substance).Where(x => x.Substance.PharmacyBranchId == pharmacyBranchId);
+        }
+
         public async Task<IEnumerable<ProhibitedSubstance>> GetByParametersAsync(ProhibitedSubstanceSearchObject search)
         {
             var query = Context.ProhibitedSubstances.Include(x => x.Substance).AsQueryable();

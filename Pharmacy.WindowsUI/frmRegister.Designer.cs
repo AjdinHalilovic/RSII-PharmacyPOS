@@ -57,6 +57,7 @@
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.chkBoxUseCentralData = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lblCancelSignUp
@@ -306,11 +307,22 @@
             this.label2.TabIndex = 34;
             this.label2.Text = "User information";
             // 
+            // chkBoxUseCentralData
+            // 
+            this.chkBoxUseCentralData.AutoSize = true;
+            this.chkBoxUseCentralData.Location = new System.Drawing.Point(401, 225);
+            this.chkBoxUseCentralData.Name = "chkBoxUseCentralData";
+            this.chkBoxUseCentralData.Size = new System.Drawing.Size(286, 21);
+            this.chkBoxUseCentralData.TabIndex = 35;
+            this.chkBoxUseCentralData.Text = "Do you want to use central branch data?";
+            this.chkBoxUseCentralData.UseVisualStyleBackColor = true;
+            // 
             // frmRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 543);
+            this.Controls.Add(this.chkBoxUseCentralData);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblConfirmPassword);
@@ -379,5 +391,6 @@
         private System.Windows.Forms.TextBox txtConfirmPassword;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox chkBoxUseCentralData;
     }
 }

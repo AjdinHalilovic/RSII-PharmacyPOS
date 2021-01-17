@@ -9,7 +9,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.IRepository
 {
     public interface IBillsRepository : IRepository<Bill, int>
     {
-        Task<Bill> GetLastBill(int pharmacyBranchId);
+        Task<Bill> GetLastBill(int pharmaycId);
         Task<IEnumerable<BillDto>> GetAllDtosByParametersAsync(BillSearchObject search);
     }
 }

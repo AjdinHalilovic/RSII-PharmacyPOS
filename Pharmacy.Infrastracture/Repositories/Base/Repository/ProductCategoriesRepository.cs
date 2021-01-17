@@ -15,12 +15,21 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
         }
 
+        public IEnumerable<ProductCategory> GetByPharmacyBranchId(int pharmacyBranchId)
+        {
+            return Context.ProductCategories.Include(x => x.Product).Where(x => x.Product.PharmacyBranchId == pharmacyBranchId);
+        }
         public async Task<IEnumerable<ProductCategory>> GetByParametersAsync(CategorySearchObject search)
         {
-            var query = Context.ProductCategories.Include(x => x.Category).AsQueryable();
+            var query = Context.ProductCategories.Include(x => x.Category).ThenInclude(x=>x.PharmacyBranch).AsQueryable();
             if (search.ProductId.HasValue)
             {
                 query = query.Where(x => search.ProductId == x.ProductId);
+            }
+
+            if (search.PharmacyId.HasValue)
+            {
+                query = query.Where(x => search.PharmacyId == x.Category.PharmacyBranch.PharmacyId);
             }
             if (!string.IsNullOrWhiteSpace(search.SearchTerm))
             {

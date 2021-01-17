@@ -33,9 +33,6 @@
             this.btnShow = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.productDtoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.baseDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
@@ -43,19 +40,27 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboPharmacyBranchId = new System.Windows.Forms.ComboBox();
             this.billDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productDtoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.baseDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.billDtoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.billDtoBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDateTimeFormatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.branchIdentifierDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userFullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.baseDtoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -67,6 +72,7 @@
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Print";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnShow
             // 
@@ -101,13 +107,14 @@
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
+            this.createdDateTimeDataGridViewTextBoxColumn,
             this.createdDateTimeFormatedDataGridViewTextBoxColumn,
+            this.branchIdentifierDataGridViewTextBoxColumn,
             this.userFullNameDataGridViewTextBoxColumn,
             this.numberDataGridViewTextBoxColumn,
-            this.createdDateTimeDataGridViewTextBoxColumn,
-            this.amountDataGridViewTextBoxColumn,
-            this.totalDataGridViewTextBoxColumn});
-            this.dgvProducts.DataSource = this.billDtoBindingSource;
+            this.totalDataGridViewTextBoxColumn,
+            this.amountDataGridViewTextBoxColumn});
+            this.dgvProducts.DataSource = this.billDtoBindingSource2;
             this.dgvProducts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProducts.Location = new System.Drawing.Point(3, 17);
             this.dgvProducts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -117,18 +124,6 @@
             this.dgvProducts.RowTemplate.Height = 24;
             this.dgvProducts.Size = new System.Drawing.Size(1205, 395);
             this.dgvProducts.TabIndex = 0;
-            // 
-            // productDtoBindingSource1
-            // 
-            this.productDtoBindingSource1.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
-            // 
-            // baseDtoBindingSource
-            // 
-            this.baseDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.BaseDto);
-            // 
-            // productDtoBindingSource
-            // 
-            this.productDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
             // 
             // label4
             // 
@@ -189,6 +184,26 @@
             // 
             this.billDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.BillDto);
             // 
+            // productDtoBindingSource1
+            // 
+            this.productDtoBindingSource1.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
+            // 
+            // baseDtoBindingSource
+            // 
+            this.baseDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.BaseDto);
+            // 
+            // productDtoBindingSource
+            // 
+            this.productDtoBindingSource.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.ProductDto);
+            // 
+            // billDtoBindingSource1
+            // 
+            this.billDtoBindingSource1.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.BillDto);
+            // 
+            // billDtoBindingSource2
+            // 
+            this.billDtoBindingSource2.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.BillDto);
+            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -198,33 +213,6 @@
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.Visible = false;
             this.idDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // createdDateTimeFormatedDataGridViewTextBoxColumn
-            // 
-            this.createdDateTimeFormatedDataGridViewTextBoxColumn.DataPropertyName = "CreatedDateTimeFormated";
-            this.createdDateTimeFormatedDataGridViewTextBoxColumn.HeaderText = "CreatedDateTimeFormated";
-            this.createdDateTimeFormatedDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.createdDateTimeFormatedDataGridViewTextBoxColumn.Name = "createdDateTimeFormatedDataGridViewTextBoxColumn";
-            this.createdDateTimeFormatedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.createdDateTimeFormatedDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // userFullNameDataGridViewTextBoxColumn
-            // 
-            this.userFullNameDataGridViewTextBoxColumn.DataPropertyName = "UserFullName";
-            this.userFullNameDataGridViewTextBoxColumn.HeaderText = "UserFullName";
-            this.userFullNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.userFullNameDataGridViewTextBoxColumn.Name = "userFullNameDataGridViewTextBoxColumn";
-            this.userFullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.userFullNameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // numberDataGridViewTextBoxColumn
-            // 
-            this.numberDataGridViewTextBoxColumn.DataPropertyName = "Number";
-            this.numberDataGridViewTextBoxColumn.HeaderText = "Number";
-            this.numberDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.numberDataGridViewTextBoxColumn.Name = "numberDataGridViewTextBoxColumn";
-            this.numberDataGridViewTextBoxColumn.ReadOnly = true;
-            this.numberDataGridViewTextBoxColumn.Width = 125;
             // 
             // createdDateTimeDataGridViewTextBoxColumn
             // 
@@ -236,15 +224,41 @@
             this.createdDateTimeDataGridViewTextBoxColumn.Visible = false;
             this.createdDateTimeDataGridViewTextBoxColumn.Width = 125;
             // 
-            // amountDataGridViewTextBoxColumn
+            // createdDateTimeFormatedDataGridViewTextBoxColumn
             // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.amountDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            this.amountDataGridViewTextBoxColumn.ReadOnly = true;
-            this.amountDataGridViewTextBoxColumn.Visible = false;
-            this.amountDataGridViewTextBoxColumn.Width = 125;
+            this.createdDateTimeFormatedDataGridViewTextBoxColumn.DataPropertyName = "CreatedDateTimeFormated";
+            this.createdDateTimeFormatedDataGridViewTextBoxColumn.HeaderText = "Created date";
+            this.createdDateTimeFormatedDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.createdDateTimeFormatedDataGridViewTextBoxColumn.Name = "createdDateTimeFormatedDataGridViewTextBoxColumn";
+            this.createdDateTimeFormatedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.createdDateTimeFormatedDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // branchIdentifierDataGridViewTextBoxColumn
+            // 
+            this.branchIdentifierDataGridViewTextBoxColumn.DataPropertyName = "BranchIdentifier";
+            this.branchIdentifierDataGridViewTextBoxColumn.HeaderText = "Branch";
+            this.branchIdentifierDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.branchIdentifierDataGridViewTextBoxColumn.Name = "branchIdentifierDataGridViewTextBoxColumn";
+            this.branchIdentifierDataGridViewTextBoxColumn.ReadOnly = true;
+            this.branchIdentifierDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // userFullNameDataGridViewTextBoxColumn
+            // 
+            this.userFullNameDataGridViewTextBoxColumn.DataPropertyName = "UserFullName";
+            this.userFullNameDataGridViewTextBoxColumn.HeaderText = "User";
+            this.userFullNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userFullNameDataGridViewTextBoxColumn.Name = "userFullNameDataGridViewTextBoxColumn";
+            this.userFullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userFullNameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // numberDataGridViewTextBoxColumn
+            // 
+            this.numberDataGridViewTextBoxColumn.DataPropertyName = "Number";
+            this.numberDataGridViewTextBoxColumn.HeaderText = "Bill number";
+            this.numberDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.numberDataGridViewTextBoxColumn.Name = "numberDataGridViewTextBoxColumn";
+            this.numberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.numberDataGridViewTextBoxColumn.Width = 125;
             // 
             // totalDataGridViewTextBoxColumn
             // 
@@ -254,6 +268,16 @@
             this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
             this.totalDataGridViewTextBoxColumn.ReadOnly = true;
             this.totalDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // amountDataGridViewTextBoxColumn
+            // 
+            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
+            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.amountDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            this.amountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.amountDataGridViewTextBoxColumn.Visible = false;
+            this.amountDataGridViewTextBoxColumn.Width = 125;
             // 
             // frmSales
             // 
@@ -275,10 +299,12 @@
             this.Load += new System.EventHandler(this.frmProducts_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.baseDtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,11 +327,14 @@
         private System.Windows.Forms.ComboBox comboPharmacyBranchId;
         private System.Windows.Forms.BindingSource billDtoBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createdDateTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDateTimeFormatedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn branchIdentifierDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userFullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createdDateTimeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource billDtoBindingSource2;
+        private System.Windows.Forms.BindingSource billDtoBindingSource1;
     }
 }

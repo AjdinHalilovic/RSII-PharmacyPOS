@@ -44,6 +44,7 @@ namespace Pharmacy.WindowsUI
                     Address = txtAddress.Text,
                     BranchIdentifier = txtBranchIDentifier.Text,
                     CentralBranch = chkBoxCentral.Checked,
+                    UseCentralBranchData = chkBoxUseCentralData.Checked,
                     FirstName = txtFirstName.Text,
                     LastName = txtLastName.Text,
                     Email = txtEmail.Text,

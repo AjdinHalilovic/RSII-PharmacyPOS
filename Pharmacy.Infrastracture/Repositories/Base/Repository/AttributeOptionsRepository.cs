@@ -15,6 +15,11 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         public AttributeOptionsRepository(PharmacyContext context) : base(context)
         {
         }
+
+        public IEnumerable<AttributeOption> GetByPharmacyBranchId(int pharmacyBranchId)
+        {
+            return Context.AttributeOptions.Include(x => x.Attribute).Where(x => x.Attribute.PharmacyBranchId == pharmacyBranchId);
+        }
         public async Task<IEnumerable<AttributeOption>> GetAllByParametersAsync(AttributeOptionSearchObject search)
         {
             var query = Context.AttributeOptions.AsQueryable();

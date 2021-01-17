@@ -11,6 +11,7 @@ namespace Pharmacy.Core.Entities.Base.DTO
     {
         [Key]
         public int Id { get; set; }
+        public string BranchIdentifier { get; set; }
         public string Number { get; set; }
         public string UserFullName { get; set; }
         public DateTime CreatedDateTime { get; set; }

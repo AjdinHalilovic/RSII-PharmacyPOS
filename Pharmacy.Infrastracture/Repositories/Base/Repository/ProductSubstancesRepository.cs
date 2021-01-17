@@ -16,6 +16,11 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         public ProductSubstancesRepository(PharmacyContext context) : base(context)
         {
         }
+
+        public IEnumerable<ProductSubstance> GetByPharmacyBranchId(int pharmacyBranchId)
+        {
+            return Context.ProductSubstances.Include(x => x.Product).Where(x => x.Product.PharmacyBranchId == pharmacyBranchId);
+        }
         public async Task<IEnumerable<ProductSubstance>> GetByParametersAsync(SubstanceSearchObject search)
         {
             var query = Context.ProductSubstances.Include(x => x.Substance).AsQueryable();

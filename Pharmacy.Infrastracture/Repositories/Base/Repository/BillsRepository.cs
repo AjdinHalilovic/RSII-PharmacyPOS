@@ -17,9 +17,9 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
         }
 
-        public async Task<Bill> GetLastBill(int pharmacyBranchId)
+        public async Task<Bill> GetLastBill(int pharmaycId)
         {
-            return await Context.Bills.OrderByDescending(x => x.Number).FirstOrDefaultAsync(x => x.PharmacyBranchId == pharmacyBranchId);
+            return await Context.Bills.Include(x=>x.PharmacyBranch).OrderByDescending(x => x.Number).FirstOrDefaultAsync(x => x.PharmacyBranch.PharmacyId == pharmaycId);
         }
 
         public async Task<IEnumerable<BillDto>> GetAllDtosByParametersAsync(BillSearchObject search)
@@ -65,6 +65,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
                 var list = await query.Select(x => new BillDto()
                 {
                     Id = x.Id,
+                    BranchIdentifier = x.PharmacyBranch.BranchIdentifier,
                     CreatedDateTime = x.CreatedDateTime,
                     Number = x.Number.ToString(),
                     Total = x.Total.ToString(),
@@ -76,7 +77,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
             }
             else
             {
-                var query = Context.BillItems.Include(x => x.Bill).ThenInclude(x=>x.User).AsQueryable();
+                var query = Context.BillItems.Include(x => x.Bill).ThenInclude(x=>x.PharmacyBranch).Include(x=>x.Bill.User).AsQueryable();
                 //var query = Context.Bills.Include(x => x.User).ThenInclude(x => x.Person).AsQueryable();
 
                 if (search.PharmacyBranchId.HasValue)
@@ -107,6 +108,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
                 var list = await query.Select(x => new BillDto()
                 {
                     Id = x.Bill.Id,
+                    BranchIdentifier = x.Bill.PharmacyBranch.BranchIdentifier,
                     CreatedDateTime = x.Bill.CreatedDateTime,
                     Number = x.Bill.Number.ToString(),
                     Total = x.Total.ToString(),

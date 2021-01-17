@@ -10,5 +10,6 @@ namespace Pharmacy.Infrastructure.Repositories.Base.IRepository
     public interface ICategoriesRepository : IRepository<Category, int>
     {
         Task<IEnumerable<BaseDto>> GetAllByParametersAsync(CategorySearchObject search);
+        IEnumerable<Category> GetByPharmacyId(int pharmacyId);
     }
 }

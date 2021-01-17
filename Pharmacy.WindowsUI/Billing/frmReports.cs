@@ -195,6 +195,7 @@ namespace Pharmacy.WindowsUI.Billing
 
                 #region Table 
                 PdfPTable table = new PdfPTable(3);
+                table.WidthPercentage = 100;
                 table.AddCell(new PdfPCell(new Phrase("CREATED DATE")) { HorizontalAlignment = Element.ALIGN_CENTER });
                 table.AddCell(new PdfPCell(new Phrase("STAFF")) { HorizontalAlignment = Element.ALIGN_CENTER });
                 table.AddCell(new PdfPCell(new Phrase("AMOUNT")) { HorizontalAlignment = Element.ALIGN_CENTER });
@@ -221,6 +222,7 @@ namespace Pharmacy.WindowsUI.Billing
 
                 #region Table 2
                 PdfPTable tableByProduct = new PdfPTable(3);
+                tableByProduct.WidthPercentage = 100;
                 tableByProduct.AddCell(new PdfPCell(new Phrase("PRODUCT")) { HorizontalAlignment = Element.ALIGN_CENTER });
                 tableByProduct.AddCell(new PdfPCell(new Phrase("QUANTITY")) { HorizontalAlignment = Element.ALIGN_CENTER });
                 tableByProduct.AddCell(new PdfPCell(new Phrase("AMOUNT")) { HorizontalAlignment = Element.ALIGN_CENTER });

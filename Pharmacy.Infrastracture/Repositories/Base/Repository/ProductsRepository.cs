@@ -20,6 +20,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
         }
 
+      
         public async Task<IEnumerable<ProductDto>> GetAllDtosByParametersAsync(ProductSearchObject search)
         {
             string searchTerm = string.IsNullOrEmpty(search.SearchTerm) ? null : $"{Regex.Replace(search.SearchTerm, @"\s+", " ").Replace(" ", ":*&")}:*";

@@ -9,5 +9,6 @@ namespace Pharmacy.Infrastructure.Repositories.Base.IRepository
     {
         Task<IEnumerable<ProductCategory>> GetByParametersAsync(CategorySearchObject search);
         Task<IEnumerable<ProductCategory>> GetByProductIdsAsync(List<int> productIds);
+        IEnumerable<ProductCategory> GetByPharmacyBranchId(int pharmacyBranchId);
     }
 }

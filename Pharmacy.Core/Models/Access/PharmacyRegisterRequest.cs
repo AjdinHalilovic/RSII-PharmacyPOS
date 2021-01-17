@@ -21,6 +21,7 @@ namespace Pharmacy.Core.Models.Access
         [Required]
         public string BranchIdentifier { get; set; }
         public bool CentralBranch { get; set; }
+        public bool UseCentralBranchData { get; set; }
 
 
         [Required]

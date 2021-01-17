@@ -8,6 +8,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.IRepository
 {
     public interface IProductAttributesRepository : IRepository<ProductAttribute, int>
     {
+        IEnumerable<ProductAttribute> GetByPharmacyBranchId(int pharmacyBranchId);
         Task<IEnumerable<ProductAttributeDto>> GetByParametersAsync(AttributeSearchObject search);
         Task<IEnumerable<ProductAttribute>> GetByProductIdsAsync(List<int> productIds);
     }
