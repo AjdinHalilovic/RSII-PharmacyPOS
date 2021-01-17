@@ -15,5 +15,7 @@ namespace Pharmacy.Core.Entities.Base.DTO
         public int AttributeNumber { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
+
+        public int OrderNumber { get; set; }
     }
 }

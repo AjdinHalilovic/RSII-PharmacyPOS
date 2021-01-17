@@ -10,5 +10,7 @@ namespace Pharmacy.Core.Models.Billing
     public class ProductSearchObject : BaseSearchObject
     {
         public int? CategoryId { get; set; }
+
+        public int? RelatedProductId { get; set; }
     }
 }

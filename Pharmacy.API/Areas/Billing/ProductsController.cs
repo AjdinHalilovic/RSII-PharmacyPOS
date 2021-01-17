@@ -10,6 +10,7 @@ using Pharmacy.Core.Models;
 using Pharmacy.Core.Models.Access;
 using Pharmacy.Core.Models.Billing;
 using Pharmacy.Core.Models.Users;
+using Pharmacy.Infrastracture.Helpers;
 using Pharmacy.Infrastructure.UnitOfWorks;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,11 @@ namespace Pharmacy.API.Areas.Billing
             {
                 search.PharmacyBranchId = ClaimUser.PharmacyBranchId;
                 var products = await DataUnitOfWork.BaseUow.ProductsRepository.GetAllDtosByParametersAsync(search);
-
+                if (search.RelatedProductId.HasValue)
+                {
+                    var relatedBillItems = await DataUnitOfWork.BaseUow.BillItemsRepository.GetByRelatedProductIdAsync(search.RelatedProductId.Value);
+                    products = products.RecomendedOrderProducts(relatedBillItems, search.RelatedProductId.Value);
+                }
                 return Ok(products);
             }
             catch (Exception ex)

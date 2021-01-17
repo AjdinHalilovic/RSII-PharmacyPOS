@@ -10,5 +10,6 @@ namespace Pharmacy.Infrastructure.Repositories.Base.IRepository
     public interface IBillItemsRepository : IRepository<BillItem, int>
     {
         Task<IEnumerable<BillItemDto>> GetAllDtosByParametersAsync(BillItemSearchObject search);
+        Task<IEnumerable<BillItem>> GetByRelatedProductIdAsync(int pRelatedProductId);
     }
 }

@@ -8,6 +8,8 @@ using Pharmacy.Core.Entities.Base.DTO;
 using System.Collections.Generic;
 using Pharmacy.Core.Models;
 using Pharmacy.Core.Models.Billing;
+using Pharmacy.Infrastracture.Helpers;
+using Pharmacy.Infrastracture;
 
 namespace Pharmacy.Infrastructure.Repositories.Base.Repository
 {
@@ -16,6 +18,12 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         public BillItemsRepository(PharmacyContext context) : base(context)
         {
         }
+
+        public async Task<IEnumerable<BillItem>> GetByRelatedProductIdAsync(int pRelatedProductId)
+        {
+            return await DbConnection.QueryFunctionAsync<BillItem>(DbObjects.BaseDbObjects.Functions.BillItems.billitems_getbyrelatedproductid, new { pRelatedProductId });
+        }
+
         public async Task<IEnumerable<BillItemDto>> GetAllDtosByParametersAsync(BillItemSearchObject search)
         {
             var query = Context.BillItems.Include(x=>x.Bill).Include(x => x.Product).AsQueryable();

@@ -22,6 +22,7 @@ namespace Pharmacy.WindowsUI.Billing
         APIService _aPIServiceCategories = new APIService("Categories");
         APIService _aPIServiceBills = new APIService("Bills");
 
+        private int? _relatedProductId = null;
         private decimal _total = 0;
         public frmBiling()
         {
@@ -134,10 +135,11 @@ namespace Pharmacy.WindowsUI.Billing
                     }
 
                     _total += decimal.Parse(price.ToString());
+                    _relatedProductId = int.Parse(id.ToString());
                     lblTotal.Text = _total.ToString();
                     changeProductQuantity(int.Parse(id.ToString()), -1);
 
-
+                    await searchProducts();
                 }
             }
         }
@@ -157,6 +159,7 @@ namespace Pharmacy.WindowsUI.Billing
             var searchObj = new ProductSearchObject()
             {
                 SearchTerm = txtSearch.Text,
+                RelatedProductId = _relatedProductId,
                 CategoryId = comboCategoryId.SelectedValue != null ? int.Parse(comboCategoryId.SelectedValue.ToString()) : (int?)null
             };
             var result = await _aPIServiceProducts.Get<List<ProductDto>>(searchObj);
@@ -202,8 +205,11 @@ namespace Pharmacy.WindowsUI.Billing
                     dgvBillItems.Rows.RemoveAt(e.RowIndex);
                 }
                 _total -= decimal.Parse(price.ToString());
+                _relatedProductId = dgvBillItems.Rows.Count == 0 ? (int?)null : int.Parse(dgvBillItems.Rows[dgvBillItems.Rows.Count - 1].Cells[0].Value.ToString());
                 lblTotal.Text = _total.ToString();
                 changeProductQuantity(int.Parse(id.ToString()), 1);
+
+                await searchProducts();
             }
         }
 
