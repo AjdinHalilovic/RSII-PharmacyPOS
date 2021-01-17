@@ -260,6 +260,12 @@
     <Compile Include="Billing\frmProductDetails.Designer.cs">
       <DependentUpon>frmProductDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Billing\frmSales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Billing\frmSales.Designer.cs">
+      <DependentUpon>frmSales.cs</DependentUpon>
+    </Compile>
     <Compile Include="Billing\frmReports.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -353,6 +359,9 @@
     <EmbeddedResource Include="Billing\frmProductDetails.resx">
       <DependentUpon>frmProductDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Billing\frmSales.resx">
+      <DependentUpon>frmSales.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Billing\frmReports.resx">
       <DependentUpon>frmReports.cs</DependentUpon>
     </EmbeddedResource>
@@ -407,6 +416,7 @@
     </Compile>
     <None Include="packages.config" />
     <None Include="Pharmacy.Core.Entities.Base.DTO.BaseDto.datasource" />
+    <None Include="Pharmacy.Core.Entities.Base.DTO.BillDto.datasource" />
     <None Include="Pharmacy.Core.Entities.Base.DTO.PersonAttributeDto.datasource" />
     <None Include="Pharmacy.Core.Entities.Base.DTO.PersonDto.datasource" />
     <None Include="Pharmacy.Core.Entities.Base.DTO.PharmacyBranchDto.datasource" />

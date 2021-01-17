@@ -8,6 +8,7 @@ namespace Pharmacy.Core.Models
     {
         public string SearchTerm { get; set; }
         public int? PharmacyBranchId { get; set; }
+        public bool IncludeBranchFiltering { get; set; }
         public int? PharmacyId { get; set; }
     }
 }

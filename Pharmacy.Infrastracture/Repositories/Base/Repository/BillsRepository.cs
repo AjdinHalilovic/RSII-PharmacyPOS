@@ -27,11 +27,16 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
             if (!search.ProductId.HasValue)
             {
 
-                var query = Context.Bills.Include(x => x.User).ThenInclude(x => x.Person).AsQueryable();
+                var query = Context.Bills.Include(x=>x.PharmacyBranch).Include(x => x.User).ThenInclude(x => x.Person).AsQueryable();
 
                 if (search.PharmacyBranchId.HasValue)
                 {
                     query = query.Where(x => x.PharmacyBranchId == search.PharmacyBranchId);
+                }
+
+                if (search.PharmacyId.HasValue)
+                {
+                    query = query.Where(x => x.PharmacyBranch.PharmacyId == search.PharmacyId);
                 }
 
                 if (search.UserId.HasValue)

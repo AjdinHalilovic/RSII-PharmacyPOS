@@ -37,7 +37,8 @@ namespace Pharmacy.API.Areas.Billing
         {
             try
             {
-                search.PharmacyBranchId = ClaimUser.PharmacyBranchId;
+                search.PharmacyBranchId = search.IncludeBranchFiltering ? search.PharmacyBranchId : ClaimUser.PharmacyBranchId;
+                search.PharmacyId = ClaimUser.PharmacyId;
                 var bills = await DataUnitOfWork.BaseUow.BillsRepository.GetAllDtosByParametersAsync(search);
 
                 return Ok(bills);

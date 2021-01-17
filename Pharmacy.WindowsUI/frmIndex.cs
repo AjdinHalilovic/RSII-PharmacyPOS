@@ -199,5 +199,21 @@ namespace Pharmacy.WindowsUI
             frmPharmacyBranches.MdiParent = this;
             frmPharmacyBranches.Show();
         }
+
+        private void chartsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frmReports = new frmReports();
+            frmReports.WindowState = FormWindowState.Maximized;
+            frmReports.MdiParent = this;
+            frmReports.Show();
+        }
+
+        private void salesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frmSales = new frmSales();
+            frmSales.WindowState = FormWindowState.Maximized;
+            frmSales.MdiParent = this;
+            frmSales.Show();
+        }
     }
 }

@@ -29,18 +29,20 @@
         private void InitializeComponent()
         {
             this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.branchIdentifierLabel = new System.Windows.Forms.ToolStripMenuItem();
+            this.branchIdentifier = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemFullName = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.billingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chartsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.branchesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.attributesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.substancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.branchIdentifierLabel = new System.Windows.Forms.ToolStripMenuItem();
-            this.branchIdentifier = new System.Windows.Forms.ToolStripMenuItem();
-            this.branchesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,6 +72,19 @@
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
+            // branchIdentifierLabel
+            // 
+            this.branchIdentifierLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.branchIdentifierLabel.Name = "branchIdentifierLabel";
+            this.branchIdentifierLabel.Size = new System.Drawing.Size(153, 24);
+            this.branchIdentifierLabel.Text = "Branch Identifier";
+            // 
+            // branchIdentifier
+            // 
+            this.branchIdentifier.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.branchIdentifier.Name = "branchIdentifier";
+            this.branchIdentifier.Size = new System.Drawing.Size(153, 4);
+            // 
             // menuItemFullName
             // 
             this.menuItemFullName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
@@ -98,6 +113,9 @@
             // 
             // reportsToolStripMenuItem
             // 
+            this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chartsToolStripMenuItem,
+            this.salesToolStripMenuItem});
             this.reportsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.reportsToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 0, 0, 20);
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
@@ -105,7 +123,29 @@
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(153, 29);
             this.reportsToolStripMenuItem.Text = "Reports";
             this.reportsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.reportsToolStripMenuItem.Click += new System.EventHandler(this.reportsToolStripMenuItem_Click);
+            // 
+            // chartsToolStripMenuItem
+            // 
+            this.chartsToolStripMenuItem.Name = "chartsToolStripMenuItem";
+            this.chartsToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.chartsToolStripMenuItem.Text = "Charts";
+            this.chartsToolStripMenuItem.Click += new System.EventHandler(this.chartsToolStripMenuItem_Click);
+            // 
+            // salesToolStripMenuItem
+            // 
+            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.salesToolStripMenuItem.Text = "Sales";
+            this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click);
+            // 
+            // branchesToolStripMenuItem
+            // 
+            this.branchesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.branchesToolStripMenuItem.Name = "branchesToolStripMenuItem";
+            this.branchesToolStripMenuItem.Size = new System.Drawing.Size(153, 29);
+            this.branchesToolStripMenuItem.Text = "Branches";
+            this.branchesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.branchesToolStripMenuItem.Click += new System.EventHandler(this.branchesToolStripMenuItem_Click);
             // 
             // usersToolStripMenuItem
             // 
@@ -157,28 +197,6 @@
             this.substancesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.substancesToolStripMenuItem.Click += new System.EventHandler(this.substancesToolStripMenuItem_Click);
             // 
-            // branchIdentifierLabel
-            // 
-            this.branchIdentifierLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.branchIdentifierLabel.Name = "branchIdentifierLabel";
-            this.branchIdentifierLabel.Size = new System.Drawing.Size(153, 24);
-            this.branchIdentifierLabel.Text = "Branch Identifier";
-            // 
-            // branchIdentifier
-            // 
-            this.branchIdentifier.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.branchIdentifier.Name = "branchIdentifier";
-            this.branchIdentifier.Size = new System.Drawing.Size(153, 4);
-            // 
-            // branchesToolStripMenuItem
-            // 
-            this.branchesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.branchesToolStripMenuItem.Name = "branchesToolStripMenuItem";
-            this.branchesToolStripMenuItem.Size = new System.Drawing.Size(153, 29);
-            this.branchesToolStripMenuItem.Text = "Branches";
-            this.branchesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.branchesToolStripMenuItem.Click += new System.EventHandler(this.branchesToolStripMenuItem_Click);
-            // 
             // frmIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -188,7 +206,7 @@
             this.Controls.Add(this.menuStrip);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmIndex";
             this.RightToLeftLayout = true;
             this.Text = "POS Pharmacy";
@@ -214,6 +232,8 @@
         private System.Windows.Forms.ToolStripMenuItem branchIdentifierLabel;
         private System.Windows.Forms.ToolStripMenuItem branchIdentifier;
         private System.Windows.Forms.ToolStripMenuItem branchesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chartsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
     }
 }
 

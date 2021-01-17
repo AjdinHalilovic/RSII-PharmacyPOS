@@ -224,11 +224,11 @@ namespace Pharmacy.WindowsUI.Billing
                 tableByProduct.AddCell(new PdfPCell(new Phrase("PRODUCT")) { HorizontalAlignment = Element.ALIGN_CENTER });
                 tableByProduct.AddCell(new PdfPCell(new Phrase("QUANTITY")) { HorizontalAlignment = Element.ALIGN_CENTER });
                 tableByProduct.AddCell(new PdfPCell(new Phrase("AMOUNT")) { HorizontalAlignment = Element.ALIGN_CENTER });
-                foreach (var item in billItems)
+                foreach (var item in billItems.GroupBy(x=>x.Product))
                 {
-                    tableByProduct.AddCell(new PdfPCell(new Phrase(item.Product)) { HorizontalAlignment = Element.ALIGN_LEFT });
-                    tableByProduct.AddCell(new PdfPCell(new Phrase(item.Quantity.ToString())) { HorizontalAlignment = Element.ALIGN_LEFT });
-                    tableByProduct.AddCell(new PdfPCell(new Phrase(item.Amount.ToString())) { HorizontalAlignment = Element.ALIGN_RIGHT });
+                    tableByProduct.AddCell(new PdfPCell(new Phrase(item.Key)) { HorizontalAlignment = Element.ALIGN_LEFT });
+                    tableByProduct.AddCell(new PdfPCell(new Phrase(item.Sum(x=>x.Quantity).ToString())) { HorizontalAlignment = Element.ALIGN_LEFT });
+                    tableByProduct.AddCell(new PdfPCell(new Phrase(item.Sum(x=>x.Amount).ToString())) { HorizontalAlignment = Element.ALIGN_RIGHT });
                 }
                 doc.Add(tableByProduct);
                 #endregion
