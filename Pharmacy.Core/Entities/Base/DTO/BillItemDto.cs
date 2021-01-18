@@ -11,7 +11,7 @@ namespace Pharmacy.Core.Entities.Base.DTO
         [Key]
         public int Id { get; set; }
         public DateTime CreatedDateTime { get; set; }
-
+        public decimal Price { get; set; }
         public int ProductId { get; set; }
         public string Product { get; set; }
         public string ProductCode { get; set; }

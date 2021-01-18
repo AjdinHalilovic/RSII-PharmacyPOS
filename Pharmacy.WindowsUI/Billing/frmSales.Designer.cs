@@ -33,6 +33,7 @@
             this.btnShow = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
+            this.billDtoBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
@@ -44,7 +45,6 @@
             this.baseDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.billDtoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.billDtoBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDateTimeFormatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,14 +53,15 @@
             this.numberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Action = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.baseDtoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -113,7 +114,8 @@
             this.userFullNameDataGridViewTextBoxColumn,
             this.numberDataGridViewTextBoxColumn,
             this.totalDataGridViewTextBoxColumn,
-            this.amountDataGridViewTextBoxColumn});
+            this.amountDataGridViewTextBoxColumn,
+            this.Action});
             this.dgvProducts.DataSource = this.billDtoBindingSource2;
             this.dgvProducts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProducts.Location = new System.Drawing.Point(3, 17);
@@ -124,6 +126,11 @@
             this.dgvProducts.RowTemplate.Height = 24;
             this.dgvProducts.Size = new System.Drawing.Size(1205, 395);
             this.dgvProducts.TabIndex = 0;
+            this.dgvProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellContentClick);
+            // 
+            // billDtoBindingSource2
+            // 
+            this.billDtoBindingSource2.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.BillDto);
             // 
             // label4
             // 
@@ -200,10 +207,6 @@
             // 
             this.billDtoBindingSource1.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.BillDto);
             // 
-            // billDtoBindingSource2
-            // 
-            this.billDtoBindingSource2.DataSource = typeof(Pharmacy.Core.Entities.Base.DTO.BillDto);
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -279,6 +282,19 @@
             this.amountDataGridViewTextBoxColumn.Visible = false;
             this.amountDataGridViewTextBoxColumn.Width = 125;
             // 
+            // Action
+            // 
+            this.Action.HeaderText = "Action";
+            this.Action.MinimumWidth = 6;
+            this.Action.Name = "Action";
+            this.Action.ReadOnly = true;
+            this.Action.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Action.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Action.Text = "Print";
+            this.Action.ToolTipText = "Print";
+            this.Action.UseColumnTextForButtonValue = true;
+            this.Action.Width = 125;
+            // 
             // frmSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -299,12 +315,12 @@
             this.Load += new System.EventHandler(this.frmProducts_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.baseDtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.billDtoBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,6 +342,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboPharmacyBranchId;
         private System.Windows.Forms.BindingSource billDtoBindingSource;
+        private System.Windows.Forms.BindingSource billDtoBindingSource2;
+        private System.Windows.Forms.BindingSource billDtoBindingSource1;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDateTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDateTimeFormatedDataGridViewTextBoxColumn;
@@ -334,7 +352,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource billDtoBindingSource2;
-        private System.Windows.Forms.BindingSource billDtoBindingSource1;
+        private System.Windows.Forms.DataGridViewButtonColumn Action;
     }
 }

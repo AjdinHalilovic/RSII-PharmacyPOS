@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Pharmacy.Infrastracture.Helpers
 {
-    public static class ProdutRecomenerOrderByExtension
+    public static class ProdutRecommenderOrderByExtension
     {
         public static IEnumerable<ProductDto> RecomendedOrderProducts(this IEnumerable<ProductDto> products,
                     IEnumerable<BillItem> billItems, int relatedProductId)

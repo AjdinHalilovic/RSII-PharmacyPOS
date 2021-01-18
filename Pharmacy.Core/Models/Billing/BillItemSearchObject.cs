@@ -9,6 +9,7 @@ namespace Pharmacy.Core.Models.Billing
 {
     public class BillItemSearchObject : BaseSearchObject
     {
+        public int? BillId { get; set; }
         public int? ProductId { get; set; }
 
         public DateTime? DateFrom { get; set; }

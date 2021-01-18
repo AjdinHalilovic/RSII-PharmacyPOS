@@ -28,6 +28,11 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
             var query = Context.BillItems.Include(x=>x.Bill).Include(x => x.Product).AsQueryable();
 
+            if (search.BillId.HasValue)
+            {
+                query = query.Where(x => x.BillId == search.BillId);
+            }
+
             if (search.PharmacyBranchId.HasValue)
             {
                 query = query.Where(x => x.Product.PharmacyBranchId == search.PharmacyBranchId);
@@ -63,6 +68,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
                 ProductCode = x.Product.Code,
                 ProductId = x.ProductId,
                 Quantity = x.Quantity,
+                Price = x.UnitPrice,
                 Amount = x.Total,
                 Type = "SALES - InvoiceNo "+x.Bill.Number
             }).ToListAsync();
