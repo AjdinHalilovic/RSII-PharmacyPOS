@@ -24,9 +24,13 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
             {
                 query = query.Where(x => x.PharmacyBranchId == search.PharmacyBranchId);
             }
+            if (!string.IsNullOrWhiteSpace(search.EqualSearchTerm))
+            {
+                query = query.Where(x => x.Name.ToLower().Equals(search.EqualSearchTerm.ToLower()));
+            }
             if (!string.IsNullOrWhiteSpace(search.SearchTerm))
             {
-                query = query.Where(x => x.Name.ToLower().StartsWith(search.SearchTerm));
+                query = query.Where(x => x.Name.ToLower().StartsWith(search.SearchTerm.ToLower()));
             }
 
             var list = await query.Select(x=> new BaseDto() { Id = x.Id, Name = x.Name}).ToListAsync();

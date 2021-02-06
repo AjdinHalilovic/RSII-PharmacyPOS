@@ -32,10 +32,10 @@ namespace Pharmacy.WindowsUI.Billing
         {
             this.WindowState = FormWindowState.Maximized;
 
-            dateTimePickerFrom.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
+            dateTimePickerFrom.Value = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0);
             dateTimePickerTo.Value = DateTime.Now;
 
-            dateTimePickerFromProduct.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
+            dateTimePickerFromProduct.Value = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0);
             dateTimePickerToProduct.Value = DateTime.Now;
 
             await LoadUsers();
@@ -77,6 +77,18 @@ namespace Pharmacy.WindowsUI.Billing
 
             billsByProduct.ForEach(x => { valuesProductY.Add(x.Amount); valuesProductX.Add(x.CreatedDateTime); });
 
+            if (!valuesProductX.Any())
+            {
+                valuesProductX.Add(dateTimePickerFromProduct.Value);
+                valuesProductX.Add(dateTimePickerToProduct.Value);
+            }
+
+            if (!valuesProductY.Any())
+            {
+                valuesProductY.Add(0);
+                valuesProductY.Add(0);
+            }
+
             chartSalesByProduct.Series["Prihod"].Points.DataBindXY(valuesProductX, valuesProductY);
         }
 
@@ -97,6 +109,19 @@ namespace Pharmacy.WindowsUI.Billing
             bills.GroupBy(x => x.CreatedDateTime.ToShortDateString())
                 .Select(x => new BillDto { Amount = x.Sum(y => y.Amount), CreatedDateTime = x.FirstOrDefault().CreatedDateTime }).ToList()
                 .ForEach(x => { valuesY.Add(x.Amount); valuesX.Add(x.CreatedDateTime); });
+
+            
+            if (!valuesX.Any())
+            {
+                valuesX.Add(dateTimePickerFrom.Value);
+                valuesX.Add(dateTimePickerTo.Value);
+            }
+
+            if (!valuesY.Any())
+            {
+                valuesY.Add(0);
+                valuesY.Add(0);
+            }
 
             chartSalesByTime.Series["Prihod"].Points.DataBindXY(valuesX, valuesY);
         }
@@ -244,6 +269,16 @@ namespace Pharmacy.WindowsUI.Billing
 
                 throw;
             }
+        }
+
+        private async void dateTimePickerFromProduct_ValueChanged(object sender, EventArgs e)
+        {
+            await LoadProductsChart();
+        }
+
+        private async void dateTimePickerToProduct_ValueChanged(object sender, EventArgs e)
+        {
+            await LoadProductsChart();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         {
             string searchTerm = string.IsNullOrEmpty(search.FullName) ? null : $"{Regex.Replace(search.FullName, @"\s+", " ").Replace(" ", ":*&")}:*";
 
-            return await DbConnection.QueryFunctionAsync<PersonDto>(DbObjects.BaseDbObjects.Functions.Persons.persons_getdtosbyparameters, new { pFullName = searchTerm, pPharmacyId = search.PharmacyId });
+            return await DbConnection.QueryFunctionAsync<PersonDto>(DbObjects.BaseDbObjects.Functions.Persons.persons_getdtosbyparameters, new { pFullName = searchTerm, pEqualFullName = search.EqualSearchTerm, pPharmacyId = search.PharmacyId });
         }
 
     }

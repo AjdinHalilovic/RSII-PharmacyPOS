@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Core.Entities.Base;
+using Pharmacy.Core.Entities.Base.DTO;
 using Pharmacy.Core.Models;
 using Pharmacy.Core.Models.Billing;
 using Pharmacy.Core.Models.Settins;
@@ -58,6 +59,12 @@ namespace Pharmacy.WindowsUI.Settings
 
         private async void btnSave_ClickAsync(object sender, EventArgs e)
         {
+            var existingAttribute = await _aPIServiceAttributes.Get<IEnumerable<BaseDto>>(new BaseSearchObject { EqualSearchTerm = txtName.Text });
+            if (existingAttribute.Any())
+            {
+                MessageBox.Show("Attribute already exists!", "Error");
+                return;
+            }
             if (ValidateChildren())
             {
                 try

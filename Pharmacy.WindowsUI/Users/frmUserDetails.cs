@@ -33,6 +33,12 @@ namespace Pharmacy.WindowsUI.Users
 
         private async void btnSaveUser_Click(object sender, EventArgs e)
         {
+            var existingPersons = await _aPIServicePersons.Get<IEnumerable<PersonDto>>(new BaseSearchOBject { EqualSearchTerm = $"{txtFirstName.Text} {txtLastName.Text}" });
+            if (existingPersons.Any())
+            {
+                MessageBox.Show("User already exists!", "Error");
+                return;
+            }
             if (ValidateChildren())
             {
                 var roleList = clbRoles.CheckedItems.Cast<Role>().Select(x => x.Id).ToList();

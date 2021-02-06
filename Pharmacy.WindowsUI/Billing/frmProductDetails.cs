@@ -36,6 +36,12 @@ namespace Pharmacy.WindowsUI.Billing
 
         private async void btnSaveUser_Click(object sender, EventArgs e)
         {
+            var existingProducts = await _aPIServiceProducts.Get<IEnumerable<ProductDto>>(new ProductSearchObject { EqualSearchTerm = txtName.Text });
+            if (existingProducts.Any())
+            {
+                MessageBox.Show("Product already exists!", "Error");
+                return;
+            }
             if (ValidateChildren())
             {
                 var categoriesList = clbCategories.CheckedItems.Cast<Category>().Select(x => x.Id).ToList();

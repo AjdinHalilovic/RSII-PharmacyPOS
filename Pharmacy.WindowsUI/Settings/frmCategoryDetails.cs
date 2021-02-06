@@ -1,5 +1,7 @@
 ﻿using Pharmacy.Core.Entities.Base;
+using Pharmacy.Core.Entities.Base.DTO;
 using Pharmacy.Core.Models;
+using Pharmacy.Core.Models.Billing;
 using Pharmacy.WindowsUI.Properties;
 using System;
 using System.Collections.Generic;
@@ -48,6 +50,12 @@ namespace Pharmacy.WindowsUI.Settings
 
         private async void btnSave_ClickAsync(object sender, EventArgs e)
         {
+            var existingCategory = await _aPIServiceCategories.Get<IEnumerable<BaseDto>>(new CategorySearchObject { EqualSearchTerm = txtName.Text });
+            if (existingCategory.Any())
+            {
+                MessageBox.Show("Substance already exists!", "Error");
+                return;
+            }
             if (ValidateChildren())
             {
                 try

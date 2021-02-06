@@ -43,7 +43,7 @@ namespace Pharmacy.WindowsUI.Billing
         private async void frmProducts_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            dateTimePickerFrom.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
+            dateTimePickerFrom.Value = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0);
             dateTimePickerTo.Value = DateTime.Now;
 
             await LoadBranches();
