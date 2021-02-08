@@ -60,7 +60,7 @@ namespace Pharmacy.WindowsUI.Settings
         private async void btnSave_ClickAsync(object sender, EventArgs e)
         {
             var existingAttribute = await _aPIServiceAttributes.Get<IEnumerable<BaseDto>>(new BaseSearchObject { EqualSearchTerm = txtName.Text });
-            if (existingAttribute.Any())
+            if (existingAttribute.Any() && !_id.HasValue)
             {
                 MessageBox.Show("Attribute already exists!", "Error");
                 return;

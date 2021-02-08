@@ -162,9 +162,9 @@ namespace Pharmacy.API
         {
             services.AddDistributedMemoryCache()
                 .AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
                 //.AddJsonOptions(options => { options.SerializerSettings.DateFormatString = "yyyy-MM-ddTHH:mm"; });
-                .AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new DateTimeConverter()); });
+                //.AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new DateTimeConverter()); });
 
             services.AddSwaggerGen(c =>
             {

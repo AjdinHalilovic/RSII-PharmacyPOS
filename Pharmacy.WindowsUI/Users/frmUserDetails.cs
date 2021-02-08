@@ -34,7 +34,7 @@ namespace Pharmacy.WindowsUI.Users
         private async void btnSaveUser_Click(object sender, EventArgs e)
         {
             var existingPersons = await _aPIServicePersons.Get<IEnumerable<PersonDto>>(new BaseSearchOBject { EqualSearchTerm = $"{txtFirstName.Text} {txtLastName.Text}" });
-            if (existingPersons.Any())
+            if (existingPersons.Any() && !_id.HasValue)
             {
                 MessageBox.Show("User already exists!", "Error");
                 return;

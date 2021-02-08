@@ -51,7 +51,7 @@ namespace Pharmacy.WindowsUI.Settings
         private async void btnSave_ClickAsync(object sender, EventArgs e)
         {
             var existingCategory = await _aPIServiceCategories.Get<IEnumerable<BaseDto>>(new CategorySearchObject { EqualSearchTerm = txtName.Text });
-            if (existingCategory.Any())
+            if (existingCategory.Any() && !_id.HasValue)
             {
                 MessageBox.Show("Substance already exists!", "Error");
                 return;

@@ -37,7 +37,7 @@ namespace Pharmacy.WindowsUI.Billing
         private async void btnSaveUser_Click(object sender, EventArgs e)
         {
             var existingProducts = await _aPIServiceProducts.Get<IEnumerable<ProductDto>>(new ProductSearchObject { EqualSearchTerm = txtName.Text });
-            if (existingProducts.Any())
+            if (existingProducts.Any() && !_id.HasValue)
             {
                 MessageBox.Show("Product already exists!", "Error");
                 return;
