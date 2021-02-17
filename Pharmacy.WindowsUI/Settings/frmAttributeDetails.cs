@@ -59,11 +59,14 @@ namespace Pharmacy.WindowsUI.Settings
 
         private async void btnSave_ClickAsync(object sender, EventArgs e)
         {
-            var existingAttribute = await _aPIServiceAttributes.Get<IEnumerable<BaseDto>>(new BaseSearchObject { EqualSearchTerm = txtName.Text });
-            if (existingAttribute.Any() && !_id.HasValue)
+            if (!string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Attribute already exists!", "Error");
-                return;
+                var existingAttribute = await _aPIServiceAttributes.Get<IEnumerable<BaseDto>>(new BaseSearchObject { EqualSearchTerm = txtName.Text });
+                if (existingAttribute.Any() && !_id.HasValue)
+                {
+                    MessageBox.Show("Attribute already exists!", "Error");
+                    return;
+                }
             }
             if (ValidateChildren())
             {
@@ -133,7 +136,7 @@ namespace Pharmacy.WindowsUI.Settings
             {
                 errorProvider.SetError(txtValue, null);
             }
-           
+
 
             if (!string.IsNullOrEmpty(value))
             {

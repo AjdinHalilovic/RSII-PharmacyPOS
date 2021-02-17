@@ -36,11 +36,14 @@ namespace Pharmacy.WindowsUI.Billing
 
         private async void btnSaveUser_Click(object sender, EventArgs e)
         {
-            var existingProducts = await _aPIServiceProducts.Get<IEnumerable<ProductDto>>(new ProductSearchObject { EqualSearchTerm = txtName.Text });
-            if (existingProducts.Any() && !_id.HasValue)
+            if (!string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Product already exists!", "Error");
-                return;
+                var existingProducts = await _aPIServiceProducts.Get<IEnumerable<ProductDto>>(new ProductSearchObject { EqualSearchTerm = txtName.Text });
+                if (existingProducts.Any() && !_id.HasValue)
+                {
+                    MessageBox.Show("Product already exists!", "Error");
+                    return;
+                }
             }
             if (ValidateChildren())
             {
@@ -115,7 +118,7 @@ namespace Pharmacy.WindowsUI.Billing
                     selectedCategories.ToList().ForEach(x => clbCategories.Items.Add(x, true));
 
                     var productSubstances = await _aPIServiceProductSubstances.Get<List<ProductSubstance>>(new SubstanceSearchObject() { ProductId = _id });
-                    var selectedSubstances = await _aPIServiceSubstances.Get<List<Substance>>(new SubstanceSearchObject() { ListIds = productSubstances.Select(x => x.SubstanceId).ToArray() });
+                    var selectedSubstances = await _aPIServiceSubstances.Get<List<Substance>>(new SubstanceSearchObject() { ListIds = productSubstances.Count > 0 ? productSubstances.Select(x => x.SubstanceId).ToArray() : new int[] { 0 } });
                     substances = substances.Where(x => !selectedSubstances.Select(y => y.Id).Contains(x.Id)).ToList();
                     selectedSubstances.ToList().ForEach(x => clbSubstances.Items.Add(x, true));
 

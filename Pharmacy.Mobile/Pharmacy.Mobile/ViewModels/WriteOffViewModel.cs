@@ -18,7 +18,7 @@ namespace Pharmacy.Mobile.ViewModels
     public class WriteOffViewModel : BaseViewModel
     {
         private readonly APIService _productsService = new APIService("Products");
-        private readonly APIService _writeOffInventoriesService = new APIService("WriteOffInventories");
+        private readonly APIService _writeOffInventoriesService = new APIService("WriteOffInventoryDocuments");
 
         public ObservableCollection<InventoryEntryProductDto> Items { get; set; } = new ObservableCollection<InventoryEntryProductDto>();
         public ObservableCollection<ProductDto> ProductList { get; set; } = new ObservableCollection<ProductDto>();

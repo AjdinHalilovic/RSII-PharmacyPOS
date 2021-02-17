@@ -40,7 +40,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
                 ProductId = x.InventoryProduct.ProductId,
                 Quantity = x.Quantity,
                 Reason = x.Reason,
-                Type = "WRITE OFF"
+                Type = $"WRITE OFF - {x.Reason}"
             }).ToListAsync();
 
             return list;

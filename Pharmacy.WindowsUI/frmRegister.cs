@@ -1,6 +1,7 @@
 ﻿using Flurl.Http;
 using Pharmacy.Core.Entities.Base;
 using Pharmacy.Core.Models.Access;
+using Pharmacy.WindowsUI.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,35 +34,37 @@ namespace Pharmacy.WindowsUI
 
         private async void btnSignUp_ClickAsync(object sender, EventArgs e)
         {
-            try
+            if (ValidateChildren())
             {
-                PharmacyRegisterRequest pharmacyRegisterRequest = new PharmacyRegisterRequest()
+                try
                 {
-                    PharmacyName = txtPharmacyName.Text,
-                    PharmacyUniqueIdentifier = txtPharmacyUniqueIdentifier.Text,
-                    CountryId = int.Parse(comboCountryId.SelectedValue.ToString()),
-                    CityId = int.Parse(comboCityId.SelectedValue.ToString()),
-                    Address = txtAddress.Text,
-                    BranchIdentifier = txtBranchIDentifier.Text,
-                    CentralBranch = chkBoxCentral.Checked,
-                    UseCentralBranchData = chkBoxUseCentralData.Checked,
-                    FirstName = txtFirstName.Text,
-                    LastName = txtLastName.Text,
-                    Email = txtEmail.Text,
-                    Username = txtUsername.Text,
-                    Password = txtPassword.Text,
-                    PasswordConfirmation = txtConfirmPassword.Text
-                };
+                    PharmacyRegisterRequest pharmacyRegisterRequest = new PharmacyRegisterRequest()
+                    {
+                        PharmacyName = txtPharmacyName.Text,
+                        PharmacyUniqueIdentifier = txtPharmacyUniqueIdentifier.Text,
+                        CountryId = int.Parse(comboCountryId.SelectedValue.ToString()),
+                        CityId = int.Parse(comboCityId.SelectedValue.ToString()),
+                        Address = txtAddress.Text,
+                        BranchIdentifier = txtBranchIDentifier.Text,
+                        CentralBranch = chkBoxCentral.Checked,
+                        UseCentralBranchData = chkBoxUseCentralData.Checked,
+                        FirstName = txtFirstName.Text,
+                        LastName = txtLastName.Text,
+                        Email = txtEmail.Text,
+                        Username = txtUsername.Text,
+                        Password = txtPassword.Text,
+                        PasswordConfirmation = txtConfirmPassword.Text
+                    };
 
-                var url = $"{Properties.Settings.Default.APIUrl}/Register/Pharmacy";
-                PharmacyRegisterRequest response = await url.PostJsonAsync(pharmacyRegisterRequest).ReceiveJson<PharmacyRegisterRequest>();
-                
-                this.Close();
-            }
-            catch (Exception ex)
-            {
+                    var url = $"{Properties.Settings.Default.APIUrl}/Register/Pharmacy";
+                    PharmacyRegisterRequest response = await url.PostJsonAsync(pharmacyRegisterRequest).ReceiveJson<PharmacyRegisterRequest>();
 
-                throw;
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error");
+                }
             }
         }
 
@@ -87,6 +90,154 @@ namespace Pharmacy.WindowsUI
             comboCityId.ValueMember = "Id";
             comboCityId.DisplayMember = "Name";
             comboCityId.DataSource = result;
+        }
+
+        private void txtPharmacyName_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtPharmacyName.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtPharmacyName, Resources.Validation_RequiredField);
+            }
+            else
+            {
+                errorProvider1.SetError(txtPharmacyName, null);
+            }
+        }
+
+        private void txtPharmacyUniqueIdentifier_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtPharmacyUniqueIdentifier.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtPharmacyUniqueIdentifier, Resources.Validation_RequiredField);
+            }
+            else
+            {
+                errorProvider1.SetError(txtPharmacyUniqueIdentifier, null);
+            }
+        }
+
+        private void comboCountryId_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(comboCountryId.SelectedValue?.ToString()) || comboCountryId.SelectedValue?.ToString() == "0")
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(comboCountryId, Resources.Validation_RequiredField);
+            }
+            else
+            {
+                errorProvider1.SetError(comboCountryId, null);
+            }
+        }
+
+        private void comboCityId_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(comboCityId.SelectedValue?.ToString()) || comboCityId.SelectedValue?.ToString() == "0")
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(comboCityId, Resources.Validation_RequiredField);
+            }
+            else
+            {
+                errorProvider1.SetError(comboCityId, null);
+            }
+        }
+
+        private void txtBranchIDentifier_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtBranchIDentifier.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtBranchIDentifier, Resources.Validation_RequiredField);
+            }
+            else
+            {
+                errorProvider1.SetError(txtBranchIDentifier, null);
+            }
+        }
+
+        private void txtFirstName_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtFirstName.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtFirstName, Resources.Validation_RequiredField);
+            }
+            else
+            {
+                errorProvider1.SetError(txtFirstName, null);
+            }
+        }
+
+        private void txtLastName_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtLastName.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtLastName, Resources.Validation_RequiredField);
+            }
+            else
+            {
+                errorProvider1.SetError(txtLastName, null);
+            }
+        }
+
+        private void txtUsername_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtUsername, Resources.Validation_RequiredField);
+            }
+            else
+            {
+                errorProvider1.SetError(txtUsername, null);
+            }
+        }
+
+        private void txtEmail_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtEmail, Resources.Validation_RequiredField);
+            }
+            else
+            {
+                errorProvider1.SetError(txtEmail, null);
+            }
+        }
+
+        private void txtPassword_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtPassword, Resources.Validation_RequiredField);
+            }
+            else
+            {
+                errorProvider1.SetError(txtPassword, null);
+            }
+        }
+
+        private void txtConfirmPassword_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtConfirmPassword.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtConfirmPassword, Resources.Validation_RequiredField);
+            }
+            else if(txtConfirmPassword.Text != txtPassword.Text)
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtConfirmPassword, Resources.PasswordsDoNotMatch);
+            }
+            else
+            {
+                errorProvider1.SetError(txtConfirmPassword, null);
+            }
         }
     }
 }

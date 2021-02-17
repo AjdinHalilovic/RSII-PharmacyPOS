@@ -33,11 +33,14 @@ namespace Pharmacy.WindowsUI.Users
 
         private async void btnSaveUser_Click(object sender, EventArgs e)
         {
-            var existingPersons = await _aPIServicePersons.Get<IEnumerable<PersonDto>>(new BaseSearchOBject { EqualSearchTerm = $"{txtFirstName.Text} {txtLastName.Text}" });
-            if (existingPersons.Any() && !_id.HasValue)
+            if (!string.IsNullOrEmpty(txtFirstName.Text) && !string.IsNullOrEmpty(txtLastName.Text))
             {
-                MessageBox.Show("User already exists!", "Error");
-                return;
+                var existingPersons = await _aPIServicePersons.Get<IEnumerable<PersonDto>>(new BaseSearchOBject { EqualSearchTerm = $"{txtFirstName.Text} {txtLastName.Text}" });
+                if (existingPersons.Any() && !_id.HasValue)
+                {
+                    MessageBox.Show("User already exists!", "Error");
+                    return;
+                }
             }
             if (ValidateChildren())
             {
@@ -100,7 +103,7 @@ namespace Pharmacy.WindowsUI.Users
                 var selectedRoles = await _aPIServiceRoles.Get<List<Role>>(new RolesSearchObject() { ListIds = userRoles.Select(x => x.RoleId).ToArray() });
 
                 roles = roles.Where(x => !selectedRoles.Select(y => y.Id).Contains(x.Id)).ToList();
-                selectedRoles.ToList().ForEach(x => clbRoles.Items.Add(x,true));
+                selectedRoles.ToList().ForEach(x => clbRoles.Items.Add(x, true));
             }
             roles.ToList().ForEach(x => clbRoles.Items.Add(x));
             clbRoles.DisplayMember = "Name";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblCancelSignUp = new System.Windows.Forms.LinkLabel();
             this.lblPharmacyUniqueIdentifier = new System.Windows.Forms.Label();
             this.txtPharmacyUniqueIdentifier = new System.Windows.Forms.TextBox();
@@ -58,14 +59,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.chkBoxUseCentralData = new System.Windows.Forms.CheckBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCancelSignUp
             // 
             this.lblCancelSignUp.AutoSize = true;
-            this.lblCancelSignUp.Location = new System.Drawing.Point(711, 504);
+            this.lblCancelSignUp.Location = new System.Drawing.Point(533, 410);
+            this.lblCancelSignUp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCancelSignUp.Name = "lblCancelSignUp";
-            this.lblCancelSignUp.Size = new System.Drawing.Size(51, 17);
+            this.lblCancelSignUp.Size = new System.Drawing.Size(40, 13);
             this.lblCancelSignUp.TabIndex = 11;
             this.lblCancelSignUp.TabStop = true;
             this.lblCancelSignUp.Text = "Cancel";
@@ -74,40 +78,47 @@
             // lblPharmacyUniqueIdentifier
             // 
             this.lblPharmacyUniqueIdentifier.AutoSize = true;
-            this.lblPharmacyUniqueIdentifier.Location = new System.Drawing.Point(401, 48);
+            this.lblPharmacyUniqueIdentifier.Location = new System.Drawing.Point(301, 39);
+            this.lblPharmacyUniqueIdentifier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPharmacyUniqueIdentifier.Name = "lblPharmacyUniqueIdentifier";
-            this.lblPharmacyUniqueIdentifier.Size = new System.Drawing.Size(176, 17);
+            this.lblPharmacyUniqueIdentifier.Size = new System.Drawing.Size(131, 13);
             this.lblPharmacyUniqueIdentifier.TabIndex = 10;
             this.lblPharmacyUniqueIdentifier.Text = "Pharmacy unique identifier";
             // 
             // txtPharmacyUniqueIdentifier
             // 
-            this.txtPharmacyUniqueIdentifier.Location = new System.Drawing.Point(401, 71);
+            this.txtPharmacyUniqueIdentifier.Location = new System.Drawing.Point(301, 58);
+            this.txtPharmacyUniqueIdentifier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPharmacyUniqueIdentifier.Name = "txtPharmacyUniqueIdentifier";
-            this.txtPharmacyUniqueIdentifier.Size = new System.Drawing.Size(366, 22);
+            this.txtPharmacyUniqueIdentifier.Size = new System.Drawing.Size(276, 20);
             this.txtPharmacyUniqueIdentifier.TabIndex = 9;
+            this.txtPharmacyUniqueIdentifier.Validating += new System.ComponentModel.CancelEventHandler(this.txtPharmacyUniqueIdentifier_Validating);
             // 
             // lblPharmacyName
             // 
             this.lblPharmacyName.AutoSize = true;
-            this.lblPharmacyName.Location = new System.Drawing.Point(25, 48);
+            this.lblPharmacyName.Location = new System.Drawing.Point(19, 39);
+            this.lblPharmacyName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPharmacyName.Name = "lblPharmacyName";
-            this.lblPharmacyName.Size = new System.Drawing.Size(110, 17);
+            this.lblPharmacyName.Size = new System.Drawing.Size(83, 13);
             this.lblPharmacyName.TabIndex = 8;
             this.lblPharmacyName.Text = "Pharmacy name";
             // 
             // txtPharmacyName
             // 
-            this.txtPharmacyName.Location = new System.Drawing.Point(25, 71);
+            this.txtPharmacyName.Location = new System.Drawing.Point(19, 58);
+            this.txtPharmacyName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPharmacyName.Name = "txtPharmacyName";
-            this.txtPharmacyName.Size = new System.Drawing.Size(366, 22);
+            this.txtPharmacyName.Size = new System.Drawing.Size(276, 20);
             this.txtPharmacyName.TabIndex = 7;
+            this.txtPharmacyName.Validating += new System.ComponentModel.CancelEventHandler(this.txtPharmacyName_Validating);
             // 
             // btnSignUp
             // 
-            this.btnSignUp.Location = new System.Drawing.Point(332, 497);
+            this.btnSignUp.Location = new System.Drawing.Point(249, 404);
+            this.btnSignUp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSignUp.Name = "btnSignUp";
-            this.btnSignUp.Size = new System.Drawing.Size(143, 30);
+            this.btnSignUp.Size = new System.Drawing.Size(107, 24);
             this.btnSignUp.TabIndex = 6;
             this.btnSignUp.Text = "Sign up";
             this.btnSignUp.UseVisualStyleBackColor = true;
@@ -116,107 +127,125 @@
             // lblLastName
             // 
             this.lblLastName.AutoSize = true;
-            this.lblLastName.Location = new System.Drawing.Point(401, 303);
+            this.lblLastName.Location = new System.Drawing.Point(301, 246);
+            this.lblLastName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLastName.Name = "lblLastName";
-            this.lblLastName.Size = new System.Drawing.Size(74, 17);
+            this.lblLastName.Size = new System.Drawing.Size(56, 13);
             this.lblLastName.TabIndex = 15;
             this.lblLastName.Text = "Last name";
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(401, 326);
+            this.txtLastName.Location = new System.Drawing.Point(301, 265);
+            this.txtLastName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(366, 22);
+            this.txtLastName.Size = new System.Drawing.Size(276, 20);
             this.txtLastName.TabIndex = 14;
+            this.txtLastName.Validating += new System.ComponentModel.CancelEventHandler(this.txtLastName_Validating);
             // 
             // lblFirstName
             // 
             this.lblFirstName.AutoSize = true;
-            this.lblFirstName.Location = new System.Drawing.Point(22, 303);
+            this.lblFirstName.Location = new System.Drawing.Point(16, 246);
+            this.lblFirstName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFirstName.Name = "lblFirstName";
-            this.lblFirstName.Size = new System.Drawing.Size(74, 17);
+            this.lblFirstName.Size = new System.Drawing.Size(55, 13);
             this.lblFirstName.TabIndex = 13;
             this.lblFirstName.Text = "First name";
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(22, 326);
+            this.txtFirstName.Location = new System.Drawing.Point(16, 265);
+            this.txtFirstName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(366, 22);
+            this.txtFirstName.Size = new System.Drawing.Size(276, 20);
             this.txtFirstName.TabIndex = 12;
+            this.txtFirstName.Validating += new System.ComponentModel.CancelEventHandler(this.txtFirstName_Validating);
             // 
             // comboCountryId
             // 
             this.comboCountryId.FormattingEnabled = true;
-            this.comboCountryId.Location = new System.Drawing.Point(25, 125);
+            this.comboCountryId.Location = new System.Drawing.Point(19, 102);
+            this.comboCountryId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboCountryId.Name = "comboCountryId";
-            this.comboCountryId.Size = new System.Drawing.Size(366, 24);
+            this.comboCountryId.Size = new System.Drawing.Size(276, 21);
             this.comboCountryId.TabIndex = 16;
+            this.comboCountryId.Validating += new System.ComponentModel.CancelEventHandler(this.comboCountryId_Validating);
             // 
             // comboCityId
             // 
             this.comboCityId.FormattingEnabled = true;
-            this.comboCityId.Location = new System.Drawing.Point(401, 125);
+            this.comboCityId.Location = new System.Drawing.Point(301, 102);
+            this.comboCityId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboCityId.Name = "comboCityId";
-            this.comboCityId.Size = new System.Drawing.Size(366, 24);
+            this.comboCityId.Size = new System.Drawing.Size(276, 21);
             this.comboCityId.TabIndex = 17;
+            this.comboCityId.Validating += new System.ComponentModel.CancelEventHandler(this.comboCityId_Validating);
             // 
             // lblCountry
             // 
             this.lblCountry.AutoSize = true;
-            this.lblCountry.Location = new System.Drawing.Point(25, 105);
+            this.lblCountry.Location = new System.Drawing.Point(19, 85);
+            this.lblCountry.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCountry.Name = "lblCountry";
-            this.lblCountry.Size = new System.Drawing.Size(57, 17);
+            this.lblCountry.Size = new System.Drawing.Size(43, 13);
             this.lblCountry.TabIndex = 18;
             this.lblCountry.Text = "Country";
             // 
             // lblCity
             // 
             this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(401, 105);
+            this.lblCity.Location = new System.Drawing.Point(301, 85);
+            this.lblCity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCity.Name = "lblCity";
-            this.lblCity.Size = new System.Drawing.Size(31, 17);
+            this.lblCity.Size = new System.Drawing.Size(24, 13);
             this.lblCity.TabIndex = 19;
             this.lblCity.Text = "City";
             // 
             // lblBranchIdentifier
             // 
             this.lblBranchIdentifier.AutoSize = true;
-            this.lblBranchIdentifier.Location = new System.Drawing.Point(401, 161);
+            this.lblBranchIdentifier.Location = new System.Drawing.Point(301, 131);
+            this.lblBranchIdentifier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBranchIdentifier.Name = "lblBranchIdentifier";
-            this.lblBranchIdentifier.Size = new System.Drawing.Size(224, 17);
+            this.lblBranchIdentifier.Size = new System.Drawing.Size(167, 13);
             this.lblBranchIdentifier.TabIndex = 23;
             this.lblBranchIdentifier.Text = "Pharmacy branch unique identifier";
             // 
             // txtBranchIDentifier
             // 
-            this.txtBranchIDentifier.Location = new System.Drawing.Point(401, 184);
+            this.txtBranchIDentifier.Location = new System.Drawing.Point(301, 150);
+            this.txtBranchIDentifier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtBranchIDentifier.Name = "txtBranchIDentifier";
-            this.txtBranchIDentifier.Size = new System.Drawing.Size(366, 22);
+            this.txtBranchIDentifier.Size = new System.Drawing.Size(276, 20);
             this.txtBranchIDentifier.TabIndex = 22;
+            this.txtBranchIDentifier.Validating += new System.ComponentModel.CancelEventHandler(this.txtBranchIDentifier_Validating);
             // 
             // lblAddress
             // 
             this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(25, 161);
+            this.lblAddress.Location = new System.Drawing.Point(19, 131);
+            this.lblAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(60, 17);
+            this.lblAddress.Size = new System.Drawing.Size(45, 13);
             this.lblAddress.TabIndex = 21;
             this.lblAddress.Text = "Address";
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(25, 184);
+            this.txtAddress.Location = new System.Drawing.Point(19, 150);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(366, 22);
+            this.txtAddress.Size = new System.Drawing.Size(276, 20);
             this.txtAddress.TabIndex = 20;
             // 
             // chkBoxCentral
             // 
             this.chkBoxCentral.AutoSize = true;
-            this.chkBoxCentral.Location = new System.Drawing.Point(25, 225);
+            this.chkBoxCentral.Location = new System.Drawing.Point(19, 183);
+            this.chkBoxCentral.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkBoxCentral.Name = "chkBoxCentral";
-            this.chkBoxCentral.Size = new System.Drawing.Size(364, 21);
+            this.chkBoxCentral.Size = new System.Drawing.Size(275, 17);
             this.chkBoxCentral.TabIndex = 24;
             this.chkBoxCentral.Text = "Whether you are adding a central pharmacy branch?";
             this.chkBoxCentral.UseVisualStyleBackColor = true;
@@ -224,76 +253,89 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(401, 360);
+            this.lblEmail.Location = new System.Drawing.Point(301, 292);
+            this.lblEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(42, 17);
+            this.lblEmail.Size = new System.Drawing.Size(32, 13);
             this.lblEmail.TabIndex = 28;
             this.lblEmail.Text = "Email";
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(401, 383);
+            this.txtEmail.Location = new System.Drawing.Point(301, 311);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(366, 22);
+            this.txtEmail.Size = new System.Drawing.Size(276, 20);
             this.txtEmail.TabIndex = 27;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
-            this.lblUserName.Location = new System.Drawing.Point(22, 360);
+            this.lblUserName.Location = new System.Drawing.Point(16, 292);
+            this.lblUserName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(73, 17);
+            this.lblUserName.Size = new System.Drawing.Size(55, 13);
             this.lblUserName.TabIndex = 26;
             this.lblUserName.Text = "Username";
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(22, 383);
+            this.txtUsername.Location = new System.Drawing.Point(16, 311);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(366, 22);
+            this.txtUsername.Size = new System.Drawing.Size(276, 20);
             this.txtUsername.TabIndex = 25;
+            this.txtUsername.Validating += new System.ComponentModel.CancelEventHandler(this.txtUsername_Validating);
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(22, 421);
+            this.lblPassword.Location = new System.Drawing.Point(16, 342);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(69, 17);
+            this.lblPassword.Size = new System.Drawing.Size(53, 13);
             this.lblPassword.TabIndex = 30;
             this.lblPassword.Text = "Passowrd";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(22, 444);
+            this.txtPassword.Location = new System.Drawing.Point(16, 361);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(366, 22);
+            this.txtPassword.Size = new System.Drawing.Size(276, 20);
             this.txtPassword.TabIndex = 29;
+            this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassword_Validating);
             // 
             // lblConfirmPassword
             // 
             this.lblConfirmPassword.AutoSize = true;
-            this.lblConfirmPassword.Location = new System.Drawing.Point(401, 421);
+            this.lblConfirmPassword.Location = new System.Drawing.Point(301, 342);
+            this.lblConfirmPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblConfirmPassword.Name = "lblConfirmPassword";
-            this.lblConfirmPassword.Size = new System.Drawing.Size(120, 17);
+            this.lblConfirmPassword.Size = new System.Drawing.Size(90, 13);
             this.lblConfirmPassword.TabIndex = 32;
             this.lblConfirmPassword.Text = "Confirm passowrd";
             // 
             // txtConfirmPassword
             // 
-            this.txtConfirmPassword.Location = new System.Drawing.Point(401, 444);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(301, 361);
+            this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.PasswordChar = '*';
-            this.txtConfirmPassword.Size = new System.Drawing.Size(366, 22);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(276, 20);
             this.txtConfirmPassword.TabIndex = 31;
+            this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmPassword_Validating);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(21, 9);
+            this.label1.Location = new System.Drawing.Point(16, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(211, 24);
+            this.label1.Size = new System.Drawing.Size(173, 18);
             this.label1.TabIndex = 33;
             this.label1.Text = "Pharmacy information";
             // 
@@ -301,27 +343,33 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(21, 267);
+            this.label2.Location = new System.Drawing.Point(16, 217);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(162, 24);
+            this.label2.Size = new System.Drawing.Size(134, 18);
             this.label2.TabIndex = 34;
             this.label2.Text = "User information";
             // 
             // chkBoxUseCentralData
             // 
             this.chkBoxUseCentralData.AutoSize = true;
-            this.chkBoxUseCentralData.Location = new System.Drawing.Point(401, 225);
+            this.chkBoxUseCentralData.Location = new System.Drawing.Point(301, 183);
+            this.chkBoxUseCentralData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkBoxUseCentralData.Name = "chkBoxUseCentralData";
-            this.chkBoxUseCentralData.Size = new System.Drawing.Size(286, 21);
+            this.chkBoxUseCentralData.Size = new System.Drawing.Size(219, 17);
             this.chkBoxUseCentralData.TabIndex = 35;
             this.chkBoxUseCentralData.Text = "Do you want to use central branch data?";
             this.chkBoxUseCentralData.UseVisualStyleBackColor = true;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frmRegister
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 543);
+            this.ClientSize = new System.Drawing.Size(600, 441);
             this.Controls.Add(this.chkBoxUseCentralData);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -352,9 +400,11 @@
             this.Controls.Add(this.lblPharmacyName);
             this.Controls.Add(this.txtPharmacyName);
             this.Controls.Add(this.btnSignUp);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmRegister";
             this.Text = "POS Pharmacy - Register";
             this.Load += new System.EventHandler(this.frmRegister_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,5 +442,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox chkBoxUseCentralData;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

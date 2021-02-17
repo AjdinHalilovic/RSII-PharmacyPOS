@@ -33,7 +33,11 @@ namespace Pharmacy.WindowsUI.Billing
 
         private async void btnSaveUser_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren() && dgvBillItems.Rows.Count > 0)
+            if(dgvBillItems.Rows.Count == 0)
+            {
+                MessageBox.Show("Please select products!");
+            }
+            else if (ValidateChildren() && dgvBillItems.Rows.Count > 0)
             {
                 try
                 {
