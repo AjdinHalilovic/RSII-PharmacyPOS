@@ -19,8 +19,8 @@ namespace Pharmacy.API
 
             using (var scope = host.Services.CreateScope())
             {
-                var ctx = scope.ServiceProvider.GetService<PharmacyContext>();
-                DbInitializer.Initialize(ctx);
+                //var ctx = scope.ServiceProvider.GetService<PharmacyContext>();
+                //DbInitializer.Initialize(ctx);
             }
 
             host.Run();
