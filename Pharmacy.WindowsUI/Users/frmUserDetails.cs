@@ -28,6 +28,7 @@ namespace Pharmacy.WindowsUI.Users
         public frmUserDetails(int? id = null)
         {
             InitializeComponent();
+            AutoValidate = AutoValidate.Disable;
             _id = id;
         }
 

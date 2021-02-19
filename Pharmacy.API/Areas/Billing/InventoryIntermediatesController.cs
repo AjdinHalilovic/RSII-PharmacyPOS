@@ -76,7 +76,9 @@ namespace Pharmacy.API.Areas.Billing
 
                 #region Intermediate products
                 request.IntermediateProducts.ForEach(x => x.InventoryIntermediateId = inventoryIntermediate.Id);
-                DataUnitOfWork.BaseUow.InventoryIntermediateProductsRepository.AddRange(request.IntermediateProducts);
+                var intermediateProductsInsert = request.IntermediateProducts;
+                intermediateProductsInsert.ForEach(x => x.Product = null);
+                DataUnitOfWork.BaseUow.InventoryIntermediateProductsRepository.AddRange(intermediateProductsInsert);
                 await DataUnitOfWork.BaseUow.InventoryIntermediateProductsRepository.SaveChangesAsync();
                 #endregion
 

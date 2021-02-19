@@ -23,7 +23,8 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
       
         public async Task<IEnumerable<ProductDto>> GetAllDtosByParametersAsync(ProductSearchObject search)
         {
-            string searchTerm = string.IsNullOrEmpty(search.SearchTerm) ? null : $"{Regex.Replace(search.SearchTerm, @"\s+", " ").Replace(" ", ":*&")}:*";
+            //string searchTerm = string.IsNullOrEmpty(search.SearchTerm) ? null : $"{Regex.Replace(search.SearchTerm, @"\s+", " ").Replace(" ", ":*&")}:*";
+            string searchTerm = search.SearchTerm?.Trim();
             var pCategoryId = search.CategoryId == 0 ? null : search.CategoryId;
             return await DbConnection.QueryFunctionAsync<ProductDto>(DbObjects.BaseDbObjects.Functions.Products.products_getdtosbyparameters, new { pPharmacyBranchId = search.PharmacyBranchId, pSearchTerm  = searchTerm, pEqualFullName = search.EqualSearchTerm ,pCategoryId });
 

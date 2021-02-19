@@ -31,6 +31,7 @@ namespace Pharmacy.WindowsUI.Billing
         public frmProductDetails(int? id = null)
         {
             InitializeComponent();
+            AutoValidate = AutoValidate.Disable;
             _id = id;
         }
 

@@ -24,6 +24,7 @@ namespace Pharmacy.WindowsUI
         public frmRegister()
         {
             InitializeComponent();
+            AutoValidate = AutoValidate.Disable;
         }
 
 

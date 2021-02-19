@@ -22,7 +22,8 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
 
         public async Task<IEnumerable<InventoryEntryDto>> GetAllDtosByParametersAsync(BaseSearchObject search)
         {
-            string searchTerm = string.IsNullOrEmpty(search.SearchTerm) ? null : $"{Regex.Replace(search.SearchTerm, @"\s+", " ").Replace(" ", ":*&")}:*";
+            //string searchTerm = string.IsNullOrEmpty(search.SearchTerm) ? null : $"{Regex.Replace(search.SearchTerm, @"\s+", " ").Replace(" ", ":*&")}:*";
+            string searchTerm = search.SearchTerm;
             return await DbConnection.QueryFunctionAsync<InventoryEntryDto>(DbObjects.BaseDbObjects.Functions.InventoryEntries.inventoryentries_getdtosbyparameters, new { pPharmacyBranchId = search.PharmacyBranchId, pSearchTerm = searchTerm });
         }
 

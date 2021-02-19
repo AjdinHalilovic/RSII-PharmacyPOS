@@ -25,6 +25,7 @@ namespace Pharmacy.WindowsUI.Settings
         public frmAttributeDetails(int? id = null)
         {
             InitializeComponent();
+            AutoValidate = AutoValidate.Disable;
             _id = id;
         }
 

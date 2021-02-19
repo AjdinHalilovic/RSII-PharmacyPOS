@@ -19,6 +19,7 @@ namespace Pharmacy.WindowsUI
         public frmLogin()
         {
             InitializeComponent();
+            AutoValidate = AutoValidate.Disable;
         }
 
         private async void btnSignIn_Click(object sender, EventArgs e)

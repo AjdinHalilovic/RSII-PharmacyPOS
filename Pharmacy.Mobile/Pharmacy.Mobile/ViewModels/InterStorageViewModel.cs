@@ -171,7 +171,7 @@ namespace Pharmacy.Mobile.ViewModels
                     {
                         ToInventoryId = SelectedInventory.Id,
                         CreatedDateTime = EntryDateTime.GetValueOrDefault(),
-                        IntermediateProducts = Items.Select(x => new InventoryIntermediateProduct() { ProductId = x.ProductId, Quantity = x.Quantity, Product = new Product() {Code = x.ProductCode } }).ToList()
+                        IntermediateProducts = Items.Select(x => new InventoryIntermediateProduct() { ProductId = x.ProductId, Quantity = x.Quantity, Product = new Product() {Code = x.ProductCode, Name= x.Product } }).ToList()
                     };
 
                     var inventoryEntry = await _inventoryIntermediatesService.Insert<InventoryIntermediateUpsertRequest>(insertRequest);
