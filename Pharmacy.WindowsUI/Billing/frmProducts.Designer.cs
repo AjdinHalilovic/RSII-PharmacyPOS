@@ -74,6 +74,7 @@
             this.txtPretraga.Name = "txtPretraga";
             this.txtPretraga.Size = new System.Drawing.Size(666, 27);
             this.txtPretraga.TabIndex = 6;
+            this.txtPretraga.TextChanged += new System.EventHandler(this.txtPretraga_TextChanged);
             // 
             // btnShow
             // 

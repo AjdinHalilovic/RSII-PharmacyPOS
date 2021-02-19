@@ -53,5 +53,16 @@ namespace Pharmacy.WindowsUI.Settings
             frmAttributeDetails frm = new frmAttributeDetails(null);
             frm.Show();
         }
+
+        private async void txtPretraga_TextChanged(object sender, EventArgs e)
+        {
+            var searchObj = new BaseSearchObject()
+            {
+                SearchTerm = txtPretraga.Text
+            };
+            var result = await _aPIServiceAttributes.Get<List<BaseDto>>(searchObj);
+
+            dgvCategories.DataSource = result;
+        }
     }
 }

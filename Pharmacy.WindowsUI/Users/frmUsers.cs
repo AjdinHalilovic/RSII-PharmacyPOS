@@ -61,5 +61,16 @@ namespace Pharmacy.WindowsUI.Users
             frmUserDetails frm = new frmUserDetails(null);
             frm.Show();
         }
+
+        private async void txtPretraga_TextChanged(object sender, EventArgs e)
+        {
+            var searchObj = new BaseSearchOBject()
+            {
+                FullName = txtPretraga.Text
+            };
+            var result = await _aPIServicePersons.Get<List<PersonDto>>(searchObj);
+
+            dgvUsers.DataSource = result;
+        }
     }
 }

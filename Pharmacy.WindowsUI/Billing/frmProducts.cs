@@ -71,5 +71,15 @@ namespace Pharmacy.WindowsUI.Billing
                 }
             }
         }
+
+        private async void txtPretraga_TextChanged(object sender, EventArgs e)
+        {
+            var searchObj = new BaseSearchObject()
+            {
+                SearchTerm = txtPretraga.Text
+            };
+            var result = await _aPIServiceProducts.Get<List<ProductDto>>(searchObj);
+            dgvProducts.DataSource = new BindingList<ProductDto>(result);
+        }
     }
 }

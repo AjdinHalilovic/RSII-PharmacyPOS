@@ -22,7 +22,7 @@ namespace Pharmacy.Infrastructure.Repositories.Base.Repository
         public async Task<IEnumerable<PersonDto>> GetAllDtosAsync(BaseSearchOBject search)
         {
             //string searchTerm = string.IsNullOrEmpty(search.FullName) ? null : $"{Regex.Replace(search.FullName, @"\s+", " ").Replace(" ", ":*&")}:*";
-            string searchTerm = search.SearchTerm;
+            string searchTerm = search.FullName;
             return await DbConnection.QueryFunctionAsync<PersonDto>(DbObjects.BaseDbObjects.Functions.Persons.persons_getdtosbyparameters, new { pFullName = searchTerm, pEqualFullName = search.EqualSearchTerm, pPharmacyId = search.PharmacyId });
         }
 
