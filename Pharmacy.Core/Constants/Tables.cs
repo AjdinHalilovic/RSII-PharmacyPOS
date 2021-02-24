@@ -30,7 +30,8 @@
         public const string WriteOffInventoryDocuments = nameof(WriteOffInventoryDocuments);
         public const string ProhibitedSubstances = nameof(ProhibitedSubstances);
         public const string ProductAttributes = nameof(ProductAttributes);
-
+        public const string RSII24022021 = nameof(RSII24022021);
+        
     }
     
 }

@@ -42,6 +42,7 @@ namespace Pharmacy.Infrastructure.Contexts.Base
         public virtual DbSet<ProhibitedSubstance>ProhibitedSubstances { get; set; }
         public virtual DbSet<WriteOffInventoryDocument> WriteOffInventoryDocuments{ get; set; }
         public virtual DbSet<ProductAttribute> ProductAttributes{ get; set; }
+        public virtual DbSet<RSII24022021> RSII24022021 { get; set; }
 
         #endregion
 

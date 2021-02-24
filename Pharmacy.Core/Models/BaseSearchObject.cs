@@ -11,5 +11,7 @@ namespace Pharmacy.Core.Models
         public int? PharmacyBranchId { get; set; }
         public bool IncludeBranchFiltering { get; set; }
         public int? PharmacyId { get; set; }
+
+        public List<int> ListIds { get; set; }
     }
 }

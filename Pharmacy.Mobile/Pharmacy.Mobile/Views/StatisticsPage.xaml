@@ -11,6 +11,10 @@
     
     <ContentPage.Content>
         <StackLayout>
+            <Button Text="RSII24022021" BackgroundColor="aliceblue"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="Fill" Clicked="GetRSII24022021">
+            </Button>
             <Button Text="SALES REVANUE" BackgroundColor="aliceblue"
                 VerticalOptions="FillAndExpand" 
                 HorizontalOptions="Fill" Clicked="GetSalesRevanue">

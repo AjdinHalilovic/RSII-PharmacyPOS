@@ -108,6 +108,9 @@ namespace Pharmacy.Infrastructure.UnitOfWorks.Base
         private IWriteOffInventoryDocumentsRepository _writeOffInventoryDocumentsRepository;
         public IWriteOffInventoryDocumentsRepository WriteOffInventoryDocumentsRepository => _writeOffInventoryDocumentsRepository = _writeOffInventoryDocumentsRepository ?? new WriteOffInventoryDocumentsRepository(_pharmacyContext);
 
+        private IRSII24022021Repository _rSII24022021Repository;
+        public IRSII24022021Repository RSII24022021Repository => _rSII24022021Repository = _rSII24022021Repository ?? new RSII24022021Repository(_pharmacyContext);
+
         #endregion
 
         #endregion

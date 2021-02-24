@@ -40,6 +40,7 @@ namespace Pharmacy.Infrastructure.UnitOfWorks.Base
         IUsersRepository UsersRepository{ get; }
         IUserRolesRepository UserRolesRepository{ get; }
         IWriteOffInventoryDocumentsRepository WriteOffInventoryDocumentsRepository{ get; }
+        IRSII24022021Repository RSII24022021Repository { get; }
 
         #endregion
     }

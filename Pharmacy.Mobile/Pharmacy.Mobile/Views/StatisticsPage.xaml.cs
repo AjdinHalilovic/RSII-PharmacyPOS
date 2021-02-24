@@ -33,5 +33,9 @@ namespace Pharmacy.Mobile.Views
         {
             await Navigation.PushAsync(new WarehousePage());
         }
+        async void GetRSII24022021(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RSII24022021Page());
+        }
     }
 }
